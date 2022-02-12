@@ -18,7 +18,7 @@
 
 ---
 
-<p align="center">
+<div align="center">
   <a href="https://deno.land">
     <img src="https://img.shields.io/badge/-Deno-ffffff?style=flat-square&logo=Deno&logoColor=000000" />
   </a>
@@ -28,7 +28,12 @@
   <a href="https://www.mongodb.com">
     <img src="https://img.shields.io/badge/-MongoDB-47A248?style=flat-square&logo=MongoDB&logoColor=ffffff" />
   </a>
-</p>
+</div>
+<div align='center'>
+  <a href="https://www.mongodb.com">
+    <img src="https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=ffffff" />
+  </a>
+</div>
 
 ## What is DAYO :interrobang:
 **DAYO** (**D**iscord-Bot "**A**re **Y**ou the **O**ne?") is a [Discord](https://discord.com)-Bot 🤖 to expose the most likely matches in the super-hot 🥵 TV show "Are You the One?".
