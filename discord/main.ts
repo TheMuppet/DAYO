@@ -1,26 +1,30 @@
-import { config } from "../deps.ts"
-import { Client, GatewayIntents, Message } from "../deps.ts";
+import { config } from "../deps.ts";
+import { Client, event, Intents, slash } from "../deps.ts";
+import { commands } from "./commands/commands.ts";
+import { Interaction } from "https://deno.land/x/harmony@v2.5.1/src/structures/interactions.ts";
 
 const env = config();
 
-const token = env.BOT_TOKEN
-const intents = [
-  GatewayIntents.DIRECT_MESSAGES,
-  GatewayIntents.GUILDS,
-  GatewayIntents.GUILD_MESSAGES,
-];
+const token = env.BOT_TOKEN;
+const serverID = env.SERVER_ID
 
-const client = new Client();
+class TagBot extends Client {
+  @event()
+  ready() {
+    console.log("Ready!");
+    console.log(commands);
+    commands.forEach((command) => {
+      this.slash.commands.create(command, serverID)
+        .then((cmd) => console.log(`Created Slash Command ${cmd.name}!`))
+        .catch((cmd) => console.log(`Failed to create ${cmd.name} command!`));
+    });
+  }
+  @slash("bet")
+  betCommand(i: Interaction) {
+    i.respond({ content: "You submitted your bet successfully" });
+  }
+}
 
-client.on("ready", () => {
-  console.log(`Ready! User: ${client.user?.tag}`);
-});
+const bot = new TagBot();
 
-// Listen for event whenever a Message is sent
-client.on('messageCreate', (msg: Message): void => {
-    if (msg.content === '!ping') {
-        msg.channel.send(`Pong! WS Ping: ${client.gateway.ping}`)
-    }
-})
-
-client.connect(token, intents);
+bot.connect(token, Intents.None);
