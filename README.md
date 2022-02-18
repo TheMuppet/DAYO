@@ -28,6 +28,9 @@
   <a href="https://www.mongodb.com">
     <img src="https://img.shields.io/badge/-MongoDB-47A248?style=flat-square&logo=MongoDB&logoColor=ffffff" />
   </a>
+    <a href="https://www.mongodb.com">
+    <img src="https://img.shields.io/badge/-Heroku-430098?style=flat-square&logo=heroku&logoColor=ffffff" />
+  </a>
 </div>
 <div align='center'>
   <a href="https://www.typescriptlang.org">
