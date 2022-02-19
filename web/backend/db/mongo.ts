@@ -1,9 +1,7 @@
-import { Bson, MongoClient } from "https://deno.land/x/mongo@v0.29.0/mod.ts";
-
-//import { MongoClient } from "../deps.ts";
+import { db_user, db_password } from "../config/config.ts";
+import { MongoClient, Bson } from "../../../deps.ts";
 
 const client = new MongoClient();
-
 
 await client.connect({
     db: "DAYOdb",
@@ -23,21 +21,18 @@ await client.connect({
       },
     ],
     credential: {
-      // hier stehen noch plaintext Passwort und so
-      username: "admin",
-      password: "admin",
+      username: db_user,
+      password: db_password,
       db: "DAYOdb",
       mechanism: "SCRAM-SHA-1",
     },
   });
 
-
-
 // for testing mongo connection
 const dbname: string = "DAYOdb"
 const db = client.database(dbname)
   
-
+// Schema for testing (in future project prob use extra folder for Schemas)
 interface UserSchema {
   _id: { $oid: string };
   name: string;

@@ -1,3 +1,5 @@
 
 .env
 .idea/
+
+web/backend/config/config.ts
