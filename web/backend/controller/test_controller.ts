@@ -5,7 +5,7 @@
 
 import { User } from "../db/mongo.ts";
 
-const getUsers = async (ctx: any) => {
+const getUsers = async (ctx: undefined) => {
   try {
     const data = await User.find();
     ctx.response.body = { "status": true, data: data };
@@ -17,7 +17,7 @@ const getUsers = async (ctx: any) => {
   }
 };
 
-const createUser = async (ctx: any) => {
+const createUser = async (ctx: undefined) => {
   try {
     const body = await ctx.request.body();
     console.log(await body.value);
