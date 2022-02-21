@@ -1,27 +1,25 @@
 /**
  * This file is to test the mongodb connection
- * Implements functions to write and read on db 
+ * Implements functions to write and read on db
  */
 
 import { User } from "../db/mongo.ts";
 
-
-let getUsers = async (ctx: any) => {
-    try {
-      let data: any = await User.find();
-      ctx.response.body = { "status": true, data: data };
-      ctx.response.status = 200;
-    } catch (err) {
-      ctx.response.body = { status: false, data: null };
-      ctx.response.status = 500;
-      console.log(err);
-    }
-  };
-  
-  
-let createUser = async (ctx: any) => {
+const getUsers = async (ctx: any) => {
   try {
-    let body: any = await ctx.request.body();
+    const data = await User.find();
+    ctx.response.body = { "status": true, data: data };
+    ctx.response.status = 200;
+  } catch (err) {
+    ctx.response.body = { status: false, data: null };
+    ctx.response.status = 500;
+    console.log(err);
+  }
+};
+
+const createUser = async (ctx: any) => {
+  try {
+    const body = await ctx.request.body();
     console.log(await body.value);
     const { name, phone, email } = await body.value;
     const id = await User.insertOne({
@@ -38,5 +36,4 @@ let createUser = async (ctx: any) => {
   }
 };
 
-
-export {createUser, getUsers}
+export { createUser, getUsers };

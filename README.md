@@ -36,11 +36,16 @@
 </div>
 
 ## What is DAYO :interrobang:
-**DAYO** (**D**iscord-Bot "**A**re **Y**ou the **O**ne?") is a [Discord](https://discord.com)-Bot 🤖 to expose the most likely matches in the super-hot 🥵 TV show "Are You the One?".
 
-Place bets 💸 with your friends at the start of each season and find out who calls the most matches correctly! ✅
+**DAYO** (**D**iscord-Bot "**A**re **Y**ou the **O**ne?") is a
+[Discord](https://discord.com)-Bot 🤖 to expose the most likely matches in the
+super-hot 🥵 TV show "Are You the One?".
 
-After each episode, you get the most sizzling 🔥 news and probabilities to uncover if your bet might be correct! 💪
+Place bets 💸 with your friends at the start of each season and find out who
+calls the most matches correctly! ✅
+
+After each episode, you get the most sizzling 🔥 news and probabilities to
+uncover if your bet might be correct! 💪
 
 ---
 
