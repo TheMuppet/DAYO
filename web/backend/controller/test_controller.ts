@@ -30,7 +30,6 @@ const createUser = async (ctx: undefined) => {
   } catch (_err) {
     ctx.response.body = { status: false, data: null };
     ctx.response.status = 500;
-
   }
 };
 
