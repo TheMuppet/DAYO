@@ -1,5 +1,5 @@
-import { Application } from "../deps.ts";
-import router from "./routes.ts";
+import { Application } from "../../deps.ts";
+import router from "./routes/routes.ts";
 
 const port = 5000;
 const server = new Application();
