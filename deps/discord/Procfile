@@ -1,1 +1,1 @@
-worker: deno --allow-all discord/main.ts
+worker: deno run --allow-all discord/main.ts
