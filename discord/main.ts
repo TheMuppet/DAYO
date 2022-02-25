@@ -7,7 +7,7 @@ import {
   slash,
 } from "../deps/discord/deps.ts";
 import { commands } from "./commands/commands.ts";
-import { db } from "../web/backend/db/mongo.ts";
+// import { db } from "../web/backend/db/mongo.ts";
 import { addBet, getBet } from "../web/backend/controller/bets.ts";
 
 const env = config();
@@ -16,7 +16,7 @@ const serverID = env.SERVER_ID;
 
 class TagBot extends Client {
   @event()
-  async ready() {
+  ready() {
     console.log(env);
     // await db;
     console.log("Ready!");
@@ -28,13 +28,13 @@ class TagBot extends Client {
     });
   }
   @slash("bet")
-  async betCommand(i: ApplicationCommandInteraction) {
-    const bet = await getBet(i.user.id);
-    if (bet) {
-      return i.respond({
-        content: "You already have placed a bet for this season.",
-      });
-    }
+   betCommand(i: ApplicationCommandInteraction) {
+    // const bet = await getBet(i.user.id);
+    // if (bet) {
+    //   return i.respond({
+    //     content: "You already have placed a bet for this season.",
+    //   });
+    // }
 
     const matches = new Array(10);
     for (let index = 0; index < matches.length; index++) {
@@ -42,7 +42,7 @@ class TagBot extends Client {
         ?.value as string;
       matches[index] = input.match(/\w+/g) ?? [];
     }
-    await addBet(i.user.id, matches);
+    // await addBet(i.user.id, matches);
     i.respond({ content: "You submitted your bet successfully" });
   }
 }
