@@ -1,0 +1,1 @@
+worker: deno --allow-net --allow-env discord/main.ts

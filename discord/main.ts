@@ -5,7 +5,7 @@ import {
   event,
   Intents,
   slash,
-} from "../deps.ts";
+} from "../deps/discord/deps.ts";
 import { commands } from "./commands/commands.ts";
 import { db } from "../web/backend/db/mongo.ts";
 import { addBet, getBet } from "../web/backend/controller/bets.ts";

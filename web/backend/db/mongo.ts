@@ -1,5 +1,5 @@
-import { Bson, MongoClient } from "../../../deps.ts";
-import { config } from "../../../deps.ts";
+import { Bson, MongoClient } from "../../../deps/web/deps.ts";
+import { config } from "../../../deps/web/deps.ts";
 
 const env = config();
 const db_name: string = env.DB_NAME;

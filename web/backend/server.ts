@@ -1,4 +1,4 @@
-import { Application } from "../../deps.ts";
+import { Application } from "../../deps/web/deps.ts";
 import router from "./routes/routes.ts";
 
 const port = 5000;

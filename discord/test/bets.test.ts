@@ -1,5 +1,5 @@
 import { createOptions } from "../commands/bet.ts";
-import { assertEquals, assertNotEquals } from "../../deps.ts";
+import { assertEquals, assertNotEquals } from "../../deps/tests/deps.ts";
 
 Deno.test({
   name: "createOptions returns a list of dictionaries with length of 10",

@@ -1,4 +1,4 @@
-import { SlashCommandOptionType } from "../../deps.ts";
+import { SlashCommandOptionType } from "../../deps/discord/deps.ts";
 
 export interface Option {
   name: string;
