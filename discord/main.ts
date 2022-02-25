@@ -11,8 +11,8 @@ import { commands } from "./commands/commands.ts";
 import { addBet, getBet } from "../web/backend/controller/bets.ts";
 
 const env = config();
-const token = env.BOT_TOKEN;
-const serverID = env.SERVER_ID;
+const token = Deno.env.get("BOT_TOKEN") || env.BOT_TOKEN;
+const serverID = Deno.env.get("SERVER_ID") || env.SERVER_ID;
 
 class TagBot extends Client {
   @event()
@@ -28,7 +28,7 @@ class TagBot extends Client {
     });
   }
   @slash("bet")
-   betCommand(i: ApplicationCommandInteraction) {
+  betCommand(i: ApplicationCommandInteraction) {
     // const bet = await getBet(i.user.id);
     // if (bet) {
     //   return i.respond({
