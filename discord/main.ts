@@ -17,8 +17,8 @@ const serverID = env.SERVER_ID;
 class TagBot extends Client {
   @event()
   async ready() {
-    console.log(env)
-    await db;
+    console.log(env);
+    // await db;
     console.log("Ready!");
     console.log(commands);
     commands.forEach((command) => {
