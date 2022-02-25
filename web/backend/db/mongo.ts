@@ -1,27 +1,26 @@
+import { Bson, MongoClient } from "../../../deps.ts";
 import { config } from "../../../deps.ts";
-import { MongoClient } from "../../../deps.ts";
 
 const env = config();
-const client = new MongoClient();
-const db_user: string = env.DB_USER;
-const db_password: string = env.DB_PASSWORD;
 const db_name: string = env.DB_NAME;
-const db_uri: string = env.DB_URI;
+const db_user: string = env.DB_USERNAME;
+const db_password: string = env.DB_PASSWORD;
+const client = new MongoClient();
 
 await client.connect({
   db: db_name,
   tls: true,
   servers: [
     {
-      host: db_uri,
+      host: "dayodb-shard-00-02.acrbi.mongodb.net",
       port: 27017,
     },
     {
-      host: db_uri,
+      host: "dayodb-shard-00-01.acrbi.mongodb.net",
       port: 27017,
     },
     {
-      host: db_uri,
+      host: "dayodb-shard-00-00.acrbi.mongodb.net",
       port: 27017,
     },
   ],
@@ -44,5 +43,12 @@ interface UserSchema {
   phone: string;
 }
 
+interface BetsSchema {
+  _id: Bson.ObjectId;
+  userID: string;
+  matches: Bson.Array;
+}
+
 const User = db.collection<UserSchema>("user");
-export { db, User };
+const Bets = db.collection<BetsSchema>("best");
+export { db, User, Bets };
