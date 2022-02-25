@@ -46,9 +46,9 @@ interface UserSchema {
 interface BetsSchema {
   _id: Bson.ObjectId;
   userID: string;
-  matches: Bson.Array;
+  matches: Array<Array<string>>;
 }
 
 const User = db.collection<UserSchema>("user");
-const Bets = db.collection<BetsSchema>("best");
-export { db, User, Bets };
+const Bets = db.collection<BetsSchema>("bets");
+export { Bets, db, User };

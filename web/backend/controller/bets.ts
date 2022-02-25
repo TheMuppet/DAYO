@@ -1,11 +1,12 @@
+import { Bets } from "../db/mongo.ts";
 
 export async function getBet(userID: string) {
-    const bet = await bets.findOne({_userID: userID})
-    return bet
+  return await Bets.findOne({ userID: userID });
 }
 
-
-export function addBet(user: string, matches: Array<string>){
-
+export async function addBet(user: string, matches: Array<Array<string>>) {
+  await Bets.insertOne({
+    userID: user,
+    matches: matches,
+  });
 }
-
