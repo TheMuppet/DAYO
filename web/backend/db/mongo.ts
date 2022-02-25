@@ -2,9 +2,9 @@ import { Bson, MongoClient } from "../../../deps/web/deps.ts";
 import { config } from "../../../deps/web/deps.ts";
 
 const env = config();
-const db_name: string = env.DB_NAME;
-const db_user: string = env.DB_USERNAME;
-const db_password: string = env.DB_PASSWORD;
+const db_name: string = Deno.env.get("DB_NAME") || env.DB_NAME;
+const db_user: string = Deno.env.get("DB_USERNAME") || env.DB_USERNAME;
+const db_password: string = Deno.env.get("BOT_PASSWORD") || env.DB_PASSWORD;
 const client = new MongoClient();
 
 await client.connect({
