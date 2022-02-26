@@ -1,10 +1,5 @@
 <script>
 </script>
-<svelte:head>
-  <link rel="stylesheet" href="https://bootswatch.com/5/quartz/bootstrap.min.css">
-</svelte:head>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-</nav>
 <div class="vertical-center">
   <div class="container">
     <div class="row justify-content-between">
@@ -18,11 +13,12 @@
           <p class="lead">
             After each episode, you get the most sizzling 🔥 news and probabilities to uncover if your bet might be correct!
           </p>
-          <button type="button" class="btn btn-lg btn-outline-light">Invite ME!</button>
+          <input type="button" class="btn btn-secondary" value="Invite ME!"
+                 onClick="window.open('https://discord.com/api/oauth2/authorize?client_id=941819203739074601&permissions=274877958144&scope=bot','_blank', 'resizable=yes')" />
         </div>
       </div>
       <div class="col vertical-center">
-        <img src="../../public/images/logo_transparent.png" alt="" width="600" height="600"/>
+        <img src="web/frontend/src/images/logo_transparent.png" alt="" width="600" height="600"/>
       </div>
     </div>
   </div>
