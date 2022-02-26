@@ -9,7 +9,4 @@ body,
 body {
   height: 100%;
   font-family: 'Sora', sans-serif;
-  color: #fff;
-  background: rgb(0,249,255);
-  background: linear-gradient(156deg, rgba(0,249,255,0.969625350140056) 0%, rgba(203,147,170,0.9612219887955182) 49%, rgba(255,0,95,0.8211659663865546) 100%);
 }
