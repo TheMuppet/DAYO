@@ -60,15 +60,17 @@ To have DAYO at your next watch-party you simply have to invite him to your Disc
   </a>
 </div>
 
-✨ **He will always be there to sweetn your day 24/7** ✨
-
+<div align='center'> 
+  <b> ✨ He will always be there to sweetn your day 24/7 ✨ </b>
+</div> 
+  
 <br>
 
 ### Commands ✅
 
 **/bet**
 
-Use */bet* in any channel to place your bet on what you think will be the perfect matches for this season. You can only place one bet per season, so choose wisely. The order of your matches is not relevant, but you must write *Man.Women* per bet to successfully submit it.
+Use */bet* in any channel to place your bet on what you think will be the perfect matches for this season. You can only place one bet per season, so choose wisely. The order of your matches is not relevant, but you must write *Man.Women* per match to successfully submit it.
 
 Example:
 
