@@ -52,7 +52,8 @@ uncover if your bet might be correct! 💪
 
 ## How to use DAYO 🤖
 
-To have DAYO at your next watch-party you simply have to invite him to your Discord Server! 💅 
+To have DAYO at your next watch-party you simply have to invite him to your
+Discord Server! 💅
 
 <div align='center'>
   <a href="https://discord.com/api/oauth2/authorize?client_id=941819203739074601&permissions=274877958144&scope=bot">
@@ -60,17 +61,20 @@ To have DAYO at your next watch-party you simply have to invite him to your Disc
   </a>
 </div>
 
-<div align='center'> 
+<div align='center'>
   <b> ✨ He will always be there to sweetn your day 24/7 ✨ </b>
-</div> 
-  
+</div>
+
 <br>
 
 ### Commands ✅
 
 **/bet**
 
-Use */bet* in any channel to place your bet on what you think will be the perfect matches for this season. You can only place one bet per season, so choose wisely. The order of your matches is not relevant, but you must write *Man.Women* per match to successfully submit it.
+Use _/bet_ in any channel to place your bet on what you think will be the
+perfect matches for this season. You can only place one bet per season, so
+choose wisely. The order of your matches is not relevant, but you must write
+_Man.Women_ per match to successfully submit it.
 
 Example:
 
