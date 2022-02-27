@@ -12,7 +12,7 @@
 <main transition:fade>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <img src="web/frontend/src/images/logo_transparent.png" class="navbar-brand" href="#" alt="">
+      <img src="images/logo_transparent.png" class="navbar-brand" href="/" alt="" width="80" height="80">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

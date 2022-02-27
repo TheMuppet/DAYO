@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="col vertical-center">
-        <img src="web/frontend/src/images/logo_transparent.png" alt="" width="600" height="600"/>
+        <img src="images/logo_transparent.png" alt="png"  width="600" height="600" />
       </div>
     </div>
   </div>
