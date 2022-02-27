@@ -5,9 +5,6 @@ const env = config();
 const db_name: string = Deno.env.get("DB_NAME") || env.DB_NAME;
 const db_user: string = Deno.env.get("DB_USERNAME") || env.DB_USERNAME;
 const db_password: string = Deno.env.get("BOT_PASSWORD") || env.DB_PASSWORD;
-const db_uri1: string = Deno.env.get("DB_URI1") || env.DB_URI1;
-const db_uri2: string = Deno.env.get("DB_URI2") || env.DB_URI2;
-const db_uri3: string = Deno.env.get("DB_URI3") || env.DB_URI3;
 const client = new MongoClient();
 
 await client.connect({
@@ -15,15 +12,15 @@ await client.connect({
   tls: true,
   servers: [
     {
-      host: db_uri1,
+      host: "dayodb-shard-00-00.acrbi.mongodb.net",
       port: 27017,
     },
     {
-      host: db_uri2,
+      host: "dayodb-shard-00-01.acrbi.mongodb.net",
       port: 27017,
     },
     {
-      host: db_uri3,
+      host: "dayodb-shard-00-02.acrbi.mongodb.net",
       port: 27017,
     },
   ],
