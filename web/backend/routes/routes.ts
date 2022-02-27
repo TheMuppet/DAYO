@@ -1,4 +1,4 @@
-import { Router } from "../../../deps.ts";
+import { Router } from "../../../deps/web/deps.ts";
 import { createUser, getUsers } from "../controller/test_controller.ts";
 
 const router = new Router();

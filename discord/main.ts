@@ -1,26 +1,47 @@
-import { config } from "../deps.ts";
-import { Client, GatewayIntents, Message } from "../deps.ts";
+import {
+  ApplicationCommandInteraction,
+  Client,
+  config,
+  event,
+  Intents,
+  slash,
+} from "../deps/discord/deps.ts";
+import { commands } from "./commands/commands.ts";
+import { db } from "../web/backend/db/mongo.ts";
+import { addBet, getBet } from "../web/backend/controller/bets.ts";
 
 const env = config();
+const token = Deno.env.get("BOT_TOKEN") || env.BOT_TOKEN;
+const serverID = Deno.env.get("SERVER_ID") || env.SERVER_ID;
 
-const token = env.BOT_TOKEN;
-const intents = [
-  GatewayIntents.DIRECT_MESSAGES,
-  GatewayIntents.GUILDS,
-  GatewayIntents.GUILD_MESSAGES,
-];
-
-const client = new Client();
-
-client.on("ready", () => {
-  console.log(`Ready! User: ${client.user?.tag}`);
-});
-
-// Listen for event whenever a Message is sent
-client.on("messageCreate", (msg: Message): void => {
-  if (msg.content === "!ping") {
-    msg.channel.send(`Pong! WS Ping: ${client.gateway.ping}`);
+class TagBot extends Client {
+  @event()
+  async ready() {
+    await db;
+    commands.forEach((command) => {
+      this.slash.commands.create(command, serverID);
+    });
   }
-});
+  @slash("bet")
+  async betCommand(i: ApplicationCommandInteraction) {
+    const bet = await getBet(i.user.id);
+    if (bet) {
+      return i.respond({
+        content: "You already have placed a bet for this season.",
+      });
+    }
 
-client.connect(token, intents);
+    const matches = new Array(10);
+    for (let index = 0; index < matches.length; index++) {
+      const input: string = i.options.find((e) => e.name == `match${index + 1}`)
+        ?.value as string;
+      matches[index] = input.match(/\w+/g) ?? [];
+    }
+    await addBet(i.user.id, matches);
+    i.respond({ content: "You submitted your bet successfully" });
+  }
+}
+
+const bot = new TagBot();
+
+bot.connect(token, Intents.None);
