@@ -15,15 +15,15 @@ await client.connect({
   tls: true,
   servers: [
     {
-      host: "dayodb-shard-00-00.acrbi.mongodb.net",
+      host: db_uri1,
       port: 27017,
     },
     {
-      host: "dayodb-shard-00-01.acrbi.mongodb.net",
+      host: db_uri2,
       port: 27017,
     },
     {
-      host: "dayodb-shard-00-02.acrbi.mongodb.net",
+      host: db_uri3,
       port: 27017,
     },
   ],
