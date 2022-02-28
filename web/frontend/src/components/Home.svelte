@@ -2,7 +2,7 @@
 </script>
 <div class="vertical-center">
   <div class="container">
-    <div class="row justify-content-between">
+    <div class="row justify-content-evenly">
       <div class="col vertical-center">
         <div>
           <h1>Welcome! 👋</h1>

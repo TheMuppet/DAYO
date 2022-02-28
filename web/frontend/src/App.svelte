@@ -1,6 +1,6 @@
 <script>
   import Home from "@/components/Home.svelte";
-  import Matches from "@/components/Matches.svelte";
+  import Impressum from "@/components/Impressum.svelte";
   import { fade } from "svelte/transition";
   export let menu = 1;
 </script>
@@ -10,9 +10,9 @@
 </svelte:head>
 
 <main transition:fade>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky">
     <div class="container-fluid">
-      <img src="images/logo_transparent.png" class="navbar-brand" href="/" alt="" width="80" height="80">
+      <img src="images/dayo_transparent_small.png" class="navbar-brand" href="/" alt="" width="60" height="60">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -36,16 +36,30 @@
       </div>
     </div>
   </nav>
+  <br>
   {#if menu === 1}
     <Home />
   {:else if menu === 2}
-    <Matches />
+
   {:else if menu === 3}
 
   {:else if menu === 4}
 
+  {:else if menu === 5}
+    <Impressum />
   {/if}
+
+  <ol class="breadcrumb justify-content-center">
+    <li
+            class="breadcrumb-item "><a class="text-muted" href="/" on:click|preventDefault={() => (menu = 5)}>Impressum
+    </a></li>
+  </ol>
 </main>
 
 <style>
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
 </style>

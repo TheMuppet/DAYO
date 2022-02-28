@@ -1,7 +1,9 @@
 import { Application } from "../../deps.ts";
 import router from "./routes/routes.ts";
+import {parse} from "../../deps.ts";
 
-const port = 5000;
+const { args } = Deno;
+const port = parse(args).port;
 const server = new Application();
 
 server.use(router.routes());
