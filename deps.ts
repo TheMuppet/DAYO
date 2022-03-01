@@ -1,7 +1,12 @@
 // Web
-export { Application, Router } from "https://deno.land/x/oak/mod.ts";
-export { Bson, MongoClient } from "https://deno.land/x/mongo@v0.29.1/mod.ts"
-export {parse} from "https://deno.land/std@0.69.0/flags/mod.ts";
+export {
+  Application,
+  Router,
+  send,
+  Status,
+} from "https://deno.land/x/oak/mod.ts";
+export { Bson, MongoClient } from "https://deno.land/x/mongo@v0.29.1/mod.ts";
+export { parse } from "https://deno.land/std@0.69.0/flags/mod.ts";
 
 // Discord
 export {
