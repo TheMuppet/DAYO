@@ -50,6 +50,38 @@ calls the most matches correctly! ✅
 After each episode, you get the most sizzling 🔥 news and probabilities to
 uncover if your bet might be correct! 💪
 
+## How to use DAYO 🤖
+
+To have DAYO at your next watch-party you simply have to invite him to your
+Discord Server! 💅
+
+<div align='center'>
+  <a href="https://discord.com/api/oauth2/authorize?client_id=941819203739074601&permissions=274877958144&scope=bot">
+    <img src="inviteButton.png" />
+  </a>
+</div>
+
+<div align='center'>
+  <b> ✨ He will always be there to sweetn your day 24/7 ✨ </b>
+</div>
+
+<br>
+
+### Commands ✅
+
+**/bet**
+
+Use _/bet_ in any channel to place your bet on what you think will be the
+perfect matches for this season. You can only place one bet per season, so
+choose wisely. The order of your matches is not relevant, but you must write
+_Man.Women_ per match to successfully submit it.
+
+Example:
+
+```
+/bet Match1: Jamy.Jacqueline Match2: Eugen.Aurelia Match3: Danilo.Jill Match4: Golz.Melina Match5: Francesco.Kathleen  Match6: Manuel.Walentina Match7: Josua.Julia Match8: Salvatore.Sarah Match9: Diogo.Stefanie Match10: Tommy.Finnja
+```
+
 ---
 
 Contribute avatars made with [contrib.rocks](https://contrib.rocks)
