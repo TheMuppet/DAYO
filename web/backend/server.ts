@@ -1,5 +1,5 @@
-import { Application } from "../../deps.ts";
-import { parse } from "../../deps.ts";
+import { Application } from "../../deps/web/deps.ts";
+import { parse } from "../../deps/web/deps.ts";
 
 const { args } = Deno;
 const port: number = parse(args).port || 8080;
