@@ -24,4 +24,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: site
-          path: dist
+          path: ./web/frontend/dist/
