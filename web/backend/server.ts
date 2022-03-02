@@ -1,12 +1,21 @@
 import { Application } from "../../deps/web/deps.ts";
-import router from "./routes/routes.ts";
+import { parse } from "../../deps/web/deps.ts";
 
-const port = 5000;
-const server = new Application();
+const { args } = Deno;
+const port: number = parse(args).port || 8080;
+const app = new Application();
 
-server.use(router.routes());
-server.use(router.allowedMethods());
+app.use(async (context, next) => {
+  try {
+    await context.send({
+      root: `${Deno.cwd()}/../frontend/dist/`,
+      index: "index.html",
+    });
+  } catch {
+    next();
+  }
+});
 
 console.log(`Server run on port ${port}`);
 
-await server.listen({ port });
+await app.listen({ port });
