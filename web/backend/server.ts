@@ -8,7 +8,7 @@ const app = new Application();
 app.use(async (context, next) => {
   try {
     await context.send({
-      root: `/web/frontend/dist/`,
+      root: `./web/frontend/dist/`,
       index: "index.html",
     });
   } catch {
