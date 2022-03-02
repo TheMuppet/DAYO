@@ -1,7 +1,7 @@
 <div align="center">
   <br>
   <a href="http://dayo-project.herokuapp.com/">
-  <img src="dayo.png" alt="DAYO" width="300"/>
+  <img src="DAYO.png" alt="DAYO" width="300"/>
   </a>
   <br>
 </div>
