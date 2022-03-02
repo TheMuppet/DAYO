@@ -1,5 +1,5 @@
 <div align="center">
-  <br />
+  <br>
   <a href="http://dayo-project.herokuapp.com/">
   <img src="dayo.png" alt="DAYO" width="300"/>
   </a>
