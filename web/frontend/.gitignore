@@ -1,4 +1,2 @@
 /public/dist/
 .DS_Store
-/dist/*
-!/dist/images
