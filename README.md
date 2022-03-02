@@ -1,7 +1,10 @@
-<h1 align="center">
+<div align="center">
   <br />
-  <img src="DAYO.png" alt="Jimmi" width="300"></a>
-</h1>
+  <a href="http://dayo-project.herokuapp.com/">
+  <img src="dayo.png" alt="DAYO" width="300"/>
+  </a>
+  <br>
+</div>
 <div align="center">
     <a href="https://github.com/TheMuppet/DAYO/graphs/contributors">
     <img src="https://contrib.rocks/image?repo=TheMuppet/DAYO" height=50 />
