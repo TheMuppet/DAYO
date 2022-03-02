@@ -16,9 +16,9 @@ jobs:
           deno-version: v1.x
 
       - name: Build
+        working-directory: ./web/frontend/
         run: |
           deno run --allow-run --allow-read https://deno.land/x/snel/install.ts
-          cd /web/frontend/
           trex run build 
       - name: Upload Artifacts 🔺
         uses: actions/upload-artifact@v1
