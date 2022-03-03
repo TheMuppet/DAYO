@@ -46,7 +46,7 @@ interface UserSchema {
   phone: string;
 }
 
-interface BetsSchema {
+export interface BetsSchema {
   _id: Bson.ObjectId;
   userID: string;
   matches: Array<Array<string>>;

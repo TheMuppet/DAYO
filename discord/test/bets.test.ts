@@ -1,4 +1,4 @@
-import { createOptions } from "../commands/bet.ts";
+import { createOptions } from "../commands/placeBet.ts";
 import { assertEquals, assertNotEquals } from "../../deps/tests/deps.ts";
 
 Deno.test({
