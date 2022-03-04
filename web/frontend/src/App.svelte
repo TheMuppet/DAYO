@@ -1,8 +1,27 @@
 <script>
   import Home from "@/components/Home.svelte";
+  import Matches from "@/components/Matches.svelte"
   import Impressum from "@/components/Impressum.svelte";
   import { fade } from "svelte/transition";
   export let menu = 1;
+
+  let matches = [
+    {
+      id: 1,
+      m: 'Tim',
+      w: 'Ana'
+    },
+    {
+      id: 2,
+      m: 'Bob',
+      w: 'Nina'
+    },
+    {
+      id: 3,
+      m: 'Christian',
+      w: 'Lisa'
+    }
+  ];
 </script>
 
 <svelte:head>
@@ -40,11 +59,11 @@
   {#if menu === 1}
     <Home />
   {:else if menu === 2}
-
+    <Matches {matches}/>
   {:else if menu === 3}
 
   {:else if menu === 4}
-
+  
   {:else if menu === 5}
     <Impressum />
   {/if}
