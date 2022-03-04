@@ -77,7 +77,7 @@ Discord Server! 💅
 Use _/bet_ in any channel to place your bet on what you think will be the
 perfect matches for this season. You can only place one bet per season, so
 choose wisely. The order of your matches is not relevant, but you must write
-_Man.Women_ per match to successfully submit it.
+_Man.Woman_ per match to successfully submit it.
 
 Example:
 
