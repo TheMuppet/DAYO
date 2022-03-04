@@ -5,7 +5,8 @@
 </script>
   
 <Card>
-    {match.m} & {match.w} are a perfect match!
+    <img src={match.man.pic} alt="test">
+    {match.man.name} & {match.woman.name} are a perfect match!
 </Card>
 
 <style>
