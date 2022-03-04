@@ -1,0 +1,14 @@
+{
+ "name": "DAYO",
+ "short_name": "DAYO",
+ "icons": [
+  {
+   "src": "./35ac889b78f0820ea9dc414eb017edc21149996df003158cc44bccc379d31b3b.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  }
+ ],
+ "theme_color": "#ffffff",
+ "background_color": "#ffffff",
+ "display": "standalone"
+}

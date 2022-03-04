@@ -1,7 +1,10 @@
-<h1 align="center">
-  <br />
-  <img src="DAYO.png" alt="Jimmi" width="300"></a>
-</h1>
+<div align="center">
+  <br>
+  <a href="http://dayo-project.herokuapp.com/">
+  <img src="DAYO.png" alt="DAYO" width="300"/>
+  </a>
+  <br>
+</div>
 <div align="center">
     <a href="https://github.com/TheMuppet/DAYO/graphs/contributors">
     <img src="https://contrib.rocks/image?repo=TheMuppet/DAYO" height=50 />
@@ -28,7 +31,7 @@
   <a href="https://www.mongodb.com">
     <img src="https://img.shields.io/badge/-MongoDB-47A248?style=flat-square&logo=MongoDB&logoColor=ffffff" />
   </a>
-    <a href="https://www.mongodb.com">
+    <a href="https://www.heroku.com">
     <img src="https://img.shields.io/badge/-Heroku-430098?style=flat-square&logo=heroku&logoColor=ffffff" />
   </a>
 </div>
@@ -49,6 +52,38 @@ calls the most matches correctly! ✅
 
 After each episode, you get the most sizzling 🔥 news and probabilities to
 uncover if your bet might be correct! 💪
+
+## How to use DAYO 🤖
+
+To have DAYO at your next watch-party you simply have to invite him to your
+Discord Server! 💅
+
+<div align='center'>
+  <a href="https://discord.com/api/oauth2/authorize?client_id=941819203739074601&permissions=274877958144&scope=bot">
+    <img src="inviteButton.png" />
+  </a>
+</div>
+
+<div align='center'>
+  <b> ✨ He will always be there to sweetn your day 24/7 ✨ </b>
+</div>
+
+<br>
+
+### Commands ✅
+
+**/bet**
+
+Use _/bet_ in any channel to place your bet on what you think will be the
+perfect matches for this season. You can only place one bet per season, so
+choose wisely. The order of your matches is not relevant, but you must write
+_Man.Woman_ per match to successfully submit it.
+
+Example:
+
+```
+/bet Match1: Jamy.Jacqueline Match2: Eugen.Aurelia Match3: Danilo.Jill Match4: Golz.Melina Match5: Francesco.Kathleen  Match6: Manuel.Walentina Match7: Josua.Julia Match8: Salvatore.Sarah Match9: Diogo.Stefanie Match10: Tommy.Finnja
+```
 
 ---
 

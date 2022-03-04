@@ -1,14 +1,14 @@
-import { config } from "../../../deps.ts";
-import { MongoClient } from "../../../deps.ts";
+import { Bson, MongoClient } from "../../../deps/web/deps.ts";
+import { config } from "../../../deps/web/deps.ts";
 
 const env = config();
+const db_name: string = Deno.env.get("DB_NAME") || env.DB_NAME;
+const db_user: string = Deno.env.get("DB_USERNAME") || env.DB_USERNAME;
+const db_password: string = Deno.env.get("DB_PASSWORD") || env.DB_PASSWORD;
+const db_uri1: string = Deno.env.get("DB_URI1") || env.DB_URI1;
+const db_uri2: string = Deno.env.get("DB_URI2") || env.DB_URI2;
+const db_uri3: string = Deno.env.get("DB_URI3") || env.DB_URI3;
 const client = new MongoClient();
-const db_user: string = env.DB_USER;
-const db_password: string = env.DB_PASSWORD;
-const db_name: string = env.DB_NAME;
-const db_uri1: string = env.DB_URI1;
-const db_uri2: string = env.DB_URI2;
-const db_uri3: string = env.DB_URI3;
 
 await client.connect({
   db: db_name,
@@ -39,3 +39,13 @@ await client.connect({
 const db = client.database(db_name);
 
 export { db };
+
+interface BetsSchema {
+  _id: Bson.ObjectId;
+  userID: string;
+  matches: Array<Array<string>>;
+}
+
+const User = db.collection<UserSchema>("user");
+const Bets = db.collection<BetsSchema>("bets");
+export { Bets, db, User };
