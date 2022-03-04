@@ -8,18 +8,45 @@
   let matches = [
     {
       id: 1,
-      m: 'Tim',
-      w: 'Ana'
+      man: {
+        name : 'Andre',
+        pic : 'link',
+        occupation : 'Team manager in a basketball club'
+      },
+      woman: {
+        name : 'Dana',
+        pic : 'link',
+        occupation : 'Soldier'
+      },
+      probability : 100
     },
     {
       id: 2,
-      m: 'Bob',
-      w: 'Nina'
+      man: {
+        name : 'Antonino',
+        pic : 'https://ais-cf.tvnow.de/tvnow/cms/4b1e099767b2ceecdbecba42f4467d26/400x0/image.jpg',
+        occupation : 'Fitness trainer'
+      },
+      woman: {
+        name : 'Estelle',
+        pic : 'link',
+        occupation : 'College student'
+      },
+      probability : 100
     },
     {
       id: 3,
-      m: 'Christian',
-      w: 'Lisa'
+      man: {
+        name : 'Dustin',
+        pic : 'link',
+        occupation : 'College student'
+      },
+      woman: {
+        name : 'Isabelle',
+        pic : 'link',
+        occupation : 'Fitness trainer'
+      },
+      probability : 100
     }
   ];
 </script>
