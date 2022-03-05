@@ -4,8 +4,8 @@
 </script>
 
 <div class="matches-list">
-  <h1>Current Matches</h1>
   <p></p>
+  <h1>Current Matches</h1>
   {#each matches as match (match.id)}
     <Match {match}/>
   {/each}
@@ -13,6 +13,6 @@
 
 <style>
   .matches-list {
-    padding: 20px;
+    padding: 60px;
   }
 </style>
