@@ -85,6 +85,39 @@ Example:
 /bet Match1: Jamy.Jacqueline Match2: Eugen.Aurelia Match3: Danilo.Jill Match4: Golz.Melina Match5: Francesco.Kathleen  Match6: Manuel.Walentina Match7: Josua.Julia Match8: Salvatore.Sarah Match9: Diogo.Stefanie Match10: Tommy.Finnja
 ```
 
+**/showbet**
+
+If you submitted a bet and would like to know what you have submitted. You can
+simply ask DAYO to remind you kindly of it. However, if you have not submitted
+previously he will show you how it's done!
+
+Example:
+
+```
+/showbet`
+```
+
+Response:
+
+```
+Match 1: Man ❤️ Woman
+Match 2: Man ❤️ Woman
+Match 3: Man ❤️ Woman
+Match 4: Man ❤️ Woman
+Match 5: Man ❤️ Woman
+Match 6: Man ❤️ Woman
+Match 7: Man ❤️ Woman
+Match 8: Man ❤️ Woman
+Match 9: Man ❤️ Woman
+Match 10: Man ❤️ Woman
+```
+
+or
+
+```
+You have not yet placed a bet for this season. You can place a bet with the /bet command!
+```
+
 ---
 
 Contribute avatars made with [contrib.rocks](https://contrib.rocks)
