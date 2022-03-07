@@ -49,5 +49,5 @@ export async function placeBet(
     userID: i.user.id,
     matches: matches,
   });
-  i.respond({ content: "You submitted your bet successfully" });
+  i.respond({ content: "You submitted your bet successfully!" });
 }

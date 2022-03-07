@@ -100,6 +100,7 @@ Example:
 Response:
 
 ```
+Your Bet:
 Match 1: Jamy ❤️ Jacqueline
 Match 2: Eugen ❤️ Aurelia
 Match 3: Danilo ❤️ Jill
@@ -115,7 +116,7 @@ Match 10: Tommy ❤️ Finnja
 or
 
 ```
-You have not yet placed a bet for this season. You can place a bet with the /bet command!
+You have not placed a bet for this season. You can place a bet with the /bet command!
 ```
 
 ---
