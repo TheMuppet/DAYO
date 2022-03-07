@@ -100,16 +100,16 @@ Example:
 Response:
 
 ```
-Match 1: Man ❤️ Woman
-Match 2: Man ❤️ Woman
-Match 3: Man ❤️ Woman
-Match 4: Man ❤️ Woman
-Match 5: Man ❤️ Woman
-Match 6: Man ❤️ Woman
-Match 7: Man ❤️ Woman
-Match 8: Man ❤️ Woman
-Match 9: Man ❤️ Woman
-Match 10: Man ❤️ Woman
+Match 1: Jamy ❤️ Jacqueline
+Match 2: Eugen ❤️ Aurelia
+Match 3: Danilo ❤️ Jill
+Match 4: Golz ❤️ Melina
+Match 5: Francesco ❤️ Kathleen
+Match 6: Manuel ❤️ Walentina
+Match 7: Josua ❤️ Julia
+Match 8: Salvatore ❤️ Sarah
+Match 9: Diogo ❤️ Stefanie
+Match 10: Tommy ❤️ Finnja
 ```
 
 or
