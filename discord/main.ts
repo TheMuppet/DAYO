@@ -13,14 +13,13 @@ import { showBet } from "./commands/showBet.ts";
 
 const env = config();
 const token = Deno.env.get("BOT_TOKEN") || env.BOT_TOKEN;
-const serverID = Deno.env.get("SERVER_ID") || env.SERVER_ID;
 
 class DAYO extends Client {
   @event()
   async ready() {
     await db;
     commands.forEach((command) => {
-      this.slash.commands.create(command, serverID);
+      this.slash.commands.create(command);
     });
   }
 

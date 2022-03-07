@@ -8,7 +8,6 @@ export const showBetCmd = {
 };
 
 function matchesToString(bet: BetsSchema): string {
-  console.log("hey");
   let msg = "";
   for (let i = 0; i < bet.matches.length; i++) {
     msg = msg +
