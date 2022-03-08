@@ -1,11 +1,11 @@
 <script>
   import Match from "@/components/Match.svelte"
-  export let matches = [];
+  export let matches = []
 </script>
 
 <div class="matches-list">
   <h1>Current Matches</h1>
-  {#each matches as match (match.id)}
+  {#each matches as match}
     <Match {match}/>
   {/each}
 </div>

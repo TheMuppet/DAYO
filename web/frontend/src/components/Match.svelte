@@ -1,7 +1,6 @@
 <script>
     import Card from "@/components/UI/Card.svelte"
     export let match = {}
-    console.log(match)
 </script>
   
 <Card>

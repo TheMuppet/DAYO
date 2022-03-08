@@ -2,47 +2,22 @@
   import Home from "@/components/Home.svelte";
   import Matches from "@/components/Matches.svelte"
   import Impressum from "@/components/Impressum.svelte";
+  import { onMount } from "svelte";
   import { fade } from "svelte/transition";
   export let menu = 1;
 
-  let matches = [
-    {
-      id: 1,
-      man: {
-        name : 'Andre',
-        pic : 'https://ais-cf.tvnow.de/tvnow/cms/7757881aaa8a0be975514c2277a67bda/400x0/image.jpg'
-      },
-      woman: {
-        name : 'Dana',
-        pic : 'https://ais-cf.tvnow.de/tvnow/cms/5fa1f483fda2271d5395a7837748e777/400x0/image.jpg'
-      },
-      probability : 100
-    },
-    {
-      id: 2,
-      man: {
-        name : 'Antonino',
-        pic : 'https://ais-cf.tvnow.de/tvnow/cms/4b1e099767b2ceecdbecba42f4467d26/400x0/image.jpg'
-      },
-      woman: {
-        name : 'Estelle',
-        pic : 'https://ais-cf.tvnow.de/tvnow/cms/075b491ef0600923d4b975c98128684d/400x0/image.jpg'
-      },
-      probability : 80
-    },
-    {
-      id: 3,
-      man: {
-        name : 'Dustin',
-        pic : 'https://ais-cf.tvnow.de/tvnow/cms/2611636cfc65f5f83cb12c4121e5b277/400x0/image.jpg'
-      },
-      woman: {
-        name : 'Isabelle',
-        pic : 'https://ais-cf.tvnow.de/tvnow/cms/359cb304c833e004c8580a3a365f886e/400x0/image.jpg'
-      },
-      probability : 100
-    }
-  ];
+  let matches = []
+
+  onMount(async () => {
+  fetch("http://localhost:8080/api/v1/matches")
+  .then(response => response.json())
+  .then(data => {
+    matches = data;
+  }).catch(error => {
+    console.log(error);
+    return 0;
+  });
+});
 </script>
 
 <svelte:head>
