@@ -1,0 +1,12 @@
+{
+  "fmt": {
+    "files": {
+      "exclude": ["web/frontend/dist"]
+    }
+  },
+  "lint": {
+    "files": {
+      "exclude": ["web/frontend/dist"]
+    }
+  }
+}
