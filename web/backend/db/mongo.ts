@@ -38,14 +38,11 @@ await client.connect({
 // for testing mongo connection
 const db = client.database(db_name);
 
-export { db };
-
 interface BetsSchema {
   _id: Bson.ObjectId;
   userID: string;
   matches: Array<Array<string>>;
 }
 
-const User = db.collection<UserSchema>("user");
 const Bets = db.collection<BetsSchema>("bets");
-export { Bets, db, User };
+export { Bets, db };
