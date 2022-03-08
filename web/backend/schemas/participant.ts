@@ -1,4 +1,4 @@
-import { Bson } from "../../../deps.ts";
+import { Bson } from "../../../deps/web/deps.ts";
 import { db } from "../db/mongo.ts";
 
 // Schema for AYTO participants

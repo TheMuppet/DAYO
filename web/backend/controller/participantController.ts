@@ -1,5 +1,5 @@
 import { Participant } from "../schemas/participant.ts";
-import { Context } from "../../../deps.ts";
+import { Context } from "../../../deps/web/deps.ts";
 
 // creates a new participant with data in request
 const createParticipant = async (ctx: Context) => {
