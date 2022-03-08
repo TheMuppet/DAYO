@@ -11,7 +11,7 @@ export interface Option {
   type: SlashCommandOptionType;
 }
 
-export function createOptions(): Array<Option> {
+function createOptions(): Array<Option> {
   const options: Array<Option> = new Array(10);
   for (let i = 0; i < options.length; i++) {
     options[i] = {
