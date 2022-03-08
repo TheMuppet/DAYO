@@ -1,7 +1,10 @@
-<h1 align="center">
-  <br />
-  <img src="DAYO.png" alt="Jimmi" width="300"></a>
-</h1>
+<div align="center">
+  <br>
+  <a href="http://dayo-project.herokuapp.com/">
+  <img src="DAYO.png" alt="DAYO" width="300"/>
+  </a>
+  <br>
+</div>
 <div align="center">
     <a href="https://github.com/TheMuppet/DAYO/graphs/contributors">
     <img src="https://contrib.rocks/image?repo=TheMuppet/DAYO" height=50 />
@@ -74,7 +77,7 @@ Discord Server! 💅
 Use _/bet_ in any channel to place your bet on what you think will be the
 perfect matches for this season. You can only place one bet per season, so
 choose wisely. The order of your matches is not relevant, but you must write
-_Man.Women_ per match to successfully submit it.
+_Man.Woman_ per match to successfully submit it.
 
 Example:
 
