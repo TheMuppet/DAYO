@@ -4,7 +4,7 @@ import {
 } from "../../deps/discord/deps.ts";
 import { Bets } from "../../web/backend/db/mongo.ts";
 
-export interface Option {
+interface Option {
   name: string;
   description: string;
   required: boolean;
@@ -15,7 +15,7 @@ function createOptions(): Array<Option> {
   const options: Array<Option> = new Array(10);
   for (let i = 0; i < options.length; i++) {
     options[i] = {
-      name: `match${i + 1}`,
+      name: `match ${i + 1}`,
       description: "Write: Man.Woman",
       required: true,
       type: SlashCommandOptionType.STRING,
