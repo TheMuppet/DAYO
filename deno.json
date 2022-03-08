@@ -1,7 +1,7 @@
 {
-    "fmt": {
-      "files": {
-        "exclude": ["web/frontend/dist"]
-      }
+  "fmt": {
+    "files": {
+      "exclude": ["web/frontend/dist"]
     }
+  }
 }
