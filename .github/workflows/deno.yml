@@ -29,7 +29,7 @@ jobs:
           deno-version: v1.x
 
       - name: Verify formatting
-        run: deno fmt --check
+        run: deno fmt --check --config ./deno.json
 
       - name: Run linter
         run: deno lint
