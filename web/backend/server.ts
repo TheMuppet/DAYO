@@ -18,7 +18,7 @@ app.use(router.allowedMethods());
 app.use(async (context, next) => {
   try {
     await context.send({
-      root: `${Deno.cwd()}/../frontend/dist/`,
+      root: `./web/frontend/dist/`,
       index: "index.html",
     });
   } catch {
