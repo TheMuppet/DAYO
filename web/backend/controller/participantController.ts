@@ -45,7 +45,7 @@ const findAll = async (ctx: Context) => {
     } catch {
       gender = undefined;
     }
-    // if there is no filter it will just return all participants
+    // if there is no filter it will just return all participants from every season
   } catch {
     season = undefined;
     gender = undefined;
@@ -64,6 +64,15 @@ const findParticipant = async (
       "gender": gender,
       "season": season,
     }).toArray();
+    // to return an 404 error if no participant is found (alternatives: other error code or return [] and 200 {remove this if statement} )
+    if (JSON.stringify(allParticipant) == JSON.stringify([])) {
+      ctx.response.status = 404;
+      ctx.response.body = {
+        status: false,
+        error_message: "No participants found",
+      };
+      return;
+    }
     ctx.response.body = { status: true, data: allParticipant };
     ctx.response.status = 200;
   } catch (error) {
