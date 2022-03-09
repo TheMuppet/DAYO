@@ -9,7 +9,7 @@ router
   .get("/", (ctx) => {
     ctx.response.body = "This is the home route";
   })
-  .post("/add-participant", createParticipant);
-  .post("/get-participants", findAll)
+  .post("/add-participant", createParticipant)
+  .post("/get-participants", findAll);
 
 export default router;
