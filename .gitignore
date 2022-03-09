@@ -2,3 +2,5 @@
 .env
 .idea/
 .vscode/
+
+ZscalerRootCertificate-2048-SHA256.crt
