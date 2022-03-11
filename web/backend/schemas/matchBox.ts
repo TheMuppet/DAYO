@@ -8,7 +8,7 @@ interface MatchBoxSchema {
   name_w: string;
   match: boolean;
   season: number;
-  number: number;
+  mb_number: number;
 }
 
 const Matchbox = db.collection<MatchBoxSchema>("matchbox");
