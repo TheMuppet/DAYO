@@ -9,40 +9,35 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
 
-      - name: Install Deno
+      - name: Remove old "dist" folder 
+        working-directory: ./web/frontend
+        run: |
+          if (Test-Path -Path ./dist) { rm -r dist }
+          
+
+      - name: Install Deno 🦕
         uses: denolib/setup-deno@v2
         with:
           deno-version: v1.x
 
-      - name: Build
+      - name: Build Frontend 📄
         working-directory: ./web/frontend
         run: |
           deno run --allow-run --allow-read https://deno.land/x/snel/install.ts
           trex run build
-      - name: Upload Artifacts 🔺
-        uses: actions/upload-artifact@v1
-        with:
-          name: site
-          path: ./web/frontend/dist
-  deploy:
-    needs: [ build ]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
+          if (Test-Path -Path ./trex_storage) { rm -r trex_storage }
+      
+      - name: Copy Images 🖼️
+        working-directory: ./web/frontend
+        run: |
+          copy -r .\public\images\ .\dist\
 
-      - name: Download Artifacts 🔻
-        uses: actions/download-artifact@v1
+      - name: Commit & Push changes ✔️
+        uses: actions-js/push@master
         with:
-          name: site
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          branch: deploy
-          folder: "site"
-          clean-exclude: |
-            vercel.json
-            manifest.json
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: 'main'
