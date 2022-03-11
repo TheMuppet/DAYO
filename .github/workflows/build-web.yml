@@ -21,11 +21,10 @@ jobs:
           deno run --allow-run --allow-read https://deno.land/x/snel/install.ts
           trex run build
       - name: Upload Artifacts 🔺
-        working-directory: ./web/frontend
         uses: actions/upload-artifact@v1
         with:
           name: site
-          path: dist
+          path: ./web/frontend/dist
   deploy:
     needs: [ build ]
     runs-on: ubuntu-latest
