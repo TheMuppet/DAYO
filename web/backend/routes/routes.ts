@@ -3,12 +3,14 @@ import {
   createParticipant,
   findAll,
 } from "../controller/participantController.ts";
+import { createMatchBox } from "../controller/matchBoxController.ts";
 
 const router = new Router();
 router
-  .get("/", (ctx) => {
-    ctx.response.body = "This is the home route";
-  })
+  // .get("/", (ctx) => {
+  //   ctx.response.body = "This is the home route";
+  // })
+  .post("/add-matchbox", createMatchBox)
   .post("/add-participant", createParticipant)
   .post("/get-participants", findAll);
 
