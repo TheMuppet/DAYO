@@ -1,6 +1,7 @@
 import {
   ApplicationCommandInteraction,
-  SlashCommandOptionType,
+  ApplicationCommandOptionType,
+  ApplicationCommandPartial,
 } from "../../deps/discord/deps.ts";
 import { Bets } from "../../web/backend/db/schemas.ts";
 
@@ -8,23 +9,23 @@ interface Option {
   name: string;
   description: string;
   required: boolean;
-  type: SlashCommandOptionType;
+  type: ApplicationCommandOptionType.STRING;
 }
 
 function createOptions(): Array<Option> {
   const options: Array<Option> = new Array(10);
   for (let i = 0; i < options.length; i++) {
     options[i] = {
-      name: `match ${i + 1}`,
+      name: `match${i + 1}`,
       description: "Write: Man.Woman",
       required: true,
-      type: SlashCommandOptionType.STRING,
+      type: ApplicationCommandOptionType.STRING,
     };
   }
   return options;
 }
 
-export const placeBetCmd = {
+export const placeBetCmd: ApplicationCommandPartial = {
   name: "bet",
   description: "Place your bet",
   options: createOptions(),
@@ -32,10 +33,10 @@ export const placeBetCmd = {
 
 export async function placeBet(
   i: ApplicationCommandInteraction,
-): Promise<void> {
+): Promise<ApplicationCommandInteraction> {
   const bet = await Bets.findOne({ userID: i.user.id });
   if (bet) {
-    i.respond({
+    return i.respond({
       content: "You already have placed a bet for this season.",
     });
   }
@@ -49,5 +50,5 @@ export async function placeBet(
     userID: i.user.id,
     matches: matches,
   });
-  i.respond({ content: "You submitted your bet successfully!" });
+  return i.respond({ content: "You submitted your bet successfully!" });
 }

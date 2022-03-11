@@ -82,8 +82,8 @@ _Man.Woman_ per match to successfully submit it.
 Example:
 
 ```
-/bet Match 1: Jamy.Jacqueline Match 2: Eugen.Aurelia Match 3: Danilo.Jill Match 4: Golz.Melina Match 5: Francesco.
-Kathleen  Match 6: Manuel.Walentina Match 7: Josua.Julia Match 8: Salvatore.Sarah Match 9: Diogo.Stefanie Match 10: 
+/bet match1: Jamy.Jacqueline match2: Eugen.Aurelia match3: Danilo.Jill match4: Golz.Melina match5: Francesco.
+Kathleen  match6 : Manuel.Walentina match7: Josua.Julia match8: Salvatore.Sarah match9: Diogo.Stefanie match10: 
 Tommy.Finnja
 ```
 
