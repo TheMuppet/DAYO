@@ -3,6 +3,7 @@ import {
   createParticipant,
   findAll,
 } from "../controller/participantController.ts";
+import { createMatches } from "../controller/matchController.ts";
 
 const router = new Router();
 
@@ -53,6 +54,7 @@ router
     ctx.response.body = "This is the home route";
   })
   .post("/add-participant", createParticipant)
+  .post("/add-matches", createMatches)
   .post("/get-participants", findAll)
   .get("/api/v1/matches", (context) => {
     context.response.body = matches;
