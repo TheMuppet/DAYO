@@ -1,7 +1,7 @@
 import { Bson } from "../../../deps/web/deps.ts";
 import { db } from "../db/mongo.ts";
 
-// Schema for AYTO participants
+// Schema for AYTO matches
 interface MatchesSchema {
   _id: Bson.ObjectId;
   matches: {

@@ -1,7 +1,7 @@
 import { Matches } from "../schemas/matches.ts";
 import { Context } from "../../../deps/web/deps.ts";
 
-// creates a new participant with data in request
+
 const createMatches = async (ctx: Context) => {
   try {
     const body = await ctx.request.body();
