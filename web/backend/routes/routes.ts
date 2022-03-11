@@ -4,7 +4,7 @@ import {
   findAll,
 } from "../controller/participantController.ts";
 import { createMatchBox } from "../controller/matchBoxController.ts";
-import { createMatchNight } from "../controller/matchNightController.ts"
+import { createMatchNight } from "../controller/matchNightController.ts";
 
 const router = new Router();
 router

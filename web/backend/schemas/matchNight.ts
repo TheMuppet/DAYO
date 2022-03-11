@@ -5,8 +5,8 @@ import { db } from "../db/mongo.ts";
 interface MatchNightSchema {
   _id: Bson.ObjectId;
   couples: {
-    name_m: string,
-    name_w: string
+    name_m: string;
+    name_w: string;
   };
   lights: number;
   season: number;

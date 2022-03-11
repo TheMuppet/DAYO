@@ -10,7 +10,7 @@ const createMatchNight = async (ctx: Context) => {
       couples: couples,
       lights: lights,
       season: season,
-      mn_number: mn_number
+      mn_number: mn_number,
     });
     ctx.response.body = { status: true, data: data };
     ctx.response.status = 201;
