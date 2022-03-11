@@ -18,9 +18,7 @@ class DAYO extends Client {
   @event()
   async ready() {
     await db;
-    commands.forEach((command) => {
-      this.slash.commands.create(command);
-    });
+    this.slash.commands.bulkEdit(commands);
   }
 
   @slash("bet")
