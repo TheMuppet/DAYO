@@ -26,7 +26,6 @@ const createParticipant = async (ctx: Context) => {
   }
 };
 
-
 // finds the participants
 const findParticipant = async (
   ctx: Context,
@@ -59,8 +58,6 @@ const findParticipant = async (
   }
 };
 
-
-
 // finds and filter participant in mongodb (filter: season, gender, none)
 const findAll = async (ctx: Context) => {
   let gender = undefined;
@@ -87,6 +84,5 @@ const findAll = async (ctx: Context) => {
   }
   await findParticipant(ctx, gender, season);
 };
-
 
 export { createParticipant, findAll };
