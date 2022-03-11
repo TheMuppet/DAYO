@@ -16,6 +16,7 @@ jobs:
           deno-version: v1.x
 
       - name: Build
+        working-directory: ./web/frontend
         run: |
           deno run --allow-run --allow-read https://deno.land/x/snel/install.ts
           trex run build
