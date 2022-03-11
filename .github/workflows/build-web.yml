@@ -5,7 +5,7 @@ on:
       - test
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
@@ -32,7 +32,7 @@ jobs:
       - name: Copy Images
         working-directory: ./web/frontend
         run: |
-          cp -r ./public/images ./dist/images 
+          xcopy ./public/images ./dist/images/  /E/H
 
       - name: Commit & Push changes
         uses: actions-js/push@master
