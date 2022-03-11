@@ -2,7 +2,7 @@ import {
   ApplicationCommandInteraction,
   SlashCommandOptionType,
 } from "../../deps/discord/deps.ts";
-import { Bets } from "../../web/backend/db/mongo.ts";
+import { Bets } from "../../web/backend/db/schemas.ts";
 
 interface Option {
   name: string;

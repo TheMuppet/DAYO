@@ -1,4 +1,4 @@
-import { Bets, BetsSchema } from "../../web/backend/db/mongo.ts";
+import { Bets, BetsSchema } from "../../web/backend/db/schemas.ts";
 import { ApplicationCommandInteraction } from "../../deps/discord/deps.ts";
 
 export const showBetCmd = {

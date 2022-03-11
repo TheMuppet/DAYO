@@ -1,4 +1,4 @@
-import { Bson, MongoClient } from "../../../deps/web/deps.ts";
+import { MongoClient } from "../../../deps/web/deps.ts";
 import { config } from "../../../deps/web/deps.ts";
 
 const env = config();
@@ -36,22 +36,4 @@ await client.connect({
 });
 
 // for testing mongo connection
-const db = client.database(db_name);
-
-// Schema for testing (in future project prob use extra folder for Schemas)
-interface UserSchema {
-  _id: { $oid: string };
-  name: string;
-  email: string;
-  phone: string;
-}
-
-export interface BetsSchema {
-  _id: Bson.ObjectId;
-  userID: string;
-  matches: Array<Array<string>>;
-}
-
-const User = db.collection<UserSchema>("user");
-const Bets = db.collection<BetsSchema>("bets");
-export { Bets, db, User };
+export const db = client.database(db_name);
