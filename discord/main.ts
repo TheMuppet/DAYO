@@ -16,9 +16,12 @@ const token = Deno.env.get("BOT_TOKEN") || env.BOT_TOKEN;
 
 class DAYO extends Client {
   @event()
-  async ready() {
+  async ready(): Promise<void> {
     await db;
-    this.slash.commands.bulkEdit(commands);
+    const currentCommands = await this.interactions.commands.all();
+    if (currentCommands.size !== 2) {
+      this.interactions.commands.bulkEdit(commands);
+    }
   }
 
   @slash("bet")
