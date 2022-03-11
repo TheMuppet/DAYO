@@ -9,7 +9,7 @@
   let matches = []
 
   onMount(async () => {
-  fetch("http://localhost:8080/api/v1/matches")
+  fetch("http://localhost/api/v1/matches")
   .then(response => response.json())
   .then(data => {
     matches = data;
