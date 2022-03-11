@@ -48,15 +48,14 @@ const matches = [
   },
 ];
 
-
 router
   .get("/", (ctx) => {
     ctx.response.body = "This is the home route";
   })
   .post("/add-participant", createParticipant)
   .post("/get-participants", findAll)
-  get("/api/v1/matches", (context) => {
-  context.response.body = matches;
-});
+  .get("/api/v1/matches", (context) => {
+    context.response.body = matches;
+  });
 
 export default router;

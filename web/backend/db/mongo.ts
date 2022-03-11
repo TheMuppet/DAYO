@@ -35,6 +35,4 @@ await client.connect({
   },
 });
 
-
 export const db = client.database(db_name);
-
