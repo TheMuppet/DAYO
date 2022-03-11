@@ -18,6 +18,9 @@ class DAYO extends Client {
   @event()
   async ready(): Promise<void> {
     await db;
+    commands.forEach(command => {
+    this.slash.commands.create(command);
+    })
     this.interactions.commands.bulkEdit(commands);
   }
 
