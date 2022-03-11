@@ -1,7 +1,6 @@
 import { Matches } from "../schemas/matches.ts";
 import { Context } from "../../../deps/web/deps.ts";
 
-
 const createMatches = async (ctx: Context) => {
   try {
     const body = await ctx.request.body();
