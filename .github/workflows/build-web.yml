@@ -32,7 +32,7 @@ jobs:
       - name: Copy Images
         working-directory: ./web/frontend
         run: |
-          xcopy ./public/images ./dist/images/  /E/H
+          copy -r .\public\images\ .\dist\
 
       - name: Commit & Push changes
         uses: actions-js/push@master
