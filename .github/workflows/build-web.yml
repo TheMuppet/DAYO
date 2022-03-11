@@ -16,6 +16,7 @@ jobs:
           deno-version: v1.x
 
       - name: Build
+        working-directory: ./web/frontend
         run: |
           deno run --allow-run --allow-read https://deno.land/x/snel/install.ts
           trex run build
@@ -23,7 +24,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: site
-          path: dist
+          path: ./web/frontend/dist
   deploy:
     needs: [ build ]
     runs-on: ubuntu-latest
