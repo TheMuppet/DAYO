@@ -10,34 +10,34 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
         with:
-          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
-          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+          persist-credentials: false
+          fetch-depth: 0
 
-      - name: Remove old Dist
+      - name: Remove old "dist" folder 
         working-directory: ./web/frontend
         run: |
           if (Test-Path -Path ./dist) { rm -r dist }
           
 
-      - name: Install Deno
+      - name: Install Deno 🦕
         uses: denolib/setup-deno@v2
         with:
           deno-version: v1.x
 
-      - name: Build
+      - name: Build Frontend 📄
         working-directory: ./web/frontend
         run: |
           deno run --allow-run --allow-read https://deno.land/x/snel/install.ts
           trex run build
           if (Test-Path -Path ./trex_storage) { rm -r trex_storage }
       
-      - name: Copy Images
+      - name: Copy Images 🖼️
         working-directory: ./web/frontend
         run: |
           copy -r .\public\images\ .\dist\
 
-      - name: Commit & Push changes
+      - name: Commit & Push changes ✔️
         uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: 'test'
+          branch: 'main'
