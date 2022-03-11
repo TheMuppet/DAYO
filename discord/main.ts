@@ -18,10 +18,7 @@ class DAYO extends Client {
   @event()
   async ready(): Promise<void> {
     await db;
-    const currentCommands = await this.interactions.commands.all();
-    if (currentCommands.size !== 2) {
-      this.interactions.commands.bulkEdit(commands);
-    }
+    this.interactions.commands.bulkEdit(commands);
   }
 
   @slash("bet")
