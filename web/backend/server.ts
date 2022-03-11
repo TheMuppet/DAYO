@@ -8,9 +8,7 @@ const port: number = parse(args).port || 8080;
 const app = new Application();
 
 app.use(
-  oakCors({
-    origin: "http://localhost:3000",
-  }),
+  oakCors({ origin: "*" }),
 );
 app.use(router.routes());
 app.use(router.allowedMethods());
