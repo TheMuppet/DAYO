@@ -16,7 +16,8 @@ jobs:
       - name: Remove old Dist
         working-directory: ./web/frontend
         run: |
-          rm -r dist
+          if (Test-Path -Path ./dist) { rm -r dist }
+          
 
       - name: Install Deno
         uses: denolib/setup-deno@v2
