@@ -26,32 +26,6 @@ const createParticipant = async (ctx: Context) => {
   }
 };
 
-// finds and filter participant in mongodb (filter: season, gender, none)
-const findAll = async (ctx: Context) => {
-  let gender;
-  let season;
-  // get data from request body
-  try {
-    const body = await ctx.request.body().value;
-    // handles season input
-    try {
-      season = body.season;
-    } catch {
-      season = undefined;
-    }
-    // handles gender input
-    try {
-      gender = body.gender;
-    } catch {
-      gender = undefined;
-    }
-    // if there is no filter it will just return all participants from every season
-  } catch {
-    season = undefined;
-    gender = undefined;
-  }
-  await findParticipant(ctx, gender, season);
-};
 
 // finds the participants
 const findParticipant = async (
@@ -84,5 +58,35 @@ const findParticipant = async (
     ctx.response.status = 500;
   }
 };
+
+
+
+// finds and filter participant in mongodb (filter: season, gender, none)
+const findAll = async (ctx: Context) => {
+  let gender = undefined;
+  let season = undefined;
+  // get data from request body
+  try {
+    const body = await ctx.request.body().value;
+    // handles season input
+    try {
+      season = body.season;
+    } catch {
+      season = undefined;
+    }
+    // handles gender input
+    try {
+      gender = body.gender;
+    } catch {
+      gender = undefined;
+    }
+    // if there is no filter it will just return all participants from every season
+  } catch {
+    season = undefined;
+    gender = undefined;
+  }
+  await findParticipant(ctx, gender, season);
+};
+
 
 export { createParticipant, findAll };
