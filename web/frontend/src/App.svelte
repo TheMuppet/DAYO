@@ -1,8 +1,23 @@
 <script>
   import Home from "@/components/Home.svelte";
+  import Matches from "@/components/Matches.svelte"
   import Impressum from "@/components/Impressum.svelte";
+  import { onMount } from "svelte";
   import { fade } from "svelte/transition";
   export let menu = 1;
+
+  let matches = []
+
+  onMount(async () => {
+  fetch("http://localhost:8080/api/v1/matches")
+  .then(response => response.json())
+  .then(data => {
+    matches = data;
+  }).catch(error => {
+    console.log(error);
+    return 0;
+  });
+});
 </script>
 
 <svelte:head>
@@ -40,11 +55,11 @@
   {#if menu === 1}
     <Home />
   {:else if menu === 2}
-
+    <Matches {matches}/>
   {:else if menu === 3}
 
   {:else if menu === 4}
-
+  
   {:else if menu === 5}
     <Impressum />
   {/if}
