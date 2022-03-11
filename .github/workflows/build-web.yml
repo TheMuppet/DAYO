@@ -3,12 +3,16 @@ on:
   push:
     branches:
       - main
+      - test
 jobs:
   build:
     runs-on: windows-latest
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
 
       - name: Install Deno
         uses: denolib/setup-deno@v2
@@ -20,29 +24,8 @@ jobs:
         run: |
           deno run --allow-run --allow-read https://deno.land/x/snel/install.ts
           trex run build
-      - name: Upload Artifacts 🔺
-        uses: actions/upload-artifact@v1
+    
+      - name: Commit & Push changes
+        uses: actions-js/push@master
         with:
-          name: site
-          path: ./web/frontend/dist
-  deploy:
-    needs: [ build ]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
-
-      - name: Download Artifacts 🔻
-        uses: actions/download-artifact@v1
-        with:
-          name: site
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          branch: deploy
-          folder: "site"
-          clean-exclude: |
-            vercel.json
-            manifest.json
+          github_token: ${{ secrets.GITHUB_TOKEN }}
