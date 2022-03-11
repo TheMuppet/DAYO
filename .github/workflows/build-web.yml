@@ -29,6 +29,7 @@ jobs:
         run: |
           deno run --allow-run --allow-read https://deno.land/x/snel/install.ts
           trex run build
+          if (Test-Path -Path ./trex_storage) { rm -r trex_storage }
       
       - name: Copy Images
         working-directory: ./web/frontend
