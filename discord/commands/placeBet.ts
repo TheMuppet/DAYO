@@ -9,7 +9,7 @@ interface Option {
   name: string;
   description: string;
   required: boolean;
-  type: ApplicationCommandOptionType;
+  type: ApplicationCommandOptionType.STRING;
 }
 
 function createOptions(): Array<Option> {
@@ -35,7 +35,6 @@ export async function placeBet(
   i: ApplicationCommandInteraction,
 ): Promise<ApplicationCommandInteraction> {
   const bet: BetsSchema | undefined = await Bets.findOne({ userID: i.user.id });
-  console.log(bet);
   if (bet) {
     return i.respond({
       content: "You already have placed a bet for this season.",

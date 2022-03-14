@@ -9,7 +9,7 @@ const app = new Application();
 
 app.use(
   oakCors({
-    origin: "http://localhost:3000",
+    origin: "http://dayo-project.herokuapp.com/",
   }),
 );
 app.use(router.routes());

@@ -7,7 +7,6 @@ import {
 export const showBetCmd: ApplicationCommandPartial = {
   name: "showbet",
   description: "Shows you your bet",
-  options: [],
 };
 
 function matchesToString(bet: BetsSchema): string {
