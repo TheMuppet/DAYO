@@ -3,8 +3,8 @@ import {
   Client,
   config,
   event,
-  GatewayIntents,
-  slash,
+  Intents,
+  slash
 } from "../deps/discord/deps.ts";
 import { commands } from "./commands/commands.ts";
 import { db } from "../web/backend/db/mongo.ts";
@@ -13,14 +13,18 @@ import { showBet } from "./commands/showBet.ts";
 
 const env = config();
 const token = Deno.env.get("BOT_TOKEN") || env.BOT_TOKEN;
-
 class DAYO extends Client {
   @event()
   async ready() {
     await db;
-    commands.forEach((command) => {
-      this.slash.commands.create(command);
-    });
+    const currentCommands = await this.interactions.commands.all();
+    console.log(currentCommands);
+    if (currentCommands.size != 1) {
+      console.log("edit");
+      this.interactions.commands.bulkEdit(commands);
+      const currentCommands = await this.slash.commands.all();
+      console.log(currentCommands);
+    }
   }
 
   @slash("bet")
@@ -35,8 +39,4 @@ class DAYO extends Client {
 }
 
 const bot = new DAYO();
-bot.connect(token, [
-  GatewayIntents.DIRECT_MESSAGES,
-  GatewayIntents.GUILDS,
-  GatewayIntents.GUILD_MESSAGES,
-]);
+bot.connect(token, Intents.None);

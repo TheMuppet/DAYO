@@ -15,7 +15,7 @@ function createOptions(): Array<Option> {
   const options: Array<Option> = new Array(10);
   for (let i = 0; i < options.length; i++) {
     options[i] = {
-      name: `match ${i + 1}`,
+      name: `match-${i + 1}`,
       description: "Write: Man.Woman",
       required: true,
       type: SlashCommandOptionType.STRING,
@@ -32,10 +32,10 @@ export const placeBetCmd = {
 
 export async function placeBet(
   i: ApplicationCommandInteraction,
-): Promise<void> {
+) {
   const bet = await Bets.findOne({ userID: i.user.id });
   if (bet) {
-    i.respond({
+    return i.respond({
       content: "You already have placed a bet for this season.",
     });
   }
@@ -49,5 +49,5 @@ export async function placeBet(
     userID: i.user.id,
     matches: matches,
   });
-  i.respond({ content: "You submitted your bet successfully!" });
+  return i.respond({ content: "You submitted your bet successfully!" });
 }
