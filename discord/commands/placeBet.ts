@@ -1,9 +1,9 @@
 import {
   ApplicationCommandInteraction,
   ApplicationCommandOptionType,
-  ApplicationCommandPartial
+  ApplicationCommandPartial,
 } from "../../deps/discord/deps.ts";
-import {Bets, BetsSchema} from "../../web/backend/db/schemas.ts";
+import { Bets, BetsSchema } from "../../web/backend/db/schemas.ts";
 
 interface Option {
   name: string;
@@ -35,7 +35,7 @@ export async function placeBet(
   i: ApplicationCommandInteraction,
 ): Promise<ApplicationCommandInteraction> {
   const bet: BetsSchema | undefined = await Bets.findOne({ userID: i.user.id });
-  console.log(bet)
+  console.log(bet);
   if (bet) {
     return i.respond({
       content: "You already have placed a bet for this season.",

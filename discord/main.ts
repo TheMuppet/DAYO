@@ -4,7 +4,7 @@ import {
   config,
   event,
   Intents,
-  slash
+  slash,
 } from "../deps/discord/deps.ts";
 import { commands } from "./commands/commands.ts";
 import { db } from "../web/backend/db/mongo.ts";
