@@ -13,17 +13,14 @@ import { showBet } from "./commands/showBet.ts";
 
 const env = config();
 const token = Deno.env.get("BOT_TOKEN") || env.BOT_TOKEN;
+
 class DAYO extends Client {
   @event()
-  async ready() {
+  async ready(): Promise<void> {
     await db;
     const currentCommands = await this.interactions.commands.all();
-    console.log(currentCommands);
-    if (currentCommands.size != 1) {
-      console.log("edit");
+    if (currentCommands.size != commands.length) {
       this.interactions.commands.bulkEdit(commands);
-      const currentCommands = await this.slash.commands.all();
-      console.log(currentCommands);
     }
   }
 

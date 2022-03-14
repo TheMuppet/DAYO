@@ -59,7 +59,7 @@ To have DAYO at your next watch-party you simply have to invite him to your
 Discord Server! 💅
 
 <div align='center'>
-  <a href="https://discord.com/api/oauth2/authorize?client_id=941819203739074601&permissions=274877958144&scope=bot">
+  <a href="https://discord.com/api/oauth2/authorize?client_id=941819203739074601&permissions=274877959168&scope=bot%20applications.commands">
     <img src="inviteButton.png" />
   </a>
 </div>

@@ -1,14 +1,15 @@
 import {
   ApplicationCommandInteraction,
-  SlashCommandOptionType,
+  ApplicationCommandOptionType,
+  ApplicationCommandPartial
 } from "../../deps/discord/deps.ts";
-import { Bets } from "../../web/backend/db/schemas.ts";
+import {Bets, BetsSchema} from "../../web/backend/db/schemas.ts";
 
 interface Option {
   name: string;
   description: string;
   required: boolean;
-  type: SlashCommandOptionType;
+  type: ApplicationCommandOptionType;
 }
 
 function createOptions(): Array<Option> {
@@ -18,13 +19,13 @@ function createOptions(): Array<Option> {
       name: `match-${i + 1}`,
       description: "Write: Man.Woman",
       required: true,
-      type: SlashCommandOptionType.STRING,
+      type: ApplicationCommandOptionType.STRING,
     };
   }
   return options;
 }
 
-export const placeBetCmd = {
+export const placeBetCmd: ApplicationCommandPartial = {
   name: "bet",
   description: "Place your bet",
   options: createOptions(),
@@ -32,8 +33,9 @@ export const placeBetCmd = {
 
 export async function placeBet(
   i: ApplicationCommandInteraction,
-) {
-  const bet = await Bets.findOne({ userID: i.user.id });
+): Promise<ApplicationCommandInteraction> {
+  const bet: BetsSchema | undefined = await Bets.findOne({ userID: i.user.id });
+  console.log(bet)
   if (bet) {
     return i.respond({
       content: "You already have placed a bet for this season.",
@@ -41,7 +43,7 @@ export async function placeBet(
   }
   const matches = new Array(10);
   for (let index = 0; index < matches.length; index++) {
-    const input: string = i.options.find((e) => e.name == `match${index + 1}`)
+    const input: string = i.options.find((e) => e.name == `match-${index + 1}`)
       ?.value as string;
     matches[index] = input.match(/\w+/g) ?? [];
   }
