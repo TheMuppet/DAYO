@@ -1,5 +1,8 @@
 import { Bets, BetsSchema } from "../../web/backend/db/schemas.ts";
-import { ApplicationCommandInteraction, ApplicationCommandPartial } from "../../deps/discord/deps.ts";
+import {
+  ApplicationCommandInteraction,
+  ApplicationCommandPartial,
+} from "../../deps/discord/deps.ts";
 
 export const showBetCmd: ApplicationCommandPartial = {
   name: "showbet",
@@ -15,7 +18,9 @@ function matchesToString(bet: BetsSchema): string {
   return msg;
 }
 
-export async function showBet(i: ApplicationCommandInteraction): Promise<ApplicationCommandInteraction> {
+export async function showBet(
+  i: ApplicationCommandInteraction,
+): Promise<ApplicationCommandInteraction> {
   const bet: BetsSchema | undefined = await Bets.findOne({ userID: i.user.id });
   if (bet) {
     return i.respond({
