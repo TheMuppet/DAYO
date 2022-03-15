@@ -3,7 +3,7 @@ import {
   ApplicationCommandOptionType,
   ApplicationCommandPartial,
 } from "../../deps/discord/deps.ts";
-import { Bets } from "../../web/backend/db/schemas.ts";
+import { Bets, BetsSchema } from "../../web/backend/db/schemas.ts";
 
 interface Option {
   name: string;
@@ -16,7 +16,7 @@ function createOptions(): Array<Option> {
   const options: Array<Option> = new Array(10);
   for (let i = 0; i < options.length; i++) {
     options[i] = {
-      name: `match${i + 1}`,
+      name: `match-${i + 1}`,
       description: "Write: Man.Woman",
       required: true,
       type: ApplicationCommandOptionType.STRING,
@@ -34,7 +34,7 @@ export const placeBetCmd: ApplicationCommandPartial = {
 export async function placeBet(
   i: ApplicationCommandInteraction,
 ): Promise<ApplicationCommandInteraction> {
-  const bet = await Bets.findOne({ userID: i.user.id });
+  const bet: BetsSchema | undefined = await Bets.findOne({ userID: i.user.id });
   if (bet) {
     return i.respond({
       content: "You already have placed a bet for this season.",
@@ -42,7 +42,7 @@ export async function placeBet(
   }
   const matches = new Array(10);
   for (let index = 0; index < matches.length; index++) {
-    const input: string = i.options.find((e) => e.name == `match${index + 1}`)
+    const input: string = i.options.find((e) => e.name == `match-${index + 1}`)
       ?.value as string;
     matches[index] = input.match(/\w+/g) ?? [];
   }

@@ -3,7 +3,7 @@ import {
   Client,
   config,
   event,
-  GatewayIntents,
+  Intents,
   slash,
 } from "../deps/discord/deps.ts";
 import { commands } from "./commands/commands.ts";
@@ -18,7 +18,10 @@ class DAYO extends Client {
   @event()
   async ready(): Promise<void> {
     await db;
-    this.slash.commands.bulkEdit(commands)
+    const currentCommands = await this.interactions.commands.all();
+    if (currentCommands.size != commands.length) {
+      this.interactions.commands.bulkEdit(commands);
+    }
   }
 
   @slash("bet")
@@ -33,8 +36,4 @@ class DAYO extends Client {
 }
 
 const bot = new DAYO();
-bot.connect(token, [
-  GatewayIntents.DIRECT_MESSAGES,
-  GatewayIntents.GUILDS,
-  GatewayIntents.GUILD_MESSAGES,
-]);
+bot.connect(token, Intents.None);

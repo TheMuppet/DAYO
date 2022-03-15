@@ -8,7 +8,9 @@ const port: number = parse(args).port || 8080;
 const app = new Application();
 
 app.use(
-  oakCors({ origin: false }),
+  oakCors({
+    origin: "http://dayo-project.herokuapp.com/",
+  }),
 );
 app.use(router.routes());
 app.use(router.allowedMethods());
