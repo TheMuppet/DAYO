@@ -68,7 +68,7 @@ router
   .get("/api/v1/participants", getParticipants)
   .get("/api/v1/participants/:id", getParticipant)
   // for dummy data
-  .get("/api/v1/matches", (context) => {
+  .get("/api/v1/dummymatches", (context) => {
     context.response.body = matches;
   });
 
