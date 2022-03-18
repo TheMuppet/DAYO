@@ -60,7 +60,7 @@ Discord Server! 💅
 </div>
 
 <div align='center'>
-  <b> ✨ He will always be there to sweetn your day 24/7 ✨ </b>
+  <b> ✨ He will always be there to sweet'n your day ✨ </b>
 </div>
 
 <br>
