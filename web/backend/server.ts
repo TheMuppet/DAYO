@@ -26,6 +26,4 @@ app.use(async (context, next) => {
   }
 });
 
-console.log(`Server run on port ${port}`);
-
 await app.listen({ port });
