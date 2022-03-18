@@ -28,8 +28,8 @@ const createMatchNight = async (ctx: Context) => {
 // gets all matching nights from db
 const getMatchNights = async (ctx: Context) => {
   try {
-    const allParticipant = await Matchnight.find({}).toArray();
-    ctx.response.body = { status: true, data: allParticipant };
+    const allMatchNights = await Matchnight.find({}).toArray();
+    ctx.response.body = { status: true, data: allMatchNights };
     ctx.response.status = 200;
   } catch (error) {
     ctx.response.body = {
@@ -49,8 +49,8 @@ const getMatchNight = async (
   try {
     const id = params.id;
     const betterId = new Bson.ObjectId(id);
-    const participant = await Matchnight.findOne({ _id: betterId });
-    response.body = { status: true, data: participant };
+    const matchnight = await Matchnight.findOne({ _id: betterId });
+    response.body = { status: true, data: matchnight };
     response.status = 200;
   } catch (error) {
     response.body = {

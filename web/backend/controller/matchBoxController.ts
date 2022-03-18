@@ -29,8 +29,8 @@ const createMatchBox = async (ctx: Context) => {
 // gets all matchbox results from db
 const getMatchBoxes = async (ctx: Context) => {
   try {
-    const allParticipant = await Matchbox.find({}).toArray();
-    ctx.response.body = { status: true, data: allParticipant };
+    const allMatchboxes = await Matchbox.find({}).toArray();
+    ctx.response.body = { status: true, data: allMatchboxes };
     ctx.response.status = 200;
   } catch (error) {
     ctx.response.body = {
@@ -50,8 +50,8 @@ const getMatchBox = async (
   try {
     const id = params.id;
     const betterId = new Bson.ObjectId(id);
-    const participant = await Matchbox.findOne({ _id: betterId });
-    response.body = { status: true, data: participant };
+    const matchbox = await Matchbox.findOne({ _id: betterId });
+    response.body = { status: true, data: matchbox };
     response.status = 200;
   } catch (error) {
     response.body = {
