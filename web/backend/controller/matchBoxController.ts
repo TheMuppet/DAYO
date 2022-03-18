@@ -1,7 +1,7 @@
 import { Matchbox } from "../schemas/matchBox.ts";
-import { Context } from "../../../deps/web/deps.ts";
+import { Bson, Context } from "../../../deps/web/deps.ts";
 
-// creates a new participant with data in request
+// gets a new matchbox result with data in request
 const createMatchBox = async (ctx: Context) => {
   try {
     const body = await ctx.request.body();
@@ -26,4 +26,41 @@ const createMatchBox = async (ctx: Context) => {
   }
 };
 
-export { createMatchBox };
+// gets all matchbox results from db
+const getMatchBoxes = async (ctx: Context) => {
+  try {
+    const allParticipant = await Matchbox.find({}).toArray();
+    ctx.response.body = { status: true, data: allParticipant };
+    ctx.response.status = 200;
+  } catch (error) {
+    ctx.response.body = {
+      status: false,
+      error: error.name,
+      error_message: error.message,
+    };
+    ctx.response.status = 500;
+  }
+};
+
+// gets one matchbox result
+const getMatchBox = async (
+  // deno-lint-ignore no-explicit-any
+  { params, response }: { params: { id: string }; response: any }, // skipcq: JS-0323
+) => {
+  try {
+    const id = params.id;
+    const betterId = new Bson.ObjectId(id);
+    const participant = await Matchbox.findOne({ _id: betterId });
+    response.body = { status: true, data: participant };
+    response.status = 200;
+  } catch (error) {
+    response.body = {
+      status: false,
+      error: error.name,
+      error_message: error.message,
+    };
+    response.status = 500;
+  }
+};
+
+export { createMatchBox, getMatchBox, getMatchBoxes };
