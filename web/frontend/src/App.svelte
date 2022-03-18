@@ -13,6 +13,7 @@
   .then(response => response.json())
   .then(data => {
     matches = data["data"]["matches"];
+    console.log(matches)
   }).catch(error => {
     console.log(error);
     return 0;
