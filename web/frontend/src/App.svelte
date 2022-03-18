@@ -12,7 +12,8 @@
   fetch("http://dayo-project.herokuapp.com/api/v1/matches")
   .then(response => response.json())
   .then(data => {
-    matches = data;
+    matches = data["data"][0]["matches"];
+    console.log(matches)
   }).catch(error => {
     console.log(error);
     return 0;
