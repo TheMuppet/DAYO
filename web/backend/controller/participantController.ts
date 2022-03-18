@@ -47,10 +47,7 @@ const getParticipant = async (
 ) => {
   try {
     const id = params.id;
-    let betterId = new Bson.ObjectId("6221dce5822815bf6973a0e1");
-    if (id != null) {
-      betterId = new Bson.ObjectId(id);
-    }
+    const betterId = new Bson.ObjectId(id);
     const participant = await Participant.findOne({ _id: betterId });
     response.body = { status: true, data: participant };
     response.status = 200;
