@@ -5,11 +5,6 @@
   </a>
   <br>
 </div>
-<div align="center">
-    <a href="https://github.com/TheMuppet/DAYO/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=TheMuppet/DAYO" height=50 />
-    </a>
-</div>
 <div align='center'>
     <small>
     <a href="https://github.com/alexsc23">Alex</a>,
@@ -59,13 +54,13 @@ To have DAYO at your next watch-party you simply have to invite him to your
 Discord Server! 💅
 
 <div align='center'>
-  <a href="https://discord.com/api/oauth2/authorize?client_id=941819203739074601&permissions=274877958144&scope=bot">
+  <a href="https://discord.com/api/oauth2/authorize?client_id=941819203739074601&permissions=274877959168&scope=bot%20applications.commands">
     <img src="inviteButton.png" />
   </a>
 </div>
 
 <div align='center'>
-  <b> ✨ He will always be there to sweetn your day 24/7 ✨ </b>
+  <b> ✨ He will always be there to sweet'n your day ✨ </b>
 </div>
 
 <br>
@@ -82,7 +77,43 @@ _Man.Woman_ per match to successfully submit it.
 Example:
 
 ```
-/bet Match1: Jamy.Jacqueline Match2: Eugen.Aurelia Match3: Danilo.Jill Match4: Golz.Melina Match5: Francesco.Kathleen  Match6: Manuel.Walentina Match7: Josua.Julia Match8: Salvatore.Sarah Match9: Diogo.Stefanie Match10: Tommy.Finnja
+/bet match-1: Jamy.Jacqueline match-2: Eugen.Aurelia match-3: Danilo.Jill match-4: Golz.Melina match-5: Francesco.
+Kathleen  match-6 : Manuel.Walentina match-7: Josua.Julia match-8: Salvatore.Sarah match-9: Diogo.Stefanie match-10: 
+Tommy.Finnja
+```
+
+**/showbet**
+
+If you submitted a bet and would like to know what you have submitted. You can
+simply ask DAYO to remind you kindly of it. However, if you have not submitted
+previously he will show you how it's done!
+
+Example:
+
+```
+/showbet
+```
+
+Response:
+
+```
+Your Bet:
+Match 1: Jamy ❤️ Jacqueline
+Match 2: Eugen ❤️ Aurelia
+Match 3: Danilo ❤️ Jill
+Match 4: Golz ❤️ Melina
+Match 5: Francesco ❤️ Kathleen
+Match 6: Manuel ❤️ Walentina
+Match 7: Josua ❤️ Julia
+Match 8: Salvatore ❤️ Sarah
+Match 9: Diogo ❤️ Stefanie
+Match 10: Tommy ❤️ Finnja
+```
+
+or
+
+```
+You have not placed a bet for this season. You can place a bet with the /bet command!
 ```
 
 ---
