@@ -1,5 +1,6 @@
 import { Application } from "../../deps/web/deps.ts";
 import { parse } from "../../deps/web/deps.ts";
+
 import { oakCors } from "../../deps/web/deps.ts";
 import router from "./routes/routes.ts";
 
@@ -14,7 +15,6 @@ app.use(
 );
 app.use(router.routes());
 app.use(router.allowedMethods());
-
 app.use(async (context, next) => {
   try {
     await context.send({

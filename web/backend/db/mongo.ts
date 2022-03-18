@@ -35,5 +35,4 @@ await client.connect({
   },
 });
 
-// for testing mongo connection
 export const db = client.database(db_name);
