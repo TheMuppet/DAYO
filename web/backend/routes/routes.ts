@@ -60,13 +60,13 @@ router
     ctx.response.body = "This is the home route";
   })
   // API matches
-  .post("/matches", createMatches)
-  .get("/matches", getMatches)
-  .get("/matches/:id", getMatch)
+  .post("/api/v1/matches", createMatches)
+  .get("/api/v1/matches", getMatches)
+  .get("/api/v1/matches/:id", getMatch)
   // API participant
-  .post("/participants", createParticipant)
-  .get("/participants", getParticipants)
-  .get("/participants/:id", getParticipant)
+  .post("/api/v1/participants", createParticipant)
+  .get("/api/v1/participants", getParticipants)
+  .get("/api/v1/participants/:id", getParticipant)
   // for dummy data
   .get("/api/v1/matches", (context) => {
     context.response.body = matches;
