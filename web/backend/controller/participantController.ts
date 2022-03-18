@@ -1,5 +1,5 @@
 import { Participant } from "../schemas/participant.ts";
-import { Context } from "../../../deps/web/deps.ts";
+import { Bson, Context } from "../../../deps/web/deps.ts";
 
 // creates a new participant with data in request
 const createParticipant = async (ctx: Context) => {
@@ -16,7 +16,6 @@ const createParticipant = async (ctx: Context) => {
     ctx.response.body = { status: true, data: data };
     ctx.response.status = 201;
   } catch (_err) {
-    console.log(_err);
     ctx.response.body = {
       status: false,
       error: _err.name,
@@ -26,26 +25,10 @@ const createParticipant = async (ctx: Context) => {
   }
 };
 
-// finds the participants
-const findParticipant = async (
-  ctx: Context,
-  gender: string,
-  season: number,
-) => {
+// returns all participants from db
+const getParticipants = async (ctx: Context) => {
   try {
-    const allParticipant = await Participant.find({
-      "gender": gender,
-      "season": season,
-    }).toArray();
-    // to return an 404 error if no participant is found (alternatives: other error code or return [] and 200 {remove this if statement} )
-    if (JSON.stringify(allParticipant) == JSON.stringify([])) {
-      ctx.response.status = 404;
-      ctx.response.body = {
-        status: false,
-        error_message: "No participants found",
-      };
-      return;
-    }
+    const allParticipant = await Participant.find({}).toArray();
     ctx.response.body = { status: true, data: allParticipant };
     ctx.response.status = 200;
   } catch (error) {
@@ -58,31 +41,27 @@ const findParticipant = async (
   }
 };
 
-// finds and filter participant in mongodb (filter: season, gender, none)
-const findAll = async (ctx: Context) => {
-  let gender = undefined;
-  let season = undefined;
-  // get data from request body
+// any used in here
+const getParticipant = async (
+  { params, response }: { params: { id: string }; response: any },
+) => {
   try {
-    const body = await ctx.request.body().value;
-    // handles season input
-    try {
-      season = body.season;
-    } catch {
-      season = undefined;
+    const id = params.id;
+    let betterId = new Bson.ObjectId("6221dce5822815bf6973a0e1");
+    if (id != null) {
+      betterId = new Bson.ObjectId(id);
     }
-    // handles gender input
-    try {
-      gender = body.gender;
-    } catch {
-      gender = undefined;
-    }
-    // if there is no filter it will just return all participants from every season
-  } catch {
-    season = undefined;
-    gender = undefined;
+    const participant = await Participant.findOne({ _id: betterId });
+    response.body = { status: true, data: participant };
+    response.status = 200;
+  } catch (error) {
+    response.body = {
+      status: false,
+      error: error.name,
+      error_message: error.message,
+    };
+    response.status = 500;
   }
-  await findParticipant(ctx, gender, season);
 };
 
-export { createParticipant, findAll };
+export { createParticipant, getParticipant, getParticipants };
