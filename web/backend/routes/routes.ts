@@ -1,12 +1,18 @@
 import { Router } from "../../../deps/web/deps.ts";
 import {
   createParticipant,
-  findAll,
+  getParticipant,
+  getParticipants,
 } from "../controller/participantController.ts";
-import { createMatches } from "../controller/matchController.ts";
+import {
+  createMatches,
+  getMatch,
+  getMatches,
+} from "../controller/matchController.ts";
 
 const router = new Router();
 
+// dummy data
 const matches = [
   {
     "man": {
@@ -50,12 +56,18 @@ const matches = [
 ];
 
 router
-  .get("/", (ctx) => {
+  .get("/api/v1", (ctx) => {
     ctx.response.body = "This is the home route";
   })
-  .post("/add-participant", createParticipant)
-  .post("/add-matches", createMatches)
-  .post("/get-participants", findAll)
+  // API matches
+  .post("/matches", createMatches)
+  .get("/matches", getMatches)
+  .get("/matches/:id", getMatch)
+  // API participant
+  .post("/participants", createParticipant)
+  .get("/participants", getParticipants)
+  .get("/participants/:id", getParticipant)
+  // for dummy data
   .get("/api/v1/matches", (context) => {
     context.response.body = matches;
   });
