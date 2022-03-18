@@ -14,7 +14,7 @@
             After each episode, you get the most sizzling 🔥 news and probabilities to uncover if your bet might be correct!
           </p>
           <input type="button" class="btn btn-secondary" value="Invite ME!"
-                 onClick="window.open('https://discord.com/api/oauth2/authorize?client_id=941819203739074601&permissions=274877958144&scope=bot','_blank', 'resizable=yes')" />
+                 onClick="window.open('https://discord.com/api/oauth2/authorize?client_id=941819203739074601&permissions=274877959168&scope=bot%20applications.commands','_blank', 'resizable=yes')" />
         </div>
       </div>
       <div class="col vertical-center">
