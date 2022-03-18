@@ -4,8 +4,16 @@ import {
   getParticipant,
   getParticipants,
 } from "../controller/participantController.ts";
-import { createMatchBox } from "../controller/matchBoxController.ts";
-import { createMatchNight } from "../controller/matchNightController.ts";
+import {
+  createMatchBox,
+  getMatchBox,
+  getMatchBoxes,
+} from "../controller/matchBoxController.ts";
+import {
+  createMatchNight,
+  getMatchNight,
+  getMatchNights,
+} from "../controller/matchNightController.ts";
 import {
   createMatches,
   getMatch,
@@ -58,16 +66,17 @@ const matches = [
 ];
 
 router
-  // .get("/", (ctx) => {
-  //   ctx.response.body = "This is the home route";
-  // })
-  .post("/add-matchbox", createMatchBox)
-  .post("/add-matchnight", createMatchNight)
-  .post("/add-participant", createParticipant)
-  .post("/get-participants", findAll);
   .get("/api/v1", (ctx) => {
     ctx.response.body = "This is the home route";
   })
+  // API matchnights
+  .post("/api/v1/matchnights", createMatchNight)
+  .get("/api/v1/matchnights", getMatchNights)
+  .get("/api/v1/matchnights/:id", getMatchNight)
+  // API matchboxes
+  .post("/api/v1/matchboxes", createMatchBox)
+  .get("/api/v1/matchboxes", getMatchBoxes)
+  .get("/api/v1/matchboxes/:id", getMatchBox)
   // API matches
   .post("/api/v1/matches", createMatches)
   .get("/api/v1/matches", getMatches)
