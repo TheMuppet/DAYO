@@ -17,7 +17,6 @@ interface MatchesSchema {
     };
     probability: number;
   };
-  // nur Idee erstmal
   season: number;
   episode: number;
 }
