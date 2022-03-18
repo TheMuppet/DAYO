@@ -3,7 +3,7 @@ import {
   ApplicationCommandOptionType,
   ApplicationCommandPartial,
 } from "../../deps/discord/deps.ts";
-import { Bets, BetsSchema } from "../../web/backend/db/schemas.ts";
+import { Bets, BetsSchema } from "../../web/backend/db/schemas/bets.ts";
 
 interface Option {
   name: string;

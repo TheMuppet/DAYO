@@ -1,4 +1,4 @@
-import { Participant } from "../schemas/participant.ts";
+import { Participant } from "../db/schemas/participant.ts";
 import { Bson, Context } from "../../../deps/web/deps.ts";
 
 // creates a new participant with data in request

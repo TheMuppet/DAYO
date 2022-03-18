@@ -1,4 +1,4 @@
-import { Matches } from "../schemas/matches.ts";
+import { Matches } from "../db/schemas/matches.ts";
 import { Bson, Context } from "../../../deps/web/deps.ts";
 
 const createMatches = async (ctx: Context) => {

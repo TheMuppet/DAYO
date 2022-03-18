@@ -1,5 +1,5 @@
-import { Bson } from "../../../deps/web/deps.ts";
-import { db } from "../db/mongo.ts";
+import { Bson } from "../../../../deps/web/deps.ts";
+import { db } from "../mongo.ts";
 
 // Schema for AYTO match box results
 interface MatchNightSchema {
@@ -13,5 +13,4 @@ interface MatchNightSchema {
   mn_number: number;
 }
 
-const Matchnight = db.collection<MatchNightSchema>("matchnight");
-export { Matchnight };
+export const Matchnight = db.collection<MatchNightSchema>("matchnight");

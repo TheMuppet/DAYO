@@ -1,5 +1,5 @@
-import { Bson } from "../../../deps/web/deps.ts";
-import { db } from "../db/mongo.ts";
+import { Bson } from "../../../../deps/web/deps.ts";
+import { db } from "../mongo.ts";
 
 // Schema for AYTO match box results
 interface MatchBoxSchema {
@@ -11,5 +11,4 @@ interface MatchBoxSchema {
   mb_number: number;
 }
 
-const Matchbox = db.collection<MatchBoxSchema>("matchbox");
-export { Matchbox };
+export const Matchbox = db.collection<MatchBoxSchema>("matchbox");
