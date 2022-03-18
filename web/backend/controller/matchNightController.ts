@@ -1,7 +1,7 @@
 import { Matchnight } from "../schemas/matchNight.ts";
-import { Context } from "../../../deps/web/deps.ts";
+import { Bson, Context } from "../../../deps/web/deps.ts";
 
-// creates a new participant with data in request
+// creates a new matching night with data in request
 const createMatchNight = async (ctx: Context) => {
   try {
     const body = await ctx.request.body();
@@ -25,4 +25,41 @@ const createMatchNight = async (ctx: Context) => {
   }
 };
 
-export { createMatchNight };
+// gets all matching nights from db
+const getMatchNights = async (ctx: Context) => {
+  try {
+    const allParticipant = await Matchnight.find({}).toArray();
+    ctx.response.body = { status: true, data: allParticipant };
+    ctx.response.status = 200;
+  } catch (error) {
+    ctx.response.body = {
+      status: false,
+      error: error.name,
+      error_message: error.message,
+    };
+    ctx.response.status = 500;
+  }
+};
+
+// gets one matching night from db
+const getMatchNight = async (
+  // deno-lint-ignore no-explicit-any
+  { params, response }: { params: { id: string }; response: any }, // skipcq: JS-0323
+) => {
+  try {
+    const id = params.id;
+    const betterId = new Bson.ObjectId(id);
+    const participant = await Matchnight.findOne({ _id: betterId });
+    response.body = { status: true, data: participant };
+    response.status = 200;
+  } catch (error) {
+    response.body = {
+      status: false,
+      error: error.name,
+      error_message: error.message,
+    };
+    response.status = 500;
+  }
+};
+
+export { createMatchNight, getMatchNight, getMatchNights };
