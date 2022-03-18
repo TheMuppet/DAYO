@@ -6,15 +6,20 @@ interface MatchesSchema {
   _id: Bson.ObjectId;
   matches: {
     man: {
+      id_m: Bson.ObjectId;
       name: string;
       pic: string;
     };
     woman: {
+      id_w: Bson.ObjectId;
       name: string;
       pic: string;
     };
     probability: number;
   };
+  // nur Idee erstmal
+  season: number;
+  episode: number;
 }
 
 const Matches = db.collection<MatchesSchema>("matches");
