@@ -39,7 +39,8 @@ const getMatches = async (ctx: Context) => {
 
 // any used in here
 const getMatch = async (
-  { params, response }: { params: { id: string }; response: any },
+  // deno-lint-ignore no-explicit-any
+  { params, response }: { params: { id: string }; response: any }, // skipcq: JS-0323
 ) => {
   try {
     const id = params.id;
