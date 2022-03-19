@@ -1,5 +1,4 @@
 <script>
-    import Card from "@/components/UI/Card.svelte"
     export let participants = []
     export let match = {}
 
@@ -10,32 +9,27 @@
     let woman = participants.find(participant => {
         return participant.name === match.woman; 
     });
-
 </script>
-  
-<Card>
-    <div>
-        <div class="floatLeft">
-            <img src={man.img} alt="Picture of {man.name}">
+
+<div class="card text-white bg-secondary mb-3" style="max-width: 20rem; display:inline-block; margin-right:30px;">
+    <div class="card-body">
+        <h4 class="card-title" style="text-align:center;">
+            {man.name} ❤️ {woman.name}
+        </h4>
+        <div>
+            <img src={man.img} alt="Image of {man.name}" width="45%" height="45%" style="float: left; margin:5px;">
+            <p></p>
+            <img src={woman.img} alt="Image of {woman.name}" width="45%" height="45%" style="float: right; margin:5px;">  
         </div>
-        <div class="floatRight">
-            <img src={woman.img} alt="Picture of {woman.name}">
+        <div class="card-text" style="text-align:center;">
+          with <b>{match.probability}%</b> certainty!
         </div>
     </div>
-    <div class="centered">
-        {man.name} & {woman.name} are with {match.probability}% certainty a perfect match!
-    </div>
-</Card>
+</div>
 
 <style>
-    .floatLeft{
-        float:left;
-    }
-    .floatRight{
-        float:right;
-    }
-    .centered{
-        text-align: center;
+    img {
+        border-radius: 50%;
     }
 </style>
   
