@@ -6,19 +6,35 @@
   import { fade } from "svelte/transition";
   export let menu = 1;
 
+  let current_season = 3
+  let newest_episode = 8
+  let participants = []
   let matches = []
 
   onMount(async () => {
-  fetch("http://dayo-project.herokuapp.com/api/v1/matches")
-  .then(response => response.json())
-  .then(data => {
-    matches = data["data"][0]["matches"];
-    console.log(matches)
-  }).catch(error => {
-    console.log(error);
-    return 0;
+    fetch("http://localhost:8080/api/v1/participants")
+    .then(response => response.json())
+    .then(data => {
+      participants = data["data"];
+      console.log(participants)
+    }).catch(error => {
+      console.log(error);
+      return 0;
+    });
   });
-});
+
+  onMount(async () => {
+    fetch("http://localhost:8080/api/v1/matches")
+    .then(response => response.json())
+    .then(data => {
+      matches = data["data"];
+      console.log(matches)
+    }).catch(error => {
+      console.log(error);
+      return 0;
+    });
+  });
+
 </script>
 
 <svelte:head>
@@ -56,7 +72,7 @@
   {#if menu === 1}
     <Home />
   {:else if menu === 2}
-    <Matches {matches}/>
+    <Matches {participants}/>
   {:else if menu === 3}
 
   {:else if menu === 4}
