@@ -5,13 +5,14 @@ import { Bson, Context } from "../../../deps/web/deps.ts";
 const createParticipant = async (ctx: Context) => {
   try {
     const body = await ctx.request.body();
-    const { name, gender, age, img, season } = await body.value;
+    const { name, gender, age, img, season, person11 } = await body.value;
     const data = await Participant.insertOne({
       name: name,
       age: age,
       img: img,
       season: season,
-      gender,
+      gender: gender,
+      person11: person11
     });
     ctx.response.body = { status: true, data: data };
     ctx.response.status = 201;
