@@ -5,13 +5,13 @@ export class AYO {
     men: Array<string>;
     woman: Array<string>;
     person11: string;
-    matchbox: MatchBoxSchema;
-    matchnight: MatchNightSchema;
+    matchbox: Array<MatchBoxSchema>;
+    matchnight: Array<MatchNightSchema>;
     mgender: Array<string>;
     lgender: Array<string>;
 
 
-    constructor(men: Array<string>, woman: Array<string>, person11: string, matchbox: MatchBoxSchema, matchnight: MatchNightSchema) {
+    constructor(men: Array<string>, woman: Array<string>, person11: string, matchbox: Array<MatchBoxSchema>, matchnight:  Array<MatchNightSchema) {
         this.men = men
         this.woman = woman
         if (men.length >= woman.length) {
