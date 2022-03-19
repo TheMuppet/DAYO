@@ -6,19 +6,40 @@
   import { fade } from "svelte/transition";
   export let menu = 1;
 
+  let current_season = 3
+  let newest_episode = 8
+  let participants = []
   let matches = []
 
   onMount(async () => {
-  fetch("http://dayo-project.herokuapp.com/api/v1/matches")
-  .then(response => response.json())
-  .then(data => {
-    matches = data["data"][0]["matches"];
-    console.log(matches)
-  }).catch(error => {
-    console.log(error);
-    return 0;
+    fetch("http://dayo-project.herokuapp.com/api/v1/participants")
+    .then(response => response.json())
+    .then(data => {
+      participants = data["data"];
+      participants = participants.filter(participant => {
+        return participant.season === current_season;
+      })
+    }).catch(function(){
+      console.log("A problem has occured when fetching the necessary data.");
+      return 0;
+    });
   });
-});
+
+  onMount(async () => {
+    fetch("http://dayo-project.herokuapp.com/api/v1/matches")
+    .then(response => response.json())
+    .then(data => {
+      matches = data["data"];
+      matches = matches.filter(matches_obj => {
+        return matches_obj.season === current_season && matches_obj.episode === newest_episode;
+      })
+      matches = matches[0]["matches"]
+    }).catch(function(){
+      console.log("A problem has occured when fetching the necessary data.");
+      return 0;
+    });
+  });
+
 </script>
 
 <svelte:head>
@@ -56,7 +77,7 @@
   {#if menu === 1}
     <Home />
   {:else if menu === 2}
-    <Matches {matches}/>
+    <Matches {participants} {matches}/>
   {:else if menu === 3}
 
   {:else if menu === 4}

@@ -7,7 +7,7 @@ export interface ParticipantSchema {
   name: string;
   gender: string;
   age: number;
-  picture: string;
+  img: string;
   season: number;
 }
 
