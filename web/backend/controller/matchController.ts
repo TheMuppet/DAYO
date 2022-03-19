@@ -1,4 +1,4 @@
-import { Matches } from "../schemas/matches.ts";
+import { Matches, MatchesSchema } from "../db/schemas/matches.ts";
 import { Bson, Context } from "../../../deps/web/deps.ts";
 
 const createMatches = async (ctx: Context) => {
@@ -24,7 +24,7 @@ const createMatches = async (ctx: Context) => {
 
 const getMatches = async (ctx: Context) => {
   try {
-    const allParticipant = await Matches.find({}).toArray();
+    const allParticipant: MatchesSchema[] = await Matches.find({}).toArray();
     ctx.response.body = { status: true, data: allParticipant };
     ctx.response.status = 200;
   } catch (error) {
@@ -45,7 +45,9 @@ const getMatch = async (
   try {
     const id = params.id;
     const betterId = new Bson.ObjectId(id);
-    const participant = await Matches.findOne({ _id: betterId });
+    const participant: MatchesSchema | undefined = await Matches.findOne({
+      _id: betterId,
+    });
     response.body = { status: true, data: participant };
     response.status = 200;
   } catch (error) {

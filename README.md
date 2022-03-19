@@ -116,6 +116,31 @@ or
 You have not placed a bet for this season. You can place a bet with the /bet command!
 ```
 
----
+**!matches**
 
-Contribute avatars made with [contrib.rocks](https://contrib.rocks)
+One of the key features of DAYO is that you will receive the newest
+probabilities on what might be the perfect matches of the season!
+
+Example:
+
+```
+!matches
+```
+
+Response:
+
+```
+Current Matches:
+Jamy ❤️ Jacqueline with 80% !
+Eugen ❤️ Aurelia with 65% !
+⋮
+Check the website for more information: https://dayo-project.herokuapp.com/
+```
+
+or
+
+```
+No matches found
+```
+
+---

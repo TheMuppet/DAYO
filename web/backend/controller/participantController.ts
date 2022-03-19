@@ -1,4 +1,4 @@
-import { Participant } from "../schemas/participant.ts";
+import { Participant, ParticipantSchema } from "../db/schemas/participant.ts";
 import { Bson, Context } from "../../../deps/web/deps.ts";
 
 // creates a new participant with data in request
@@ -28,7 +28,8 @@ const createParticipant = async (ctx: Context) => {
 // returns all participants from db
 const getParticipants = async (ctx: Context) => {
   try {
-    const allParticipant = await Participant.find({}).toArray();
+    const allParticipant: ParticipantSchema[] = await Participant.find({})
+      .toArray();
     ctx.response.body = { status: true, data: allParticipant };
     ctx.response.status = 200;
   } catch (error) {
