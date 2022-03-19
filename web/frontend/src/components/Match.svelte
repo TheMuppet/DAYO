@@ -2,16 +2,23 @@
     export let participants = []
     export let match = {}
 
+    let card_class = "card text-white bg-secondary mb-3"
+
     let man = participants.find(participant => {
         return participant.name === match.man; 
     });
 
     let woman = participants.find(participant => {
-        return participant.name === match.woman; 
+        return participant.name === match.woman;
     });
+
+    if (match.probability === 100) {
+        card_class = "card text-white bg-success mb-3";
+    }
+
 </script>
 
-<div class="card text-white bg-secondary mb-3" style="max-width: 20rem; display:inline-block; margin-right:30px;">
+<div class={card_class} style="max-width: 20rem; display:inline-block; margin-right:30px;">
     <div class="card-body">
         <h4 class="card-title" style="text-align:center;">
             {man.name} ❤️ {woman.name}
