@@ -12,7 +12,7 @@ const createParticipant = async (ctx: Context) => {
       img: img,
       season: season,
       gender: gender,
-      person11: person11
+      person11: person11,
     });
     ctx.response.body = { status: true, data: data };
     ctx.response.status = 201;

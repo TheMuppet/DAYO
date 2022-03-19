@@ -9,7 +9,7 @@ export interface ParticipantSchema {
   age: number;
   img: string;
   season: number;
-  person11: boolean
+  person11: boolean;
 }
 
 export const Participant = db.collection<ParticipantSchema>("participant");
