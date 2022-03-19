@@ -2,12 +2,15 @@
   import Match from "@/components/Match.svelte"
   export let participants = []
   export let matches = []
+
+  matches.sort((a, b) => (a.probability < b.probability) ? 1 : -1)
+  console.log(matches)
 </script>
 
 <div class="matches-list">
   <h1>Current Matches</h1>
   {#each matches as match}
-    <Match {participants} {match}/>
+  <Match {participants} {match}/>
   {/each}
 </div>
 
