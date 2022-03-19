@@ -10,7 +10,7 @@ import {
 } from "../../deps/discord/deps.ts";
 import { ParticipantSchema } from "../../web/backend/db/schemas/participant.ts";
 import { bot } from "../main.ts";
-import { shuffle } from "./util.ts";
+import { shuffleParticipants } from "./util.ts";
 
 const games = new Map<
   string,
@@ -36,7 +36,7 @@ export function hotOrNot(
   ctx: CommandContext,
   participants: ParticipantSchema[],
 ) {
-  participants = shuffle(participants);
+  participants = shuffleParticipants(participants);
 
   const embed = new Embed().setTitle("Hot or Not?").setType("rich")
     .setDescription(

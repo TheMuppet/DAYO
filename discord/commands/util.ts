@@ -2,6 +2,7 @@ import { ApplicationCommandOptionType } from "https://deno.land/x/harmony@v2.6.0
 import { ApplicationCommandInteraction } from "https://deno.land/x/harmony@v2.6.0/src/structures/applicationCommand.ts";
 import { FindCursor } from "https://deno.land/x/mongo@v0.29.1/src/collection/commands/find.ts";
 import { Admin, AdminSchema } from "../../web/backend/db/schemas/admin.ts";
+import { ParticipantSchema } from "../../web/backend/db/schemas/participant.ts";
 
 export interface Option {
   name: string;
@@ -57,8 +58,11 @@ export function extractMatches(
   return matches;
 }
 
-export function shuffle(array: Array<>) {
-  let currentIndex: number = array.length, randomIndex;
+export function shuffleParticipants(
+  array: ParticipantSchema[],
+): ParticipantSchema[] {
+  let currentIndex: number = array.length;
+  let randomIndex = 0;
 
   while (currentIndex != 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
