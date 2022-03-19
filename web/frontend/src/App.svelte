@@ -16,7 +16,9 @@
     .then(response => response.json())
     .then(data => {
       participants = data["data"];
-      console.log(participants)
+      participants = participants.filter(participant => {
+        return participant.season === current_season;
+      })
     }).catch(error => {
       console.log(error);
       return 0;
@@ -28,7 +30,10 @@
     .then(response => response.json())
     .then(data => {
       matches = data["data"];
-      console.log(matches)
+      matches = matches.filter(matches_obj => {
+        return matches_obj.season === current_season && matches_obj.episode === newest_episode;
+      })
+      matches = matches[0]["matches"]
     }).catch(error => {
       console.log(error);
       return 0;
@@ -72,7 +77,7 @@
   {#if menu === 1}
     <Home />
   {:else if menu === 2}
-    <Matches {participants}/>
+    <Matches {participants} {matches}/>
   {:else if menu === 3}
 
   {:else if menu === 4}
