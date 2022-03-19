@@ -24,7 +24,7 @@ export async function showMatches(): Promise<string> {
     }).limit(1);
   const newestMatch: MatchesSchema = await newestMatchDocument.toArray()
     .then(
-      function (obj: Document["MatchesSchema"]) {
+      function (obj: Document["MatchesSchema"]): MatchesSchema {
         return obj[0];
       },
     );

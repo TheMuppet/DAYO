@@ -1,34 +1,14 @@
 import {
   ApplicationCommandInteraction,
-  ApplicationCommandOptionType,
   ApplicationCommandPartial,
 } from "../../deps/discord/deps.ts";
 import { Bets, BetsSchema } from "../../web/backend/db/schemas/bets.ts";
-
-interface Option {
-  name: string;
-  description: string;
-  required: boolean;
-  type: ApplicationCommandOptionType.STRING;
-}
-
-function createOptions(): Array<Option> {
-  const options: Array<Option> = new Array(10);
-  for (let i = 0; i < options.length; i++) {
-    options[i] = {
-      name: `match-${i + 1}`,
-      description: "Write: Man.Woman",
-      required: true,
-      type: ApplicationCommandOptionType.STRING,
-    };
-  }
-  return options;
-}
+import { createOptions, extractMatches } from "./util.ts";
 
 export const placeBetCmd: ApplicationCommandPartial = {
   name: "bet",
   description: "Place your bet",
-  options: createOptions(),
+  options: createOptions("match", "Write Man.Woman:", true, 10),
 };
 
 export async function placeBet(
@@ -40,12 +20,7 @@ export async function placeBet(
       content: "You already have placed a bet for this season.",
     });
   }
-  const matches = new Array(10);
-  for (let index = 0; index < matches.length; index++) {
-    const input: string = i.options.find((e) => e.name == `match-${index + 1}`)
-      ?.value as string;
-    matches[index] = input.match(/\w+/g) ?? [];
-  }
+  const matches: Array<Array<string>> = extractMatches(i, "match");
   await Bets.insertOne({
     userID: i.user.id,
     matches: matches,
