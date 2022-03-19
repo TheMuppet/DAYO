@@ -6,7 +6,6 @@ import {
   config,
   customValidation,
   event,
-  FindCursor,
   Intents,
   slash,
 } from "../deps/discord/deps.ts";
@@ -17,7 +16,7 @@ import { showBet } from "./commands/showBet.ts";
 import { showMatches } from "./commands/matches.ts";
 import { addMatchNight } from "./commands/addMatchNight.ts";
 import { addMatchBox } from "./commands/addMatchBox.ts";
-import {getAdminIds} from "./commands/util.ts";
+import { getAdminIds } from "./commands/util.ts";
 
 const env = config();
 const token = Deno.env.get("BOT_TOKEN") || env.BOT_TOKEN;
