@@ -1,3 +1,4 @@
-export { Bson, MongoClient } from "https://deno.land/x/mongo@v0.29.2/mod.ts";
-export * from "https://deno.land/x/harmony/mod.ts";
+export * from "https://deno.land/x/harmony@v2.6.0/mod.ts";
 export { config } from "https://deno.land/x/dotenv@v1.0.1/mod.ts";
+export * from "https://deno.land/x/web_bson@v0.1.9/mod.ts";
+export { FindCursor } from "https://deno.land/x/mongo@v0.29.1/src/collection/commands/find.ts";
