@@ -19,8 +19,8 @@
       participants = participants.filter(participant => {
         return participant.season === current_season;
       })
-    }).catch(error => {
-      console.log(error);
+    }).catch(function(){
+      console.log("A problem has occured when fetching the necessary data.");
       return 0;
     });
   });
@@ -34,8 +34,8 @@
         return matches_obj.season === current_season && matches_obj.episode === newest_episode;
       })
       matches = matches[0]["matches"]
-    }).catch(error => {
-      console.log(error);
+    }).catch(function(){
+      console.log("A problem has occured when fetching the necessary data.");
       return 0;
     });
   });
