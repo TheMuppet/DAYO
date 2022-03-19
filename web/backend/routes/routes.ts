@@ -41,6 +41,6 @@ router
   // API participant
   .post("/api/v1/participants", createParticipant)
   .get("/api/v1/participants", getParticipants)
-  .get("/api/v1/participants/:id", getParticipant)
+  .get("/api/v1/participants/:id", getParticipant);
 
 export default router;

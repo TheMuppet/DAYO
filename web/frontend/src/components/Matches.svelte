@@ -18,7 +18,6 @@
       return -1;
     }
   });
-  console.log(matches)
 </script>
 
 <div class="matches-list">
