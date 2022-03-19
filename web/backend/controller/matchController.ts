@@ -1,4 +1,4 @@
-import {Matches, MatchesSchema} from "../db/schemas/matches.ts";
+import { Matches, MatchesSchema } from "../db/schemas/matches.ts";
 import { Bson, Context } from "../../../deps/web/deps.ts";
 
 const createMatches = async (ctx: Context) => {
@@ -45,7 +45,9 @@ const getMatch = async (
   try {
     const id = params.id;
     const betterId = new Bson.ObjectId(id);
-    const participant: MatchesSchema | undefined = await Matches.findOne({ _id: betterId });
+    const participant: MatchesSchema | undefined = await Matches.findOne({
+      _id: betterId,
+    });
     response.body = { status: true, data: participant };
     response.status = 200;
   } catch (error) {

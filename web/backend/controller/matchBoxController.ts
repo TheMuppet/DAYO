@@ -1,4 +1,4 @@
-import {MatchBox, MatchBoxSchema} from "../db/schemas/matchBox.ts";
+import { MatchBox, MatchBoxSchema } from "../db/schemas/matchBox.ts";
 import { Bson, Context } from "../../../deps/web/deps.ts";
 
 // gets a new matchbox result with data in request
@@ -50,7 +50,9 @@ const getMatchBox = async (
   try {
     const id: string = params.id;
     const betterId = new Bson.ObjectId(id);
-    const matchbox: MatchBoxSchema | undefined = await MatchBox.findOne({ _id: betterId });
+    const matchbox: MatchBoxSchema | undefined = await MatchBox.findOne({
+      _id: betterId,
+    });
     response.body = { status: true, data: matchbox };
     response.status = 200;
   } catch (error) {

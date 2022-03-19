@@ -1,11 +1,12 @@
-import {MatchNight, MatchNightSchema} from "../db/schemas/matchNight.ts";
+import { MatchNight, MatchNightSchema } from "../db/schemas/matchNight.ts";
 import { Bson, Context } from "../../../deps/web/deps.ts";
 
 // creates a new matching night with data in request
 const createMatchNight = async (ctx: Context) => {
   try {
     const body = await ctx.request.body();
-    const { lights, season, episode, couples }: MatchNightSchema = await body.value;
+    const { lights, season, episode, couples }: MatchNightSchema = await body
+      .value;
     const data = await MatchNight.insertOne({
       couples: couples,
       lights: lights,
