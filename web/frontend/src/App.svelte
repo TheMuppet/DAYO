@@ -12,7 +12,7 @@
   let matches = []
 
   onMount(async () => {
-    fetch("http://localhost:8080/api/v1/participants")
+    fetch("http://dayo-project.herokuapp.com/api/v1/participants")
     .then(response => response.json())
     .then(data => {
       participants = data["data"];
@@ -26,7 +26,7 @@
   });
 
   onMount(async () => {
-    fetch("http://localhost:8080/api/v1/matches")
+    fetch("http://dayo-project.herokuapp.com/api/v1/matches")
     .then(response => response.json())
     .then(data => {
       matches = data["data"];
