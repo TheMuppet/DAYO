@@ -1,12 +1,13 @@
 <script>
   import Match from "@/components/Match.svelte"
+  export let participants = []
   export let matches = []
 </script>
 
 <div class="matches-list">
   <h1>Current Matches</h1>
   {#each matches as match}
-    <Match {match}/>
+    <Match {participants} {match}/>
   {/each}
 </div>
 
