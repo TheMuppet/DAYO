@@ -163,6 +163,8 @@ Example:
 
 Response:
 
-<img src="img/hotOrNot.png" width="275" height="250" alt="example image"/>
-
+<div align="center">
+    <img src="img/hotOrNotMarius.png" height="450" alt="example image"/>
+    <img src="img/hotOrNotMarie.png" height="450" alt="example image"/>
+</div>
 ---

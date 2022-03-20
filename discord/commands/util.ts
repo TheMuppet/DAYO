@@ -1,8 +1,13 @@
-import { ApplicationCommandOptionType } from "https://deno.land/x/harmony@v2.6.0/src/types/applicationCommand.ts";
-import { ApplicationCommandInteraction } from "https://deno.land/x/harmony@v2.6.0/src/structures/applicationCommand.ts";
-import { FindCursor } from "https://deno.land/x/mongo@v0.29.1/src/collection/commands/find.ts";
 import { Admin, AdminSchema } from "../../web/backend/db/schemas/admin.ts";
 import { ParticipantSchema } from "../../web/backend/db/schemas/participant.ts";
+import {
+  ApplicationCommandInteraction,
+  ApplicationCommandOptionType,
+  decode,
+  Embed,
+  FindCursor,
+  MessageAttachment,
+} from "../../deps/discord/deps.ts";
 
 export interface Option {
   name: string;
@@ -74,4 +79,29 @@ export function shuffleParticipants(
     ];
   }
   return array;
+}
+
+export function getImage(participant: ParticipantSchema): MessageAttachment {
+  const image = decode(participant.img.split(",").slice(1).join(","));
+  return new MessageAttachment(`image${participant.name}.jpeg`, image);
+}
+
+export function createEmbed(
+  embed: Embed,
+  participant: ParticipantSchema,
+): Embed {
+  embed.files.pop();
+  embed.setTitle("Hot or Not?").setType("rich")
+    .setDescription(
+      `Name: ${participant.name}\n` +
+        `Age: ${participant.age}\n` + `Season: ${participant.season}\n`,
+    ).attach(getImage(participant)).setImage(
+      "attachment://image" + participant.name + ".jpeg",
+    );
+  if (participant.gender === "w") {
+    embed.setColor("#ffacbd");
+  } else {
+    embed.setColor("#b8daef");
+  }
+  return embed;
 }

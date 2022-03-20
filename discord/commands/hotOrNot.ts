@@ -10,7 +10,7 @@ import {
 } from "../../deps/discord/deps.ts";
 import { ParticipantSchema } from "../../web/backend/db/schemas/participant.ts";
 import { bot } from "../main.ts";
-import { shuffleParticipants } from "./util.ts";
+import { createEmbed, shuffleParticipants } from "./util.ts";
 
 const games = new Map<
   string,
@@ -37,13 +37,7 @@ export function hotOrNot(
   participants: ParticipantSchema[],
 ) {
   participants = shuffleParticipants(participants);
-
-  const embed = new Embed().setTitle("Hot or Not?").setType("rich")
-    .setDescription(
-      `Name: ${participants[0].name}\n` +
-        `Age: ${participants[0].age}\n` + `Season: ${participants[0].season}\n`,
-    );
-
+  let embed: Embed = createEmbed(new Embed(), participants[0]);
   ctx.message.reply(
     {
       embed,
@@ -70,7 +64,9 @@ export function hotOrNot(
         const game = games.get(d.user.id);
         if (d.customID.startsWith("rps::") === true && game) {
           const choice = d.customID.split("::")[1];
+          const nextParticipant = participants[game.hot + game.not + 1];
           if (game.hot + game.not === participants.length - 1) {
+            embed.files.pop();
             embed.setDescription(
               `Thanks for playing ❤\n` +
                 `Hot: ${game.hot}\n` + `Not: ${game.not}\n`,
@@ -78,19 +74,11 @@ export function hotOrNot(
             game.msg.edit({ embed, components: [] });
           } else if (choice === "Hot") {
             game.hot++;
-            embed.setDescription(
-              `Name: ${participants[game.hot + game.not].name}\n` +
-                `Age: ${participants[game.hot + game.not].age}\n` +
-                `Season: ${participants[game.hot + game.not].season}\n`,
-            );
+            embed = createEmbed(embed, nextParticipant);
             game.msg.edit({ embed });
           } else if (choice === "Not") {
             game.not++;
-            embed.setDescription(
-              `Name: ${participants[game.hot + game.not].name}\n` +
-                `Age: ${participants[game.hot + game.not].age}\n` +
-                `Season: ${participants[game.hot + game.not].season}\n`,
-            );
+            embed = createEmbed(embed, nextParticipant);
             game.msg.edit({ embed });
           }
         }
