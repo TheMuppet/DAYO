@@ -16,12 +16,17 @@ import { showBet } from "./commands/showBet.ts";
 import { showMatches } from "./commands/matches.ts";
 import { addMatchNight } from "./commands/addMatchNight.ts";
 import { addMatchBox } from "./commands/addMatchBox.ts";
+import { Admin, AdminSchema } from "../web/backend/db/schemas/admin.ts";
 import { getAdminIds } from "./commands/util.ts";
 
 const env = config();
 const token = Deno.env.get("BOT_TOKEN") || env.BOT_TOKEN;
-
-const adminIds: Array<string> = await getAdminIds();
+const admins: Array<AdminSchema> = await Admin.find().toArray().then(
+  function (obj) {
+    return obj;
+  },
+);
+const adminIds: Array<string> = await getAdminIds(admins);
 
 class DAYO extends CommandClient {
   constructor() {
@@ -42,6 +47,7 @@ class DAYO extends CommandClient {
 
   @slash("bet")
   async betCommand(i: ApplicationCommandInteraction): Promise<void> {
+    console.log(i);
     await placeBet(i);
   }
 

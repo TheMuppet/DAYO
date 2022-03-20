@@ -1,7 +1,8 @@
-import { ApplicationCommandOptionType } from "https://deno.land/x/harmony@v2.6.0/src/types/applicationCommand.ts";
-import { ApplicationCommandInteraction } from "https://deno.land/x/harmony@v2.6.0/src/structures/applicationCommand.ts";
-import { FindCursor } from "https://deno.land/x/mongo@v0.29.1/src/collection/commands/find.ts";
-import { Admin, AdminSchema } from "../../web/backend/db/schemas/admin.ts";
+import {
+  ApplicationCommandInteraction,
+  ApplicationCommandOptionType,
+} from "../../deps/discord/deps.ts";
+import { AdminSchema } from "../../web/backend/db/schemas/admin.ts";
 
 export interface Option {
   name: string;
@@ -10,15 +11,9 @@ export interface Option {
   type: ApplicationCommandOptionType;
 }
 
-export async function getAdminIds(): Promise<Array<string>> {
-  const admins: FindCursor<AdminSchema> = await Admin.find();
-  const adminDocuments: Array<AdminSchema> = await admins.toArray().then(
-    function (obj) {
-      return obj;
-    },
-  );
-  const adminIds: Array<string> = new Array(adminDocuments.length - 1);
-  adminDocuments.forEach(function (obj) {
+export function getAdminIds(admins: Array<AdminSchema>): Array<string> {
+  const adminIds: Array<string>= [];
+  admins.forEach(function (obj) {
     adminIds.push(obj.discordId);
   });
   return adminIds;
