@@ -1,6 +1,6 @@
 import { MatchBoxSchema } from "./db/schemas/matchBox.ts";
 import { MatchNightSchema } from "./db/schemas/matchNight.ts";
-
+import {CSP, solve, StatProc } from '../../deps/csp/deps.ts'
 export class AYO {
   participants: {
     man: Array<string>;
@@ -14,23 +14,23 @@ export class AYO {
   rules: Set<string> = new Set();
 
   constructor(
-    men: Array<string>,
+    man: Array<string>,
     woman: Array<string>,
     person11: string,
     matchbox: Array<MatchBoxSchema>,
     matchnight: Array<MatchNightSchema>,
   ) {
     this.participants = {
-      man: men,
+      man: man,
       woman: woman,
     };
-    this.mgender = men.length >= woman.length ? "man" : "woman";
-    this.lgender = men.length >= woman.length ? "woman" : "man";
+    this.mgender = man.length >= woman.length ? "man" : "woman";
+    this.lgender = man.length >= woman.length ? "woman" : "man";
     this.person11 = person11;
     this.matchbox = matchbox;
     this.matchnight = matchnight;
   }
-  private matchNightRules() {
+  private matchNightRules(): void {
     this.matchnight.forEach((night) => {
       const rule: Array<string> = [];
       night.couples.forEach((couple) => {
@@ -41,7 +41,7 @@ export class AYO {
       this.rules.add(ruleString);
     });
   }
-  private matchBoxRules() {
+  private matchBoxRules(): void {
     this.matchbox.forEach((box) => {
       const symbol = box.match ? "==" : "!=";
       this.rules.add(
@@ -49,7 +49,7 @@ export class AYO {
       );
     });
   }
-  private allDiffrentRules() {
+  private allDiffrentRules(): void {
     const mayorGender = this.participants[this.mgender].filter((obj) =>
       obj !== this.person11
     );
@@ -61,7 +61,7 @@ export class AYO {
       }
     }
   }
-  private ayoCsp() {
+  private ayoCsp(): CSP {
     this.matchNightRules;
     this.matchBoxRules;
     this.allDiffrentRules;
@@ -71,5 +71,11 @@ export class AYO {
       constraints: this.rules,
     };
     return csp;
+  }
+  solveAyo(): { [key: string]: { [key: string]: number }} {
+    const csp = this.ayoCsp()
+    const statProc = new StatProc()
+    solve(csp,'constraint-propagation',statProc)
+    return statProc.calcPercentage()
   }
 }
