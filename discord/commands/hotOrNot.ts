@@ -70,7 +70,7 @@ export function hotOrNot(
           const choice = d.customID.split("::")[1];
           const nextParticipant = participants[game.hot + game.not + 1];
           if (game.hot + game.not === participants.length - 1) {
-            const dayoImg = Base64.fromFile('DAYO.png').toString();
+            const dayoImg = Base64.fromFile("DAYO.png").toString();
             const attachment = new MessageAttachment(
               "dayo.png",
               decode(dayoImg),
