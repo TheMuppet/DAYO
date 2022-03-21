@@ -1,10 +1,9 @@
-import { Admin, AdminSchema } from "../../web/backend/db/schemas/admin.ts";
+import { AdminSchema } from "../../web/backend/db/schemas/admin.ts";
 import {
   ApplicationCommandInteraction,
   ApplicationCommandOptionType,
   decode,
   Embed,
-  FindCursor,
   MessageAttachment,
 } from "../../deps/discord/deps.ts";
 import {
@@ -59,7 +58,7 @@ export function extractMatches(
     )?.value as string;
 
     const regexMatches: RegExpMatchArray | null = input.match(/(\w+).(\w+)/);
-    if (regexMatches != null) {
+    if (regexMatches !== null) {
       matches[index] = regexMatches.slice(1);
     } else {
       matches[index] = ["", ""];
