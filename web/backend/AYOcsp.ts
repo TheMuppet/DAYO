@@ -78,4 +78,54 @@ export class AYO {
     solve(csp,'constraint-propagation',statProc)
     return statProc.calcPercentage()
   }
+
+  private async getCurrenProbabilities(currentSeason: number) {
+    const man: Array<string> = [];
+    const woman: Array<string> = [];
+    let person11 = "";
+    const matchbox: Array<MatchBoxSchema> = [];
+    const matchnight: Array<MatchNightSchema> = [];
+  
+    // get data from db
+    const matchboxes = await fetch("http://dayo-project.herokuapp.com/api/v1/matchboxes/")
+                                .then(res => res.json())
+    const matchnights = await fetch("http://dayo-project.herokuapp.com/api/v1/matchnights/")
+                                .then(res => res.json())
+    const participants = await fetch("http://dayo-project.herokuapp.com/api/v1/participants")
+                                .then(res => res.json())
+  
+    for (let i in participants.data) {
+      // filters participants data for men from current season
+      if (JSON.stringify(participants.data[i].gender) == JSON.stringify("m") 
+                                    && participants.data[i].season == currentSeason) {
+        man.push(participants.data[i].name)
+      } 
+      // filters participants data for women from current season
+      if (JSON.stringify(participants.data[i].gender) == JSON.stringify("w")
+                                    && participants.data[i].season == currentSeason) {
+        woman.push(participants.data[i].name)
+      }
+      if (participants.data[i].person11 && participants.data[i].season == currentSeason) {
+        person11 = participants.data[i].name
+      }
+    }
+    // filters matchboxes data from current season
+    for (let i in matchboxes.data) {
+      if (matchboxes.data[i].season == currentSeason) {
+        matchbox.push(matchboxes.data[i])
+      }          
+    }
+    // filters matchnights data from current season
+    for (let i in matchnights.data) {
+      if (matchnights.data[i].season == currentSeason) {
+        matchnight.push(matchnights.data[i])
+      }          
+    }
+  
+  let test = new AYO(man, woman, person11, matchbox, matchnight)
+  const calculatedData = test.ayoCsp()
+    return
+  }
 }
+
+
