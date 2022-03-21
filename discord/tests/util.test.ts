@@ -1,6 +1,6 @@
 import { AdminSchema } from "../../web/backend/db/schemas/admin.ts";
 import {
-  // checkInputMatches,
+  checkInputMatches,
   createOptions,
   extractMatches,
   getAdminIds,
@@ -144,52 +144,52 @@ Deno.test("extractMatches", async (t) => {
 // This test only works if .env is configured
 // Was tested locally
 // ignore: true seems only to work locally
-// Deno.test("checkInputMatches", {
-//   ignore: true,
-// }, async (t) => {
-//   await t.step("Input Correct", async () => {
-//     const matchesCorrect: Array<Array<string>> = [
-//       ["Andre", "Dana"],
-//       ["Antonino", "Estelle"],
-//       ["Dustin", "Isabelle"],
-//       ["Jordi", "Jessica"],
-//       ["Leon", "Joelina"],
-//       ["Marius", "Kerstin"],
-//       ["Max", "Marie"],
-//       ["Mike", "Raphaela"],
-//       ["William", "Zaira"],
-//       ["Tim", "Monami"],
-//     ];
-//     const [check, msg]: [boolean, string] = await checkInputMatches(
-//       matchesCorrect,
-//     );
-//
-//     assertEquals(msg, "");
-//     assertEquals(check, true);
-//   });
-//
-//   await t.step("Input woman incorrect", async () => {
-//     const womanWrong: Array<Array<string>> = [["Andre", "None"]];
-//     const [check, msg]: [boolean, string] = await checkInputMatches(womanWrong);
-//
-//     assertEquals(
-//       msg,
-//       `Sorry, ${womanWrong[0][1]} is not a female participant of this season`,
-//     );
-//     assertEquals(check, false);
-//   });
-//
-//   await t.step("Input man incorrect", async () => {
-//     const manWrong: Array<Array<string>> = [["None", "Dana"]];
-//     const [check, msg]: [boolean, string] = await checkInputMatches(manWrong);
-//
-//     assertEquals(
-//       msg,
-//       `Sorry, ${manWrong[0][0]} is not a male participant of this season`,
-//     );
-//     assertEquals(check, false);
-//   });
-// });
+Deno.test("checkInputMatches", {
+  ignore: true,
+}, async (t) => {
+  await t.step("Input Correct", async () => {
+    const matchesCorrect: Array<Array<string>> = [
+      ["Andre", "Dana"],
+      ["Antonino", "Estelle"],
+      ["Dustin", "Isabelle"],
+      ["Jordi", "Jessica"],
+      ["Leon", "Joelina"],
+      ["Marius", "Kerstin"],
+      ["Max", "Marie"],
+      ["Mike", "Raphaela"],
+      ["William", "Zaira"],
+      ["Tim", "Monami"],
+    ];
+    const [check, msg]: [boolean, string] = await checkInputMatches(
+      matchesCorrect,
+    );
+
+    assertEquals(msg, "");
+    assertEquals(check, true);
+  });
+
+  await t.step("Input woman incorrect", async () => {
+    const womanWrong: Array<Array<string>> = [["Andre", "None"]];
+    const [check, msg]: [boolean, string] = await checkInputMatches(womanWrong);
+
+    assertEquals(
+      msg,
+      `Sorry, ${womanWrong[0][1]} is not a female participant of this season`,
+    );
+    assertEquals(check, false);
+  });
+
+  await t.step("Input man incorrect", async () => {
+    const manWrong: Array<Array<string>> = [["None", "Dana"]];
+    const [check, msg]: [boolean, string] = await checkInputMatches(manWrong);
+
+    assertEquals(
+      msg,
+      `Sorry, ${manWrong[0][0]} is not a male participant of this season`,
+    );
+    assertEquals(check, false);
+  });
+});
 
 Deno.test("checkInputMatches", {}, () => {
   const participants: ParticipantSchema[] = [
