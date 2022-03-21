@@ -56,11 +56,12 @@ export function extractMatches(
       ?.value as string;
 
     // @ts-ignore: Object is possibly 'null'.
-    const regexMatches = input.match(/(\w+).(\w+)/)
-    if (regexMatches != null){
+    const regexMatches = input.match(/(\w+).(\w+)/);
+    if (regexMatches != null) {
       matches[index] = regexMatches.slice(1);
     } else {
-      matches[index] = ["", ""]}
+      matches[index] = ["", ""];
+    }
   }
   return matches;
 }

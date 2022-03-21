@@ -53,7 +53,7 @@ Deno.test("extractMatches", async (t) => {
     email: undefined,
     flags: undefined,
   });
-  await t.step("Input Correct",() => {
+  await t.step("Input Correct", () => {
     const interaction = new ApplicationCommandInteraction(client, {
       application_id: "",
       id: "",
@@ -78,14 +78,20 @@ Deno.test("extractMatches", async (t) => {
       },
     }, {
       user: user,
-      resolved: { users: {}, channels: {}, members: {}, roles: {}, messages: {} },
+      resolved: {
+        users: {},
+        channels: {},
+        members: {},
+        roles: {},
+        messages: {},
+      },
     });
     const matches: Array<Array<string>> = extractMatches(interaction, "case");
 
     assertEquals(matches.length, 10);
     assertEquals(matches[0][0], "Man");
     assertEquals(matches[0][1], "Woman");
-  })
+  });
 
   await t.step("Arbitrary input", () => {
     const interaction = new ApplicationCommandInteraction(client, {
@@ -112,7 +118,13 @@ Deno.test("extractMatches", async (t) => {
       },
     }, {
       user: user,
-      resolved: { users: {}, channels: {}, members: {}, roles: {}, messages: {} },
+      resolved: {
+        users: {},
+        channels: {},
+        members: {},
+        roles: {},
+        messages: {},
+      },
     });
     const matches: Array<Array<string>> = extractMatches(interaction, "case");
 
@@ -123,7 +135,7 @@ Deno.test("extractMatches", async (t) => {
     assertEquals(matches[1][1], "kl");
     assertEquals(matches[2][0], "");
     assertEquals(matches[2][1], "");
-  })
+  });
 });
 
 // This test only works if .env is configured
