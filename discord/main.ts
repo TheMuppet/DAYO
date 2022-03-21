@@ -21,9 +21,10 @@ import { getAdminIds } from "./commands/util.ts";
 
 const env = config();
 const token = Deno.env.get("BOT_TOKEN") || env.BOT_TOKEN;
+
 const admins: Array<AdminSchema> = await Admin.find().toArray().then(
-  function (obj) {
-    return obj;
+  function (admin: Array<AdminSchema>) {
+    return admin;
   },
 );
 const adminIds: Array<string> = await getAdminIds(admins);
@@ -47,7 +48,6 @@ class DAYO extends CommandClient {
 
   @slash("bet")
   async betCommand(i: ApplicationCommandInteraction): Promise<void> {
-    console.log(i);
     await placeBet(i);
   }
 
