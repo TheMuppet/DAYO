@@ -56,11 +56,9 @@ export function extractMatches(
   for (let index = 0; index < matches.length; index++) {
     const input: string = i.options.find((e) =>
       e.name == `${name}-${index + 1}`
-    )
-      ?.value as string;
+    )?.value as string;
 
-    // @ts-ignore: Object is possibly 'null'.
-    const regexMatches = input.match(/(\w+).(\w+)/);
+    const regexMatches: RegExpMatchArray | null = input.match(/(\w+).(\w+)/);
     if (regexMatches != null) {
       matches[index] = regexMatches.slice(1);
     } else {

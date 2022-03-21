@@ -5,6 +5,7 @@ import {
   extractMatches,
   getAdminIds,
   Option,
+  shuffleParticipants,
 } from "../commands/util.ts";
 import {
   ApplicationCommandInteraction,
@@ -12,6 +13,8 @@ import {
   User,
 } from "../../deps/discord/deps.ts";
 import { assertEquals } from "../../deps/tests/deps.ts";
+import { ParticipantSchema } from "../../web/backend/db/schemas/participant.ts";
+import { Bson } from "../../deps/web/deps.ts";
 
 Deno.test("getAdminId", () => {
   const admins: Array<AdminSchema> = [
@@ -185,4 +188,46 @@ Deno.test("checkInputMatches", {
     );
     assertEquals(check, false);
   });
+});
+
+Deno.test("checkInputMatches", {}, (t) => {
+  const participants: ParticipantSchema[] = [
+    {
+      _id: new Bson.ObjectId(),
+      name: "Test",
+      gender: "w",
+      age: 23,
+      img: "",
+      season: 3,
+    },
+    {
+      _id: new Bson.ObjectId(),
+      name: "Test1",
+      gender: "w",
+      age: 23,
+      img: "",
+      season: 3,
+    },
+    {
+      _id: new Bson.ObjectId(),
+      name: "Test2",
+      gender: "w",
+      age: 23,
+      img: "",
+      season: 3,
+    },
+    {
+      _id: new Bson.ObjectId(),
+      name: "Test3",
+      gender: "w",
+      age: 23,
+      img: "",
+      season: 3,
+    },
+  ];
+
+  const shuffled: ParticipantSchema[] = shuffleParticipants(participants);
+
+  assertEquals(participants.length, shuffled.length);
+  assertEquals(participants, shuffled);
 });
