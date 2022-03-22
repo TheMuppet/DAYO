@@ -1,6 +1,7 @@
 import { MatchBoxSchema } from "./db/schemas/matchBox.ts";
 import { MatchNightSchema } from "./db/schemas/matchNight.ts";
 import {CSP, solve, StatProc } from '../../deps/csp/deps.ts'
+import { StatProc2 } from "./StatProcDebug.ts";
 
 
 
@@ -37,9 +38,9 @@ export class AYO {
     this.matchnight.forEach((night) => {
       const rule: Array<string> = [];
       night.couples.forEach((couple) => {
-        rule.push(`${couple[this.mgender]} == '${couple[this.lgender]}'`);
+        rule.push(`(${couple[this.mgender]} == '${couple[this.lgender]}')`);
       });
-      let ruleString = rule.join("==");
+      let ruleString = rule.join("+");
       ruleString = "(" + ruleString + `) == ${night.lights}`;
       this.rules.add(ruleString);
     });
@@ -48,7 +49,7 @@ export class AYO {
     this.matchbox.forEach((box) => {
       const symbol = box.match ? "==" : "!=";
       this.rules.add(
-        `${box[this.mgender]} ${symbol} '${this.lgender}'`,
+        `${box[this.mgender]} ${symbol} '${box[this.lgender]}'`,
       );
     });
   }
@@ -65,11 +66,11 @@ export class AYO {
     }
   }
   private ayoCsp(): CSP {
-    this.matchNightRules;
-    this.matchBoxRules;
-    this.allDiffrentRules;
+    this.matchNightRules();
+    this.matchBoxRules();
+    this.allDiffrentRules();
     const csp = {
-      variables: new Set(this.mgender),
+      variables: new Set(this.participants[this.mgender]),
       values: new Set(this.participants[this.lgender]),
       constraints: this.rules,
     };
@@ -77,7 +78,7 @@ export class AYO {
   }
   solveAyo(): { [key: string]: { [key: string]: number }} {
     const csp = this.ayoCsp()
-    const statProc = new StatProc(csp.variables, csp.values)
+    const statProc = new StatProc2(csp.variables, csp.values)
     solve(csp,'constraint-propagation',statProc)
     return statProc.calcPercentage()
   }
