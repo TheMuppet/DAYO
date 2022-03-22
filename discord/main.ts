@@ -13,7 +13,7 @@ import { commands } from "./commands/commands.ts";
 import { db } from "../web/backend/db/mongo.ts";
 import { placeBet } from "./commands/placeBet.ts";
 import { showBet } from "./commands/showBet.ts";
-import { showMatches } from "./commands/matches.ts";
+import { showMatches } from "./commands/showMatches.ts";
 import { addMatchNight } from "./commands/addMatchNight.ts";
 import { addMatchBox } from "./commands/addMatchBox.ts";
 import { Admin, AdminSchema } from "../web/backend/db/schemas/admin.ts";

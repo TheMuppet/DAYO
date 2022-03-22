@@ -167,4 +167,14 @@ Response:
     <img src="img/hotOrNotMarius.png" height="450" alt="example image"/>
     <img src="img/hotOrNotMarie.png" height="450" alt="example image"/>
 </div>
+
 ---
+
+<div align='center'>
+  <a href="https://www.typescriptlang.org">
+    <img src="https://github.com/TheMuppet/DAYO/actions/workflows/deno.yml/badge.svg" />
+  </a>
+    <a href="https://www.typescriptlang.org">
+    <img src="https://github.com/TheMuppet/DAYO/actions/workflows/codeql-analysis.yml/badge.svg" />
+  </a>
+</div>

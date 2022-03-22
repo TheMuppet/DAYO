@@ -191,7 +191,7 @@ Deno.test("checkInputMatches", {
   });
 });
 
-Deno.test("checkInputMatches", {}, () => {
+Deno.test("shuffleParticipants", () => {
   const participants: ParticipantSchema[] = [
     {
       _id: new Bson.ObjectId(),
