@@ -3,7 +3,12 @@ import {
   ApplicationCommandOptionType,
   ApplicationCommandPartial,
 } from "../../deps/discord/deps.ts";
-import { createOptions, extractMatches, Option } from "./util.ts";
+import {
+  checkInputMatches,
+  createOptions,
+  extractMatches,
+  Option,
+} from "./util.ts";
 import {
   MatchNight,
   MatchNightSchema,
@@ -45,21 +50,30 @@ export async function addMatchNight(
   i: ApplicationCommandInteraction,
 ): Promise<ApplicationCommandInteraction> {
   const rawCouples: Array<Array<string>> = extractMatches(i, "couple");
-  const cleanCouples: MatchNightSchema["couples"] = [{
-    man: rawCouples[0][0],
-    woman: rawCouples[0][1],
-  }];
-  for (let i = 1; i < 10; i++) {
-    cleanCouples[i] = { man: rawCouples[i][0], woman: rawCouples[i][1] };
+
+  const [check, msg]: [boolean, string] = await checkInputMatches(rawCouples);
+
+  if (check) {
+    const cleanCouples: MatchNightSchema["couples"] = [{
+      man: rawCouples[0][0],
+      woman: rawCouples[0][1],
+    }];
+
+    for (let i = 1; i < 10; i++) {
+      cleanCouples[i] = { man: rawCouples[i][0], woman: rawCouples[i][1] };
+    }
+
+    await MatchNight.insertOne({
+      couples: cleanCouples,
+      lights: i.options.find((e) => e.name == "lights")
+        ?.value as number,
+      season: i.options.find((e) => e.name == "season")
+        ?.value as number,
+      episode: i.options.find((e) => e.name == "episode")
+        ?.value as number,
+    });
+    return i.respond({ content: "Successful" });
+  } else {
+    return i.respond({ content: msg });
   }
-  await MatchNight.insertOne({
-    couples: cleanCouples,
-    lights: i.options.find((e) => e.name == "lights")
-      ?.value as number,
-    season: i.options.find((e) => e.name == "season")
-      ?.value as number,
-    episode: i.options.find((e) => e.name == "episode")
-      ?.value as number,
-  });
-  return i.respond({ content: "Successful" });
 }

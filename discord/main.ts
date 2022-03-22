@@ -13,9 +13,10 @@ import { commands } from "./commands/commands.ts";
 import { db } from "../web/backend/db/mongo.ts";
 import { placeBet } from "./commands/placeBet.ts";
 import { showBet } from "./commands/showBet.ts";
-import { showMatches } from "./commands/matches.ts";
+import { showMatches } from "./commands/showMatches.ts";
 import { addMatchNight } from "./commands/addMatchNight.ts";
 import { addMatchBox } from "./commands/addMatchBox.ts";
+import { Admin, AdminSchema } from "../web/backend/db/schemas/admin.ts";
 import { getAdminIds } from "./commands/util.ts";
 import { hotOrNot } from "./commands/hotOrNot.ts";
 import {
@@ -26,7 +27,12 @@ import {
 const env = config();
 const token = Deno.env.get("BOT_TOKEN") || env.BOT_TOKEN;
 
-const adminIds: Array<string> = await getAdminIds();
+const admins: Array<AdminSchema> = await Admin.find().toArray().then(
+  function (admin: Array<AdminSchema>) {
+    return admin;
+  },
+);
+const adminIds: Array<string> = await getAdminIds(admins);
 
 class DAYO extends CommandClient {
   constructor() {

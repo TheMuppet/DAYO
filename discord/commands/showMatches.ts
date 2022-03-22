@@ -22,12 +22,14 @@ export async function showMatches(): Promise<string> {
     .collection("matches").find().sort({
       "season": -1,
     }).limit(1);
+
   const newestMatch: MatchesSchema = await newestMatchDocument.toArray()
     .then(
       function (obj: Document["MatchesSchema"]): MatchesSchema {
         return obj[0];
       },
     );
+
   if (newestMatch) {
     return matchesToString(newestMatch.matches);
   }
