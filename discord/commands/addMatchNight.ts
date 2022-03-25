@@ -10,9 +10,9 @@ import {
   Option,
 } from "./util.ts";
 import {
-  MatchNight,
   MatchNightSchema,
-} from "../../backend/db/schemas/matchNight.ts";
+} from "../../backend/db/mongoDB/schemas/matchNight.ts";
+import { db } from "../../backend/db/mongoDB/mongo.ts";
 
 const matchNightOpt: Array<Option> = [
   {
@@ -63,7 +63,7 @@ export async function addMatchNight(
       cleanCouples[i] = { man: rawCouples[i][0], woman: rawCouples[i][1] };
     }
 
-    await MatchNight.insertOne({
+    await db.insertOne({
       couples: cleanCouples,
       lights: i.options.find((e) => e.name == "lights")
         ?.value as number,
@@ -71,7 +71,7 @@ export async function addMatchNight(
         ?.value as number,
       episode: i.options.find((e) => e.name == "episode")
         ?.value as number,
-    });
+    }, "matchnight");
     return i.respond({ content: "Successful" });
   } else {
     return i.respond({ content: msg });

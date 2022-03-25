@@ -1,4 +1,7 @@
-import { MatchNight, MatchNightSchema } from "../db/schemas/matchNight.ts";
+import {
+  MatchNight,
+  MatchNightSchema,
+} from "../db/mongoDB/schemas/matchNight.ts";
 import { Bson, Context } from "../../deps/web/deps.ts";
 
 // creates a new matching night with data in request

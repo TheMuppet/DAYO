@@ -1,4 +1,4 @@
-import { MatchBox, MatchBoxSchema } from "../db/schemas/matchBox.ts";
+import { MatchBox, MatchBoxSchema } from "../db/mongoDB/schemas/matchBox.ts";
 import { Bson, Context } from "../../deps/web/deps.ts";
 
 // gets a new matchbox result with data in request

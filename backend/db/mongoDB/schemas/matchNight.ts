@@ -1,5 +1,4 @@
-import { Bson } from "../../../deps/web/deps.ts";
-import { db } from "../mongo.ts";
+import { Bson } from "../../../../deps/web/deps.ts";
 
 // Schema for AYTO match box results
 export interface MatchNightSchema {
@@ -12,5 +11,3 @@ export interface MatchNightSchema {
   season: number;
   episode: number;
 }
-
-export const MatchNight = db.collection<MatchNightSchema>("matchnight");

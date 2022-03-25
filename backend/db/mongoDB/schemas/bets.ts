@@ -1,4 +1,4 @@
-import { Bson } from "../../../deps/web/deps.ts";
+import { Bson } from "../../../../deps/web/deps.ts";
 import { db } from "../mongo.ts";
 
 export interface BetsSchema {
@@ -6,4 +6,4 @@ export interface BetsSchema {
   userID: string;
   matches: Array<Array<string>>;
 }
-export const Bets = db.collection<BetsSchema>("bets");
+export const Bets = db.getCollection<BetsSchema>("bets");

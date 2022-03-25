@@ -1,4 +1,4 @@
-import { Matches, MatchesSchema } from "../db/schemas/matches.ts";
+import { Matches, MatchesSchema } from "../db/mongoDB/schemas/matches.ts";
 import { Bson, Context } from "../../deps/web/deps.ts";
 
 const createMatches = async (ctx: Context) => {

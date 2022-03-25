@@ -10,19 +10,19 @@ import {
   slash,
 } from "../deps/discord/deps.ts";
 import { commands } from "./commands/commands.ts";
-import { db } from "../backend/db/mongo.ts";
+import { db } from "../backend/db/mongoDB/mongo.ts";
 import { placeBet } from "./commands/placeBet.ts";
 import { showBet } from "./commands/showBet.ts";
 import { showMatches } from "./commands/showMatches.ts";
 import { addMatchNight } from "./commands/addMatchNight.ts";
 import { addMatchBox } from "./commands/addMatchBox.ts";
-import { Admin, AdminSchema } from "../backend/db/schemas/admin.ts";
+import { Admin, AdminSchema } from "../backend/db/mongoDB/schemas/admin.ts";
 import { getAdminIds } from "./commands/util.ts";
 import { hotOrNot } from "./commands/hotOrNot.ts";
 import {
   Participant,
   ParticipantSchema,
-} from "../backend/db/schemas/participant.ts";
+} from "../backend/db/mongoDB/schemas/participant.ts";
 
 const env = config();
 const token = Deno.env.get("BOT_TOKEN") || env.BOT_TOKEN;
@@ -44,7 +44,7 @@ class DAYO extends CommandClient {
 
   @event()
   async ready(): Promise<void> {
-    await db;
+    await db.connect();
     const currentCommands = await this.interactions.commands.all();
     if (currentCommands.size != commands.length) {
       await this.interactions.commands.bulkEdit(commands);

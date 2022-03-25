@@ -5,4 +5,4 @@ export interface AdminSchema {
   name: string;
 }
 
-export const Admin = db.collection<AdminSchema>("admins");
+export const Admin = db.getCollection<AdminSchema>("admins");

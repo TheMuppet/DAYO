@@ -1,4 +1,4 @@
-import { Bets, BetsSchema } from "../../backend/db/schemas/bets.ts";
+import { Bets, BetsSchema } from "../../backend/db/mongoDB/schemas/bets.ts";
 import {
   ApplicationCommandInteraction,
   ApplicationCommandPartial,

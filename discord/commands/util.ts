@@ -1,4 +1,4 @@
-import { AdminSchema } from "../../backend/db/schemas/admin.ts";
+import { AdminSchema } from "../../backend/db/mongoDB/schemas/admin.ts";
 import {
   ApplicationCommandInteraction,
   ApplicationCommandOptionType,
@@ -9,7 +9,7 @@ import {
 import {
   Participant,
   ParticipantSchema,
-} from "../../backend/db/schemas/participant.ts";
+} from "../../backend/db/mongoDB/schemas/participant.ts";
 
 export interface Option {
   name: string;

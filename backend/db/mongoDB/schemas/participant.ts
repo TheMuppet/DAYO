@@ -1,5 +1,4 @@
-import { Bson } from "../../../deps/web/deps.ts";
-import { db } from "../mongo.ts";
+import { Bson } from "../../../../deps/web/deps.ts";
 
 // Schema for AYTO participants
 export interface ParticipantSchema {
@@ -10,5 +9,3 @@ export interface ParticipantSchema {
   img: string;
   season: number;
 }
-
-export const Participant = db.collection<ParticipantSchema>("participant");

@@ -4,7 +4,7 @@ import {
   ApplicationCommandPartial,
 } from "../../deps/discord/deps.ts";
 import { checkInputMatches, Option } from "./util.ts";
-import { MatchBox } from "../../backend/db/schemas/matchBox.ts";
+import { MatchBox } from "../../backend/db/mongoDB/schemas/matchBox.ts";
 
 const matchBoxOpt: Array<Option> = [
   {

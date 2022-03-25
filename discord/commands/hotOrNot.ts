@@ -12,7 +12,7 @@ import {
   MessageComponentInteraction,
   MessageComponentType,
 } from "../../deps/discord/deps.ts";
-import { ParticipantSchema } from "../../backend/db/schemas/participant.ts";
+import { ParticipantSchema } from "../../backend/db/mongoDB/schemas/participant.ts";
 import { bot } from "../main.ts";
 import { createEmbed, shuffleParticipants } from "./util.ts";
 
