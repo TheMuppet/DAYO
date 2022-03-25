@@ -1,4 +1,5 @@
 <script>
+  import Navbar from "@/components/Navbar.svelte";
   import Footer from "@/components/Footer.svelte";
   import Match from "@/components/Match.svelte";
 
@@ -24,6 +25,7 @@
   });
 </script>
 
+<Navbar page="matches"/>
 <div class="page-padding">
   <h1>Current Matches</h1>
   {#each matches as match}

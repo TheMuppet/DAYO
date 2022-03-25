@@ -39,9 +39,6 @@
       return 0;
     });
   });
-
-  
-
 </script>
 
 <svelte:head>
@@ -49,20 +46,6 @@
 </svelte:head>
 
 <main transition:fade>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky">
-    <div class="container-fluid">
-      <img src="images/dayo_transparent_small.png" class="navbar-brand" alt="" width="60" height="60">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="{url}/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{url}/matches">Matches</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
   <Router url="{url}">
     <div>
       <Route path="/">

@@ -1,6 +1,8 @@
 <script>
+    import Navbar from "@/components/Navbar.svelte";
 </script>
 
+<Navbar page="impressum"/>
 <div class="container vertical-center page-padding">
     <div class='impressum justify-content-center'>
         <h1>Impressum</h1>
