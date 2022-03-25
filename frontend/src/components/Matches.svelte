@@ -1,7 +1,7 @@
 <script>
-  import Match from "@/components/Match.svelte"
-  export let participants = []
-  export let matches = []
+  import Match from "@/components/Match.svelte";
+  export let participants = [];
+  export let matches = [];
 
   matches.sort(function (a, b) {
     if (a.probability < b.probability) {

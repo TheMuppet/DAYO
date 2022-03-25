@@ -1,5 +1,6 @@
 <script>
 </script>
+
 <div class="vertical-center">
   <div class="container">
     <div class="row justify-content-evenly">

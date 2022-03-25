@@ -1,3 +1,6 @@
+<script>
+</script>
+
 <div class="container vertical-center">
 <div class='impressum justify-content-center'>
     <h1>Impressum</h1>

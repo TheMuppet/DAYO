@@ -6,10 +6,10 @@
   import { fade } from "svelte/transition";
   export let menu = 1;
 
-  let current_season = 3
-  let newest_episode = 8
-  let participants = []
-  let matches = []
+  let current_season = 3;
+  let newest_episode = 8;
+  let participants = [];
+  let matches = [];
 
   onMount(async () => {
     fetch("http://dayo-project.herokuapp.com/api/v1/participants")
@@ -33,7 +33,7 @@
       matches = matches.filter(matches_obj => {
         return matches_obj.season === current_season && matches_obj.episode === newest_episode;
       })
-      matches = matches[0]["matches"]
+      matches = matches[0]["matches"];
     }).catch(function(){
       console.log("A problem has occured when fetching the necessary data.");
       return 0;
