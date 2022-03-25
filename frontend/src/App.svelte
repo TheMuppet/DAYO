@@ -51,20 +51,15 @@
 <main transition:fade>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky">
     <div class="container-fluid">
-      <img src="images/dayo_transparent_small.png" class="navbar-brand" href="/" alt="" width="60" height="60">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link active" href="{url}/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{url}/matches">Matches</a>
-          </li>
-        </ul>
-      </div>
+      <img src="images/dayo_transparent_small.png" class="navbar-brand" alt="" width="60" height="60">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="{url}/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{url}/matches">Matches</a>
+        </li>
+      </ul>
     </div>
   </nav>
   <br>
