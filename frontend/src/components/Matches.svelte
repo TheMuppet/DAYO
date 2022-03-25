@@ -20,7 +20,7 @@
   });
 </script>
 
-<div class="matches-list">
+<div class="page-padding">
   <h1>Current Matches</h1>
   {#each matches as match}
   <Match {participants} {match}/>
@@ -28,7 +28,7 @@
 </div>
 
 <style>
-  .matches-list {
+  .page-padding {
     padding: 60px;
     padding-top: 100px;
     position: relative;
