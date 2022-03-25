@@ -1,7 +1,7 @@
 <script>
-  import Home from "@/components/Home.svelte";
-  import Matches from "@/components/Matches.svelte";
-  import Impressum from "@/components/Impressum.svelte";
+  import Home from "@/pages/Home.svelte";
+  import Matches from "@/pages/Matches.svelte";
+  import Impressum from "@/pages/Impressum.svelte";
   import { onMount } from "svelte";
   import { Router, Route } from "https://raw.githubusercontent.com/EmilTholin/svelte-routing/master/src/index.js";
   import { fade } from "svelte/transition";
@@ -14,7 +14,7 @@
   let matches = [];
 
   onMount(async () => {
-    fetch("http://dayo-project.herokuapp.com/api/v1/participants")
+    fetch("https://dayo-project.herokuapp.com/api/v1/participants")
     .then(response => response.json())
     .then(data => {
       participants = data["data"];
@@ -27,7 +27,7 @@
   });
 
   onMount(async () => {
-    fetch("http://dayo-project.herokuapp.com/api/v1/matches")
+    fetch("https://dayo-project.herokuapp.com/api/v1/matches")
     .then(response => response.json())
     .then(data => {
       matches = data["data"];
