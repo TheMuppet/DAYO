@@ -1,8 +1,8 @@
 <script>
-    export let participants = []
-    export let match = {}
+    export let participants = [];
+    export let match = {};
 
-    let card_class = "card text-white bg-secondary mb-3"
+    let card_class = "card text-white bg-secondary mb-3";
 
     let man = participants.find(participant => {
         return participant.name === match.man; 

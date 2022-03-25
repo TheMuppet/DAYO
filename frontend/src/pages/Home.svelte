@@ -1,5 +1,9 @@
 <script>
+  import Navbar from "@/components/Navbar.svelte";
+  import Footer from "@/components/Footer.svelte";
 </script>
+
+<Navbar page="home"/>
 <div class="vertical-center">
   <div class="container">
     <div class="row justify-content-evenly">
@@ -23,6 +27,7 @@
     </div>
   </div>
 </div>
+<Footer/>
 
 <style>
   .vertical-center {
