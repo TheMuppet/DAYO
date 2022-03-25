@@ -1,5 +1,9 @@
 <script>
+  import Footer from "@/components/Footer.svelte";
   import Match from "@/components/Match.svelte";
+
+  export let url = "";
+
   export let participants = [];
   export let matches = [];
 
@@ -26,11 +30,12 @@
   <Match {participants} {match}/>
   {/each}
 </div>
+<Footer {url}/>
 
 <style>
   .page-padding {
     padding: 60px;
-    padding-top: 100px;
+    padding-top: 120px;
     position: relative;
     z-index: -1;
   }

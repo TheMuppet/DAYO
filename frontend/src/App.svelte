@@ -1,6 +1,6 @@
 <script>
   import Home from "@/components/Home.svelte";
-  import Matches from "@/components/Matches.svelte"
+  import Matches from "@/components/Matches.svelte";
   import Impressum from "@/components/Impressum.svelte";
   import { onMount } from "svelte";
   import { Router, Route } from "https://raw.githubusercontent.com/EmilTholin/svelte-routing/master/src/index.js";
@@ -22,7 +22,6 @@
         return participant.season === current_season;
       })
     }).catch(function(){
-      console.log("A problem has occured when fetching the necessary data.");
       return 0;
     });
   });
@@ -37,10 +36,11 @@
       })
       matches = matches[0]["matches"];
     }).catch(function(){
-      console.log("A problem has occured when fetching the necessary data.");
       return 0;
     });
   });
+
+  
 
 </script>
 
@@ -62,27 +62,20 @@
       </ul>
     </div>
   </nav>
-  <br>
 
   <Router url="{url}">
     <div>
       <Route path="/">
-        <Home/>
+        <Home {url}/>
       </Route>
       <Route path="matches">
-        <Matches {participants} {matches}/>
+        <Matches {url} {participants} {matches}/>
       </Route>
       <Route path="impressum">
         <Impressum/>
       </Route>
     </div>
   </Router>
-
-  <ol class="breadcrumb justify-content-center">
-    <li class="breadcrumb-item ">
-      <a class="text-muted" href="{url}/impressum">Impressum</a>
-    </li>
-  </ol>
 </main>
 
 <style>

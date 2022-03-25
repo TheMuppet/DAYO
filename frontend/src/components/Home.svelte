@@ -1,4 +1,7 @@
 <script>
+  import Footer from "@/components/Footer.svelte";
+
+  export let url = "";
 </script>
 
 <div class="vertical-center">
@@ -24,6 +27,7 @@
     </div>
   </div>
 </div>
+<Footer {url}/>
 
 <style>
   .vertical-center {

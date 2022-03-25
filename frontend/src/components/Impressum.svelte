@@ -60,7 +60,7 @@
     }
     .page-padding {
         padding: 60px;
-        padding-top: 100px;
+        padding-top: 120px;
         position: relative;
         z-index: -1;
     }
