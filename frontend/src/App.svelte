@@ -3,7 +3,7 @@
   import Matches from "@/components/Matches.svelte"
   import Impressum from "@/components/Impressum.svelte";
   import { onMount } from "svelte";
-  import { Router, Route } from "https://raw.githubusercontent.com/mefechoel/svelte-navigator/main/src/index.js";
+  import { Router, Route } from "https://raw.githubusercontent.com/EmilTholin/svelte-routing/master/src/index.js";
   import { fade } from "svelte/transition";
 
   let url = "";
@@ -58,9 +58,7 @@
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="/">Home
-              <span class="visually-hidden">(current)</span>
-            </a>
+            <a class="nav-link active" href="{url}/">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{url}/matches">Matches</a>
