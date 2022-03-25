@@ -21,6 +21,7 @@
       return -1;
     }
   });
+  
 </script>
 
 <Navbar page="matches"/>
