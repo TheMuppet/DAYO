@@ -1,4 +1,4 @@
-import { Router } from "../../../deps/web/deps.ts";
+import { Router } from "../../deps/web/deps.ts";
 import {
   createParticipant,
   getParticipant,

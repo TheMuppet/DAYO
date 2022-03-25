@@ -1,15 +1,15 @@
-import { MatchBox, MatchBoxSchema } from "../db/schemas/matchBox.ts";
-import { Bson, Context } from "../../../deps/web/deps.ts";
+import { MatchNight, MatchNightSchema } from "../db/schemas/matchNight.ts";
+import { Bson, Context } from "../../deps/web/deps.ts";
 
-// gets a new matchbox result with data in request
-const createMatchBox = async (ctx: Context) => {
+// creates a new matching night with data in request
+const createMatchNight = async (ctx: Context) => {
   try {
     const body = await ctx.request.body();
-    const { man, woman, match, season, episode } = await body.value;
-    const data = await MatchBox.insertOne({
-      man: man,
-      woman: woman,
-      match: match,
+    const { lights, season, episode, couples }: MatchNightSchema = await body
+      .value;
+    const data = await MatchNight.insertOne({
+      couples: couples,
+      lights: lights,
       season: season,
       episode: episode,
     });
@@ -26,11 +26,11 @@ const createMatchBox = async (ctx: Context) => {
   }
 };
 
-// gets all matchbox results from db
-const getMatchBoxes = async (ctx: Context) => {
+// gets all matching nights from db
+const getMatchNights = async (ctx: Context) => {
   try {
-    const allMatchboxes: MatchBoxSchema[] = await MatchBox.find({}).toArray();
-    ctx.response.body = { status: true, data: allMatchboxes };
+    const allMatchNights = await MatchNight.find({}).toArray();
+    ctx.response.body = { status: true, data: allMatchNights };
     ctx.response.status = 200;
   } catch (error) {
     ctx.response.body = {
@@ -42,18 +42,16 @@ const getMatchBoxes = async (ctx: Context) => {
   }
 };
 
-// gets one matchbox result
-const getMatchBox = async (
+// gets one matching night from db
+const getMatchNight = async (
   // deno-lint-ignore no-explicit-any
   { params, response }: { params: { id: string }; response: any }, // skipcq: JS-0323
 ) => {
   try {
-    const id: string = params.id;
+    const id = params.id;
     const betterId = new Bson.ObjectId(id);
-    const matchbox: MatchBoxSchema | undefined = await MatchBox.findOne({
-      _id: betterId,
-    });
-    response.body = { status: true, data: matchbox };
+    const matchnight = await MatchNight.findOne({ _id: betterId });
+    response.body = { status: true, data: matchnight };
     response.status = 200;
   } catch (error) {
     response.body = {
@@ -65,4 +63,4 @@ const getMatchBox = async (
   }
 };
 
-export { createMatchBox, getMatchBox, getMatchBoxes };
+export { createMatchNight, getMatchNight, getMatchNights };

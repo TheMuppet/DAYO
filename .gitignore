@@ -2,5 +2,7 @@
 .env
 .idea/
 .vscode/
-
+/frontend/public/dist/
+/frontend/dist/
+.DS_Store
 ZscalerRootCertificate-2048-SHA256.crt

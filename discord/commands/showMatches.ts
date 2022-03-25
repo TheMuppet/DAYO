@@ -1,5 +1,5 @@
-import { MatchesSchema } from "../../web/backend/db/schemas/matches.ts";
-import { db } from "../../web/backend/db/mongo.ts";
+import { MatchesSchema } from "../../backend/db/schemas/matches.ts";
+import { db } from "../../backend/db/mongo.ts";
 import { Document, FindCursor } from "../../deps/discord/deps.ts";
 
 function matchesToString(matches: MatchesSchema["matches"]): string {

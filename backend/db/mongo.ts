@@ -1,5 +1,5 @@
-import { MongoClient } from "../../../deps/web/deps.ts";
-import { config } from "../../../deps/web/deps.ts";
+import { MongoClient } from "../../deps/web/deps.ts";
+import { config } from "../../deps/web/deps.ts";
 
 const env = config();
 const db_name: string = Deno.env.get("DB_NAME") || env.DB_NAME;

@@ -1,7 +1,7 @@
-import { Application } from "../../deps/web/deps.ts";
-import { parse } from "../../deps/web/deps.ts";
+import { Application } from "../deps/web/deps.ts";
+import { parse } from "../deps/web/deps.ts";
 
-import { oakCors } from "../../deps/web/deps.ts";
+import { oakCors } from "../deps/web/deps.ts";
 import router from "./routes/routes.ts";
 
 const { args } = Deno;
