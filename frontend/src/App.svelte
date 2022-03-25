@@ -3,8 +3,10 @@
   import Matches from "@/components/Matches.svelte"
   import Impressum from "@/components/Impressum.svelte";
   import { onMount } from "svelte";
+  import { Router, Route } from "https://raw.githubusercontent.com/mefechoel/svelte-navigator/main/src/index.js";
   import { fade } from "svelte/transition";
-  export let menu = 1;
+
+  let url = "";
 
   let current_season = 3;
   let newest_episode = 8;
@@ -56,40 +58,37 @@
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="/" on:click|preventDefault={() => (menu = 1)}>Home
+            <a class="nav-link active" href="/">Home
               <span class="visually-hidden">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/" on:click|preventDefault={() => (menu = 2)}>Matches</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/" on:click|preventDefault={() => (menu = 3)}>Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/" on:click|preventDefault={() => (menu = 4)}>About</a>
+            <a class="nav-link" href="{url}/matches">Matches</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
   <br>
-  {#if menu === 1}
-    <Home />
-  {:else if menu === 2}
-    <Matches {participants} {matches}/>
-  {:else if menu === 3}
 
-  {:else if menu === 4}
-  
-  {:else if menu === 5}
-    <Impressum />
-  {/if}
+  <Router url="{url}">
+    <div>
+      <Route path="/">
+        <Home/>
+      </Route>
+      <Route path="matches">
+        <Matches {participants} {matches}/>
+      </Route>
+      <Route path="impressum">
+        <Impressum/>
+      </Route>
+    </div>
+  </Router>
 
   <ol class="breadcrumb justify-content-center">
-    <li
-            class="breadcrumb-item "><a class="text-muted" href="/" on:click|preventDefault={() => (menu = 5)}>Impressum
-    </a></li>
+    <li class="breadcrumb-item ">
+      <a class="text-muted" href="{url}/impressum">Impressum</a>
+    </li>
   </ol>
 </main>
 
