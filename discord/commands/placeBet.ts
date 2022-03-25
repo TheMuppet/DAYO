@@ -2,7 +2,7 @@ import {
   ApplicationCommandInteraction,
   ApplicationCommandPartial,
 } from "../../deps/discord/deps.ts";
-import { Bets, BetsSchema } from "../../web/backend/db/schemas/bets.ts";
+import { Bets, BetsSchema } from "../../backend/db/schemas/bets.ts";
 import { checkInputMatches, createOptions, extractMatches } from "./util.ts";
 
 export const placeBetCmd: ApplicationCommandPartial = {

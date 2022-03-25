@@ -12,7 +12,7 @@ import {
 import {
   MatchNight,
   MatchNightSchema,
-} from "../../web/backend/db/schemas/matchNight.ts";
+} from "../../backend/db/schemas/matchNight.ts";
 
 const matchNightOpt: Array<Option> = [
   {

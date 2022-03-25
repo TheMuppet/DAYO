@@ -1,4 +1,4 @@
-import { Bson } from "../../../../deps/web/deps.ts";
+import { Bson } from "../../../deps/web/deps.ts";
 import { db } from "../mongo.ts";
 
 // Schema for AYTO match box results

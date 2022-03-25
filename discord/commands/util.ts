@@ -1,4 +1,4 @@
-import { AdminSchema } from "../../web/backend/db/schemas/admin.ts";
+import { AdminSchema } from "../../backend/db/schemas/admin.ts";
 import {
   ApplicationCommandInteraction,
   ApplicationCommandOptionType,
@@ -9,7 +9,7 @@ import {
 import {
   Participant,
   ParticipantSchema,
-} from "../../web/backend/db/schemas/participant.ts";
+} from "../../backend/db/schemas/participant.ts";
 
 export interface Option {
   name: string;
