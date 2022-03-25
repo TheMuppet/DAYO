@@ -1,4 +1,4 @@
-import { AdminSchema } from "../../backend/db/mongoDB/schemas/admin.ts";
+import { AdminSchema } from "../../backend/db/schemas/admin.ts";
 import {
   checkInputMatches,
   createOptions,
@@ -13,7 +13,7 @@ import {
   User,
 } from "../../deps/discord/deps.ts";
 import { assertEquals } from "../../deps/tests/deps.ts";
-import { ParticipantSchema } from "../../backend/db/mongoDB/schemas/participant.ts";
+import { ParticipantSchema } from "../../backend/db/schemas/participant.ts";
 import { Bson } from "../../deps/web/deps.ts";
 
 Deno.test("getAdminId", () => {

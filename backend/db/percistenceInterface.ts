@@ -1,8 +1,6 @@
-export interface PercistenceInterface {
-  insertOne(data: any): Promise<any>;
-  insert(data: any): Promise<any>;
-  update(data: any): Promise<any>;
-  delete(data: any): Promise<any>;
-  find(data: any): Promise<any>;
-  findOne(data: any): Promise<any>;
+export interface PersistenceInterface {
+  insert<T>(tableName: string, data: Array<T>): Promise<void>;
+  insertOne<T>(tableName: string, data: T): Promise<void>;
+  find<T, U, V>(tableName: string, filter?: U, options?: V): Promise<T[]>;
+  findOne<T, U>(tableName: string, data: U): Promise<T | undefined>;
 }

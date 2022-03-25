@@ -1,7 +1,4 @@
-import {
-  Participant,
-  ParticipantSchema,
-} from "../db/mongoDB/schemas/participant.ts";
+import { Participant, ParticipantSchema } from "../db/schemas/participant.ts";
 import { Bson, Context } from "../../deps/web/deps.ts";
 
 // creates a new participant with data in request

@@ -1,6 +1,5 @@
-import { MatchesSchema } from "../../backend/db/mongoDB/schemas/matches.ts";
-import { db } from "../../backend/db/mongoDB/mongo.ts";
-import { Document, FindCursor } from "../../deps/discord/deps.ts";
+import { MatchesSchema } from "../../backend/db/schemas/matches.ts";
+import { db } from "../../backend/db/mongo.ts";
 
 function matchesToString(matches: MatchesSchema["matches"]): string {
   let msg = "Current Matches:\n";
@@ -17,18 +16,15 @@ function matchesToString(matches: MatchesSchema["matches"]): string {
   return msg;
 }
 
+//TODO: Refactor to use interface
 export async function showMatches(): Promise<string> {
-  const newestMatchDocument: FindCursor<Document["MatchesSchema"]> = await db
-    .collection("matches").find().sort({
-      "season": -1,
-    }).limit(1);
+  const newestMatchDocument: MatchesSchema[] = await db.find(
+    "matches",
+    {},
+    { sort: { "season": -1 }, limit: 1 },
+  );
 
-  const newestMatch: MatchesSchema = await newestMatchDocument.toArray()
-    .then(
-      function (obj: Document["MatchesSchema"]): MatchesSchema {
-        return obj[0];
-      },
-    );
+  const newestMatch: MatchesSchema = newestMatchDocument[0];
 
   if (newestMatch) {
     return matchesToString(newestMatch.matches);

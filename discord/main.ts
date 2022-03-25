@@ -10,28 +10,21 @@ import {
   slash,
 } from "../deps/discord/deps.ts";
 import { commands } from "./commands/commands.ts";
-import { db } from "../backend/db/mongoDB/mongo.ts";
+import { db } from "../backend/db/mongo.ts";
 import { placeBet } from "./commands/placeBet.ts";
 import { showBet } from "./commands/showBet.ts";
 import { showMatches } from "./commands/showMatches.ts";
 import { addMatchNight } from "./commands/addMatchNight.ts";
 import { addMatchBox } from "./commands/addMatchBox.ts";
-import { Admin, AdminSchema } from "../backend/db/mongoDB/schemas/admin.ts";
+import { AdminSchema } from "../backend/db/schemas/admin.ts";
 import { getAdminIds } from "./commands/util.ts";
 import { hotOrNot } from "./commands/hotOrNot.ts";
-import {
-  Participant,
-  ParticipantSchema,
-} from "../backend/db/mongoDB/schemas/participant.ts";
 
 const env = config();
 const token = Deno.env.get("BOT_TOKEN") || env.BOT_TOKEN;
 
-const admins: Array<AdminSchema> = await Admin.find().toArray().then(
-  function (admin: Array<AdminSchema>) {
-    return admin;
-  },
-);
+await db.connect();
+const admins: Array<AdminSchema> = await db.find("admins");
 const adminIds: Array<string> = await getAdminIds(admins);
 
 class DAYO extends CommandClient {
@@ -44,7 +37,7 @@ class DAYO extends CommandClient {
 
   @event()
   async ready(): Promise<void> {
-    await db.connect();
+    await db;
     const currentCommands = await this.interactions.commands.all();
     if (currentCommands.size != commands.length) {
       await this.interactions.commands.bulkEdit(commands);
@@ -87,9 +80,7 @@ class DAYO extends CommandClient {
 
   @command({ aliases: ["hot", "play"] })
   async hot(ctx: CommandContext): Promise<void> {
-    const participants: ParticipantSchema[] = await Participant.find()
-      .toArray();
-    await hotOrNot(ctx, participants);
+    await hotOrNot(ctx);
   }
 }
 

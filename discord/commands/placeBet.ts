@@ -2,8 +2,9 @@ import {
   ApplicationCommandInteraction,
   ApplicationCommandPartial,
 } from "../../deps/discord/deps.ts";
-import { Bets, BetsSchema } from "../../backend/db/mongoDB/schemas/bets.ts";
+import { BetsSchema } from "../../backend/db/schemas/bets.ts";
 import { checkInputMatches, createOptions, extractMatches } from "./util.ts";
+import { db } from "../../backend/db/mongo.ts";
 
 export const placeBetCmd: ApplicationCommandPartial = {
   name: "bet",
@@ -14,7 +15,9 @@ export const placeBetCmd: ApplicationCommandPartial = {
 export async function placeBet(
   i: ApplicationCommandInteraction,
 ): Promise<ApplicationCommandInteraction> {
-  const bet: BetsSchema | undefined = await Bets.findOne({ userID: i.user.id });
+  const bet: BetsSchema | undefined = await db.findOne("bets", {
+    userID: i.user.id,
+  });
 
   if (bet) {
     return i.respond({
@@ -25,7 +28,7 @@ export async function placeBet(
   const [check, msg]: [boolean, string] = await checkInputMatches(matches);
 
   if (check) {
-    await Bets.insertOne({
+    await db.insertOne<BetsSchema>("bets", {
       userID: i.user.id,
       matches: matches,
     });

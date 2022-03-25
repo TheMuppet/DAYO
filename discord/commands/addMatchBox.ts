@@ -4,7 +4,8 @@ import {
   ApplicationCommandPartial,
 } from "../../deps/discord/deps.ts";
 import { checkInputMatches, Option } from "./util.ts";
-import { MatchBox } from "../../backend/db/mongoDB/schemas/matchBox.ts";
+import { db } from "../../backend/db/mongo.ts";
+import { MatchBoxSchema } from "../../backend/db/schemas/matchBox.ts";
 
 const matchBoxOpt: Array<Option> = [
   {
@@ -57,7 +58,7 @@ export async function addMatchBox(
   const [check, msg]: [boolean, string] = await checkInputMatches(couple);
 
   if (check) {
-    await MatchBox.insertOne({
+    await db.insertOne<MatchBoxSchema>("matchbox", {
       man: couple[0][0],
       woman: couple[0][1],
       match: i.options.find((e) => e.name == "match")

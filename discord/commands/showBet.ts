@@ -1,8 +1,9 @@
-import { Bets, BetsSchema } from "../../backend/db/mongoDB/schemas/bets.ts";
+import { BetsSchema } from "../../backend/db/schemas/bets.ts";
 import {
   ApplicationCommandInteraction,
   ApplicationCommandPartial,
 } from "../../deps/discord/deps.ts";
+import { db } from "../../backend/db/mongo.ts";
 
 export const showBetCmd: ApplicationCommandPartial = {
   name: "showbet",
@@ -17,10 +18,13 @@ function matchesToString(bet: BetsSchema): string {
   return msg;
 }
 
+//TODO: Refactor to use interface
 export async function showBet(
   i: ApplicationCommandInteraction,
 ): Promise<ApplicationCommandInteraction> {
-  const bet: BetsSchema | undefined = await Bets.findOne({ userID: i.user.id });
+  const bet: BetsSchema | undefined = await db.findOne("bets", {
+    userID: i.user.id,
+  });
   if (bet) {
     return i.respond({
       content: "Your bet:\n" + matchesToString(bet),
