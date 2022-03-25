@@ -1,8 +1,6 @@
 <script>
   import Navbar from "@/components/Navbar.svelte";
   import Footer from "@/components/Footer.svelte";
-
-  export let url = "";
 </script>
 
 <Navbar page="home"/>
@@ -29,7 +27,7 @@
     </div>
   </div>
 </div>
-<Footer {url}/>
+<Footer/>
 
 <style>
   .vertical-center {

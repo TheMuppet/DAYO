@@ -20,18 +20,18 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky">
-    <div class="container-fluid">
-      <img src="images/dayo_transparent_small.png" class="navbar-brand" alt="" width="60" height="60">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class={home_nav} href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class={matches_nav} href="/matches">Matches</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <div class="container-fluid">
+    <img src="images/dayo_transparent_small.png" class="navbar-brand" alt="" width="60" height="60">
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+        <a class={home_nav} href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class={matches_nav} href="/matches">Matches</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
 <style>
   .sticky {

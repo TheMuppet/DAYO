@@ -49,10 +49,10 @@
   <Router url="{url}">
     <div>
       <Route path="/">
-        <Home {url}/>
+        <Home/>
       </Route>
       <Route path="matches">
-        <Matches {url} {participants} {matches}/>
+        <Matches {participants} {matches}/>
       </Route>
       <Route path="impressum">
         <Impressum/>

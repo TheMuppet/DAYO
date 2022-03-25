@@ -3,8 +3,6 @@
   import Footer from "@/components/Footer.svelte";
   import Match from "@/components/Match.svelte";
 
-  export let url = "";
-
   export let participants = [];
   export let matches = [];
 
@@ -27,12 +25,16 @@
 
 <Navbar page="matches"/>
 <div class="page-padding">
-  <h1>Current Matches</h1>
-  {#each matches as match}
-  <Match {participants} {match}/>
-  {/each}
+  {#if matches.length === 0}
+	  <h1>There are no matches right now. Please come back later!</h1>
+  {:else}
+    <h1>Current Matches</h1>
+    {#each matches as match}
+    <Match {participants} {match}/>
+    {/each}
+  {/if}
 </div>
-<Footer {url}/>
+<Footer/>
 
 <style>
   .page-padding {
