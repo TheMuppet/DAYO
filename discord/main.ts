@@ -23,8 +23,7 @@ import { hotOrNot } from "./commands/hotOrNot.ts";
 const env = config();
 const token = Deno.env.get("BOT_TOKEN") || env.BOT_TOKEN;
 
-await db.connect();
-const admins: Array<AdminSchema> = await db.find("admins");
+const admins: Array<AdminSchema> = await db.find<AdminSchema>("admins", {}, {});
 const adminIds: Array<string> = await getAdminIds(admins);
 
 class DAYO extends CommandClient {
@@ -85,4 +84,4 @@ class DAYO extends CommandClient {
 }
 
 export const bot = new DAYO();
-bot.connect(token, Intents.None);
+await bot.connect(token, Intents.None);

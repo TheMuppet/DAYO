@@ -111,7 +111,13 @@ export function createEmbed(
 export async function checkInputMatches(
   matches: Array<Array<string>>,
 ): Promise<[boolean, string]> {
-  const participants: Array<ParticipantSchema> = await db.find("participant");
+  const participants: Array<ParticipantSchema> = await db.find<
+    ParticipantSchema
+  >(
+    "participant",
+    {},
+    {},
+  );
 
   const participantsManNames: Array<string> = [];
   const participantsWomanNames: Array<string> = [];

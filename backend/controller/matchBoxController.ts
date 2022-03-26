@@ -1,12 +1,13 @@
-import { MatchBox, MatchBoxSchema } from "../db/schemas/matchBox.ts";
+import { MatchBoxSchema } from "../db/schemas/matchBox.ts";
 import { Bson, Context } from "../../deps/web/deps.ts";
+import { db } from "../db/mongo.ts";
 
 // gets a new matchbox result with data in request
 const createMatchBox = async (ctx: Context) => {
   try {
     const body = await ctx.request.body();
     const { man, woman, match, season, episode } = await body.value;
-    const data = await MatchBox.insertOne({
+    const data = await db.insertOne<MatchBoxSchema>("matchbox", {
       man: man,
       woman: woman,
       match: match,
@@ -29,7 +30,11 @@ const createMatchBox = async (ctx: Context) => {
 // gets all matchbox results from db
 const getMatchBoxes = async (ctx: Context) => {
   try {
-    const allMatchboxes: MatchBoxSchema[] = await MatchBox.find({}).toArray();
+    const allMatchboxes: MatchBoxSchema[] = await db.find<MatchBoxSchema>(
+      "matchbox",
+      {},
+      {},
+    );
     ctx.response.body = { status: true, data: allMatchboxes };
     ctx.response.status = 200;
   } catch (error) {
@@ -49,9 +54,11 @@ const getMatchBox = async (
 ) => {
   try {
     const id: string = params.id;
-    const betterId = new Bson.ObjectId(id);
-    const matchbox: MatchBoxSchema | undefined = await MatchBox.findOne({
-      _id: betterId,
+    const matchbox: MatchBoxSchema | undefined = await db.findOne<
+      MatchBoxSchema,
+      { _id: Bson.ObjectId }
+    >("matchbox", {
+      _id: new Bson.ObjectId(id),
     });
     response.body = { status: true, data: matchbox };
     response.status = 200;

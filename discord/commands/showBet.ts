@@ -18,7 +18,6 @@ function matchesToString(bet: BetsSchema): string {
   return msg;
 }
 
-//TODO: Refactor to use interface
 export async function showBet(
   i: ApplicationCommandInteraction,
 ): Promise<ApplicationCommandInteraction> {
@@ -29,9 +28,10 @@ export async function showBet(
     return i.respond({
       content: "Your bet:\n" + matchesToString(bet),
     });
+  } else {
+    return i.respond({
+      content:
+        "You have not placed a bet for this season. You can place a bet with the /bet command!",
+    });
   }
-  return i.respond({
-    content:
-      "You have not placed a bet for this season. You can place a bet with the /bet command!",
-  });
 }

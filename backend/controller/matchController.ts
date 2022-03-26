@@ -1,11 +1,12 @@
-import { Matches, MatchesSchema } from "../db/schemas/matches.ts";
+import { MatchesSchema } from "../db/schemas/matches.ts";
 import { Bson, Context } from "../../deps/web/deps.ts";
+import { db } from "../db/mongo.ts";
 
 const createMatches = async (ctx: Context) => {
   try {
     const body = await ctx.request.body();
     const { matches, season, episode } = await body.value;
-    const data = await Matches.insertOne({
+    const data = await db.insertOne<MatchesSchema>("matches", {
       matches: matches,
       season: season,
       episode: episode,
@@ -24,7 +25,11 @@ const createMatches = async (ctx: Context) => {
 
 const getMatches = async (ctx: Context) => {
   try {
-    const allParticipant: MatchesSchema[] = await Matches.find({}).toArray();
+    const allParticipant: MatchesSchema[] = await db.find<MatchesSchema>(
+      "matches",
+      {},
+      {},
+    );
     ctx.response.body = { status: true, data: allParticipant };
     ctx.response.status = 200;
   } catch (error) {
@@ -44,9 +49,11 @@ const getMatch = async (
 ) => {
   try {
     const id = params.id;
-    const betterId = new Bson.ObjectId(id);
-    const participant: MatchesSchema | undefined = await Matches.findOne({
-      _id: betterId,
+    const participant: MatchesSchema | undefined = await db.findOne<
+      MatchesSchema,
+      { _id: Bson.ObjectId }
+    >("matches", {
+      _id: new Bson.ObjectId(id),
     });
     response.body = { status: true, data: participant };
     response.status = 200;

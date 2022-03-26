@@ -16,9 +16,8 @@ function matchesToString(matches: MatchesSchema["matches"]): string {
   return msg;
 }
 
-//TODO: Refactor to use interface
 export async function showMatches(): Promise<string> {
-  const newestMatchDocument: MatchesSchema[] = await db.find(
+  const newestMatchDocument: MatchesSchema[] = await db.find<MatchesSchema>(
     "matches",
     {},
     { sort: { "season": -1 }, limit: 1 },
@@ -28,6 +27,7 @@ export async function showMatches(): Promise<string> {
 
   if (newestMatch) {
     return matchesToString(newestMatch.matches);
+  } else {
+    return "No matches found";
   }
-  return "No matches found";
 }

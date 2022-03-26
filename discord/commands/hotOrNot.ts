@@ -41,7 +41,9 @@ export async function hotOrNot(
   ctx: CommandContext,
 ) {
   try {
-    let participants: Array<ParticipantSchema> = await db.find("participant");
+    let participants: Array<ParticipantSchema> = await db.find<
+      ParticipantSchema
+    >("participant", {}, {});
     participants = shuffleParticipants(participants);
     let embed: Embed = createEmbed(new Embed(), participants[0]);
 
@@ -107,6 +109,6 @@ export async function hotOrNot(
       }
     });
   } catch (_e) {
-    ctx.message.reply("Sorry, something went wrong");
+    await ctx.message.reply("Sorry, something went wrong");
   }
 }

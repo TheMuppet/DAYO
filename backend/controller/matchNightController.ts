@@ -1,5 +1,6 @@
-import { MatchNight, MatchNightSchema } from "../db/schemas/matchNight.ts";
+import { MatchNightSchema } from "../db/schemas/matchNight.ts";
 import { Bson, Context } from "../../deps/web/deps.ts";
+import { db } from "../db/mongo.ts";
 
 // creates a new matching night with data in request
 const createMatchNight = async (ctx: Context) => {
@@ -7,7 +8,7 @@ const createMatchNight = async (ctx: Context) => {
     const body = await ctx.request.body();
     const { lights, season, episode, couples }: MatchNightSchema = await body
       .value;
-    const data = await MatchNight.insertOne({
+    const data = await db.insertOne<MatchNightSchema>("matchnight", {
       couples: couples,
       lights: lights,
       season: season,
@@ -29,7 +30,11 @@ const createMatchNight = async (ctx: Context) => {
 // gets all matching nights from db
 const getMatchNights = async (ctx: Context) => {
   try {
-    const allMatchNights = await MatchNight.find({}).toArray();
+    const allMatchNights = await db.find<MatchNightSchema>(
+      "matchnight",
+      {},
+      {},
+    );
     ctx.response.body = { status: true, data: allMatchNights };
     ctx.response.status = 200;
   } catch (error) {
@@ -49,8 +54,10 @@ const getMatchNight = async (
 ) => {
   try {
     const id = params.id;
-    const betterId = new Bson.ObjectId(id);
-    const matchnight = await MatchNight.findOne({ _id: betterId });
+    const matchnight = await db.findOne<
+      MatchNightSchema,
+      { _id: Bson.ObjectId }
+    >("matchnight", { _id: new Bson.ObjectId(id) });
     response.body = { status: true, data: matchnight };
     response.status = 200;
   } catch (error) {

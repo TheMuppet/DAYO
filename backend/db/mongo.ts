@@ -1,89 +1,73 @@
-import { config, Database, MongoClient } from "../../deps/web/deps.ts";
+import {
+  config,
+  Database,
+  Filter,
+  FindOptions,
+  MongoClient,
+} from "../../deps/web/deps.ts";
 import { FindCursor } from "../../deps/discord/deps.ts";
 import { PersistenceInterface } from "./percistenceInterface.ts";
 
 const env = config();
+const dbName = Deno.env.get("DB_NAME") || env.DB_NAME;
+const dbUser = Deno.env.get("DB_USERNAME") || env.DB_USERNAME;
+const dbPassword = Deno.env.get("DB_PASSWORD") ||
+  env.DB_PASSWORD;
+const dbUri1 = Deno.env.get("DB_URI1") || env.DB_URI1;
+const dbUri2 = Deno.env.get("DB_URI2") || env.DB_URI2;
+const dbUri3 = Deno.env.get("DB_URI3") || env.DB_URI3;
+export const client = new MongoClient();
+
+await client.connect({
+  db: dbName,
+  tls: true,
+  servers: [
+    {
+      host: dbUri1,
+      port: 27017,
+    },
+    {
+      host: dbUri2,
+      port: 27017,
+    },
+    {
+      host: dbUri3,
+      port: 27017,
+    },
+  ],
+  credential: {
+    username: dbUser,
+    password: dbPassword,
+    db: dbName,
+    mechanism: "SCRAM-SHA-1",
+  },
+});
 
 export class MongoService implements PersistenceInterface {
-  private readonly client: MongoClient;
   private db: Database;
-  private readonly db_name: string;
-  private readonly db_user: string;
-  private readonly db_password: string;
-  private readonly db_uri1: string;
-  private readonly db_uri2: string;
-  private readonly db_uri3: string;
 
-  constructor(
-    db_name?: string,
-    db_user?: string,
-    db_password?: string,
-    db_uri1?: string,
-    db_uri2?: string,
-    db_uri3?: string,
-  ) {
-    this.client = new MongoClient();
-    this.db_name = db_name || Deno.env.get("DB_NAME") || env.DB_NAME;
-    this.db_user = db_user || Deno.env.get("DB_USERNAME") || env.DB_USERNAME;
-    this.db_password = db_password || Deno.env.get("DB_PASSWORD") ||
-      env.DB_PASSWORD;
-    this.db_uri1 = db_uri1 || Deno.env.get("DB_URI1") || env.DB_URI1;
-    this.db_uri2 = db_uri2 || Deno.env.get("DB_URI2") || env.DB_URI2;
-    this.db_uri3 = db_uri3 || Deno.env.get("DB_URI3") || env.DB_URI3;
+  constructor(db: Database) {
+    this.db = db;
   }
 
-  async connect(): Promise<void> {
-    try {
-      await this.client.connect({
-        db: this.db_name,
-        tls: true,
-        servers: [
-          {
-            host: this.db_uri1,
-            port: 27017,
-          },
-          {
-            host: this.db_uri2,
-            port: 27017,
-          },
-          {
-            host: this.db_uri3,
-            port: 27017,
-          },
-        ],
-        credential: {
-          username: this.db_user,
-          password: this.db_password,
-          db: this.db_name,
-          mechanism: "SCRAM-SHA-1",
-        },
-      });
-    } catch (_error) {
-      console.log("Error connecting to MongoDB");
-    }
-    this.db = this.client.database(this.db_name);
-  }
-
-  async insert<T>(collection: string, data: Array<T>): Promise<void> {
-    await this.db.collection<T>(collection).insert(data);
+  async insertMany<T>(collection: string, data: Array<T>): Promise<void> {
+    await this.db.collection<T>(collection).insertMany(data);
   }
 
   async insertOne<T>(tableName: string, data: T): Promise<void> {
     await this.db.collection<T>(tableName).insertOne(data);
   }
 
-  async find<T, U, V>(
+  async find<T>(
     tableName: string,
-    filter?: U,
-    options?: V,
-  ): Promise<T[]> {
+    filter: Filter<T>,
+    options: FindOptions,
+  ): Promise<Array<T>> {
     const findings: FindCursor<T> = await this.db.collection<T>(tableName).find(
       filter,
       options,
     );
-    return findings.toArray().then(function (data: T[]) {
-      return data;
-    });
+    return findings.toArray();
   }
 
   async findOne<T, U>(tableName: string, data: U): Promise<T | undefined> {
@@ -91,4 +75,4 @@ export class MongoService implements PersistenceInterface {
   }
 }
 
-export const db = new MongoService();
+export const db = new MongoService(client.database(dbName));
