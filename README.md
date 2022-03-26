@@ -178,3 +178,7 @@ Response:
     <img src="https://github.com/TheMuppet/DAYO/actions/workflows/codeql-analysis.yml/badge.svg" />
   </a>
 </div>
+
+---
+
+You want to contribute? Check our [CONTRIBUTING.md](https://github.com/TheMuppet/DAYO/blob/main/CONTRIBUTING.md)
