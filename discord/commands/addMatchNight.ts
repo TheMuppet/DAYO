@@ -9,10 +9,8 @@ import {
   extractMatches,
   Option,
 } from "./util.ts";
-import {
-  MatchNight,
-  MatchNightSchema,
-} from "../../backend/db/schemas/matchNight.ts";
+import { MatchNightSchema } from "../../backend/db/schemas/matchNight.ts";
+import { db } from "../../backend/db/mongo.ts";
 
 const matchNightOpt: Array<Option> = [
   {
@@ -50,7 +48,6 @@ export async function addMatchNight(
   i: ApplicationCommandInteraction,
 ): Promise<ApplicationCommandInteraction> {
   const rawCouples: Array<Array<string>> = extractMatches(i, "couple");
-
   const [check, msg]: [boolean, string] = await checkInputMatches(rawCouples);
 
   if (check) {
@@ -63,7 +60,7 @@ export async function addMatchNight(
       cleanCouples[i] = { man: rawCouples[i][0], woman: rawCouples[i][1] };
     }
 
-    await MatchNight.insertOne({
+    await db.insertOne<MatchNightSchema>("matchnight", {
       couples: cleanCouples,
       lights: i.options.find((e) => e.name == "lights")
         ?.value as number,

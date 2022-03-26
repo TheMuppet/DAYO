@@ -1,4 +1,14 @@
-export { Bson, MongoClient } from "https://deno.land/x/mongo@v0.29.1/mod.ts";
+export {
+  Bson,
+  Collection,
+  Database,
+  MongoClient,
+} from "https://deno.land/x/mongo@v0.29.1/mod.ts";
+export type {
+  Document,
+  Filter,
+  FindOptions,
+} from "https://deno.land/x/mongo@v0.29.1/mod.ts";
 export {
   Application,
   Context,

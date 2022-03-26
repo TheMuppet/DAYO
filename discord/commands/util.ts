@@ -6,10 +6,8 @@ import {
   Embed,
   MessageAttachment,
 } from "../../deps/discord/deps.ts";
-import {
-  Participant,
-  ParticipantSchema,
-} from "../../backend/db/schemas/participant.ts";
+import { ParticipantSchema } from "../../backend/db/schemas/participant.ts";
+import { db } from "../../backend/db/mongo.ts";
 
 export interface Option {
   name: string;
@@ -113,12 +111,13 @@ export function createEmbed(
 export async function checkInputMatches(
   matches: Array<Array<string>>,
 ): Promise<[boolean, string]> {
-  const participants: Array<ParticipantSchema> = await Participant.find()
-    .toArray().then(
-      function (participants: Array<ParticipantSchema>) {
-        return participants;
-      },
-    );
+  const participants: Array<ParticipantSchema> = await db.find<
+    ParticipantSchema
+  >(
+    "participant",
+    {},
+    {},
+  );
 
   const participantsManNames: Array<string> = [];
   const participantsWomanNames: Array<string> = [];

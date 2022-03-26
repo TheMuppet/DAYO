@@ -16,22 +16,14 @@ import { showBet } from "./commands/showBet.ts";
 import { showMatches } from "./commands/showMatches.ts";
 import { addMatchNight } from "./commands/addMatchNight.ts";
 import { addMatchBox } from "./commands/addMatchBox.ts";
-import { Admin, AdminSchema } from "../backend/db/schemas/admin.ts";
+import { AdminSchema } from "../backend/db/schemas/admin.ts";
 import { getAdminIds } from "./commands/util.ts";
 import { hotOrNot } from "./commands/hotOrNot.ts";
-import {
-  Participant,
-  ParticipantSchema,
-} from "../backend/db/schemas/participant.ts";
 
 const env = config();
 const token = Deno.env.get("BOT_TOKEN") || env.BOT_TOKEN;
 
-const admins: Array<AdminSchema> = await Admin.find().toArray().then(
-  function (admin: Array<AdminSchema>) {
-    return admin;
-  },
-);
+const admins: Array<AdminSchema> = await db.find<AdminSchema>("admins", {}, {});
 const adminIds: Array<string> = await getAdminIds(admins);
 
 class DAYO extends CommandClient {
@@ -87,11 +79,9 @@ class DAYO extends CommandClient {
 
   @command({ aliases: ["hot", "play"] })
   async hot(ctx: CommandContext): Promise<void> {
-    const participants: ParticipantSchema[] = await Participant.find()
-      .toArray();
-    await hotOrNot(ctx, participants);
+    await hotOrNot(ctx);
   }
 }
 
 export const bot = new DAYO();
-bot.connect(token, Intents.None);
+await bot.connect(token, Intents.None);

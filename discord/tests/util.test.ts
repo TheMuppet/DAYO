@@ -14,7 +14,6 @@ import {
 } from "../../deps/discord/deps.ts";
 import { assertEquals } from "../../deps/tests/deps.ts";
 import { ParticipantSchema } from "../../backend/db/schemas/participant.ts";
-import { Bson } from "../../deps/web/deps.ts";
 
 Deno.test("getAdminId", () => {
   const admins: Array<AdminSchema> = [
@@ -194,7 +193,6 @@ Deno.test("checkInputMatches", {
 Deno.test("shuffleParticipants", () => {
   const participants: ParticipantSchema[] = [
     {
-      _id: new Bson.ObjectId(),
       name: "Test",
       gender: "w",
       age: 23,
@@ -202,7 +200,6 @@ Deno.test("shuffleParticipants", () => {
       season: 3,
     },
     {
-      _id: new Bson.ObjectId(),
       name: "Test1",
       gender: "w",
       age: 23,
@@ -210,7 +207,6 @@ Deno.test("shuffleParticipants", () => {
       season: 3,
     },
     {
-      _id: new Bson.ObjectId(),
       name: "Test2",
       gender: "w",
       age: 23,
@@ -218,7 +214,6 @@ Deno.test("shuffleParticipants", () => {
       season: 3,
     },
     {
-      _id: new Bson.ObjectId(),
       name: "Test3",
       gender: "w",
       age: 23,

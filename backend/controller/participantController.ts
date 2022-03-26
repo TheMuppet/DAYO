@@ -1,12 +1,13 @@
-import { Participant, ParticipantSchema } from "../db/schemas/participant.ts";
+import { ParticipantSchema } from "../db/schemas/participant.ts";
 import { Bson, Context } from "../../deps/web/deps.ts";
+import { db } from "../db/mongo.ts";
 
 // creates a new participant with data in request
 const createParticipant = async (ctx: Context) => {
   try {
     const body = await ctx.request.body();
     const { name, gender, age, img, season } = await body.value;
-    const data = await Participant.insertOne({
+    const data = await db.insertOne<ParticipantSchema>("participant", {
       name: name,
       age: age,
       img: img,
@@ -28,8 +29,9 @@ const createParticipant = async (ctx: Context) => {
 // returns all participants from db
 const getParticipants = async (ctx: Context) => {
   try {
-    const allParticipant: ParticipantSchema[] = await Participant.find({})
-      .toArray();
+    const allParticipant: ParticipantSchema[] = await db.find<
+      ParticipantSchema
+    >("participant", {}, {});
     ctx.response.body = { status: true, data: allParticipant };
     ctx.response.status = 200;
   } catch (error) {
@@ -48,8 +50,10 @@ const getParticipant = async (
 ) => {
   try {
     const id = params.id;
-    const betterId = new Bson.ObjectId(id);
-    const participant = await Participant.findOne({ _id: betterId });
+    const participant = await db.findOne<
+      ParticipantSchema,
+      { _id: Bson.ObjectId }
+    >("participant", { _id: new Bson.ObjectId(id) });
     response.body = { status: true, data: participant };
     response.status = 200;
   } catch (error) {

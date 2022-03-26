@@ -15,6 +15,7 @@ import {
 import { ParticipantSchema } from "../../backend/db/schemas/participant.ts";
 import { bot } from "../main.ts";
 import { createEmbed, shuffleParticipants } from "./util.ts";
+import { db } from "../../backend/db/mongo.ts";
 
 const games = new Map<
   string,
@@ -36,13 +37,16 @@ const components: MessageComponentData[] = [
   },
 ];
 
-export function hotOrNot(
+export async function hotOrNot(
   ctx: CommandContext,
-  participants: ParticipantSchema[],
 ) {
   try {
+    let participants: Array<ParticipantSchema> = await db.find<
+      ParticipantSchema
+    >("participant", {}, {});
     participants = shuffleParticipants(participants);
     let embed: Embed = createEmbed(new Embed(), participants[0]);
+
     ctx.message.reply(
       {
         embed,
@@ -61,15 +65,18 @@ export function hotOrNot(
         txt: "Hot or Not",
       });
     });
+
     bot.on("interactionCreate", (i) => {
       try {
         if (isMessageComponentInteraction(i) === true) {
           const d = i as MessageComponentInteraction;
           if (d.user.id === ctx.author.id) {
             const game = games.get(d.user.id);
+
             if (d.customID.startsWith("rps::") === true && game) {
               const choice = d.customID.split("::")[1];
               const nextParticipant = participants[game.hot + game.not + 1];
+
               if (game.hot + game.not === participants.length - 1) {
                 const dayoImg = Base64.fromFile("DAYO.png").toString();
                 const attachment = new MessageAttachment(
@@ -102,6 +109,6 @@ export function hotOrNot(
       }
     });
   } catch (_e) {
-    ctx.message.reply("Sorry, something went wrong");
+    await ctx.message.reply("Sorry, something went wrong");
   }
 }
