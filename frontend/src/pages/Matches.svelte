@@ -2,11 +2,27 @@
   import Navbar from "@/components/Navbar.svelte";
   import Footer from "@/components/Footer.svelte";
   import Match from "@/components/Match.svelte";
+  import { onDestroy } from "svelte";
 
-  export let participants = [];
-  export let matches = [];
+  import { ParticipantStore, MatchStore } from '@/stores.js';
 
-  matches.sort(function (a, b) {
+  let current_season = 3;
+  let newest_episode = 8;
+
+  let participants = [];
+  const participant_unsub = ParticipantStore.subscribe((data) => {participants = data});
+  participants = participants.filter(participant => {
+    return participant.season === current_season;
+  })
+
+  let matches = [];
+  const match_unsub = MatchStore.subscribe((data) => {matches = data});
+  matches = matches.filter(matches_obj => {
+    return matches_obj.season === current_season && matches_obj.episode === newest_episode;
+  })
+  matches = matches[0]["matches"];
+
+  let sorted_matches = matches.sort(function (a, b) {
     if (a.probability < b.probability) {
       return 1;
     } else if (a.probability === b.probability) {
@@ -22,6 +38,10 @@
     }
   });
   
+  onDestroy(() => {
+    participant_unsub();
+    match_unsub();
+  });
 </script>
 
 <Navbar page="matches"/>
@@ -30,7 +50,7 @@
 	  <h1>There are no matches right now. Please come back later!</h1>
   {:else}
     <h1>Current Matches</h1>
-    {#each matches as match}
+    {#each sorted_matches as match}
     <Match {participants} {match}/>
     {/each}
   {/if}

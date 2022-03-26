@@ -6,35 +6,25 @@
   import { Router, Route } from "https://raw.githubusercontent.com/EmilTholin/svelte-routing/master/src/index.js";
   import { fade } from "svelte/transition";
 
+  import { ParticipantStore, MatchStore } from '@/stores.js';
+
   let url = "";
 
-  let current_season = 3;
-  let newest_episode = 8;
-  let participants = [];
-  let matches = [];
+  ParticipantStore.useLocalStorage();
+  MatchStore.useLocalStorage();  
 
   onMount(async () => {
     fetch("https://dayo-project.herokuapp.com/api/v1/participants")
     .then(response => response.json())
     .then(data => {
-      participants = data["data"];
-      participants = participants.filter(participant => {
-        return participant.season === current_season;
-      })
+      ParticipantStore.set(data["data"]);
     }).catch(function(){
       return 0;
     });
-  });
-
-  onMount(async () => {
     fetch("https://dayo-project.herokuapp.com/api/v1/matches")
     .then(response => response.json())
     .then(data => {
-      matches = data["data"];
-      matches = matches.filter(matches_obj => {
-        return matches_obj.season === current_season && matches_obj.episode === newest_episode;
-      })
-      matches = matches[0]["matches"];
+      MatchStore.set(data["data"]);
     }).catch(function(){
       return 0;
     });
@@ -52,7 +42,7 @@
         <Home/>
       </Route>
       <Route path="matches">
-        <Matches {participants} {matches}/>
+        <Matches/>
       </Route>
       <Route path="impressum">
         <Impressum/>
