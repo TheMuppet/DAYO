@@ -23,6 +23,18 @@ import {
 const router = new Router();
 
 router
+  // App routes
+  .get("/matches", async (ctx) => {
+    const text = await Deno.readTextFile("./frontend/dist/index.html");
+    ctx.response.headers.set("Content-Type", "text/html");
+    ctx.response.body = text;
+  })
+  .get("/impressum", async (ctx) => {
+    const text = await Deno.readTextFile("./frontend/dist/index.html");
+    ctx.response.headers.set("Content-Type", "text/html");
+    ctx.response.body = text;
+  })
+  // API
   .get("/api/v1", (ctx) => {
     ctx.response.body = "This is the home route";
   })
