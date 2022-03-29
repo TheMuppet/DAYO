@@ -6,7 +6,6 @@ import {
 import { checkInputMatches, Option } from "./util.ts";
 import { db } from "../../backend/db/mongo.ts";
 import { MatchBoxSchema } from "../../backend/db/schemas/matchBox.ts";
-import { getCurrenProbabilities } from "../../backend/csp/calculateProbabilities.ts";
 
 const matchBoxOpt: Array<Option> = [
   {
@@ -58,23 +57,19 @@ export async function addMatchBox(
   ]];
   const [check, msg]: [boolean, string] = await checkInputMatches(couple);
 
-  if (check) {
-    await db.insertOne<MatchBoxSchema>("matchbox", {
-      man: couple[0][0],
-      woman: couple[0][1],
-      match: i.options.find((e) => e.name == "match")
-        ?.value as boolean,
-      season: i.options.find((e) => e.name == "season")
-        ?.value as number,
-      episode: i.options.find((e) => e.name == "episode")
-        ?.value as number,
-    });
-    getCurrenProbabilities(
-      i.options.find((e) => e.name == "season"),
-      i.options.find((e) => e.name == "episode"),
-    );
-    return i.respond({ content: "Successful" });
-  } else {
+  if (!check) {
     return i.respond({ content: msg });
   }
+
+  await db.insertOne<MatchBoxSchema>("matchbox", {
+    man: couple[0][0],
+    woman: couple[0][1],
+    match: i.options.find((e) => e.name == "match")
+      ?.value as boolean,
+    season: i.options.find((e) => e.name == "season")
+      ?.value as number,
+    episode: i.options.find((e) => e.name == "episode")
+      ?.value as number,
+  });
+  return i.respond({ content: "Successful" });
 }
