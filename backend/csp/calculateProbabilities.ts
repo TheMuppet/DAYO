@@ -13,7 +13,7 @@ function json2array(json: any) { // skipcq: JS-0323
   return result;
 }
 
-export async function getCurrenProbabilities(
+export async function getCurrentProbabilities(
   currentSeason: number,
   currentEpisode: number,
 ) {

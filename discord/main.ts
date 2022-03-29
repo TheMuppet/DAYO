@@ -19,7 +19,7 @@ import { addMatchBox } from "./commands/addMatchBox.ts";
 import { AdminSchema } from "../backend/db/schemas/admin.ts";
 import { getAdminIds } from "./commands/util.ts";
 import { hotOrNot } from "./commands/hotOrNot.ts";
-import { getCurrenProbabilities } from "../backend/csp/calculateProbabilities.ts";
+import { getCurrentProbabilities } from "../backend/csp/calculateProbabilities.ts";
 
 const env = config();
 const token = Deno.env.get("BOT_TOKEN") || env.BOT_TOKEN;
@@ -61,7 +61,7 @@ class DAYO extends CommandClient {
   )
   async addMatchNightCommand(i: ApplicationCommandInteraction): Promise<void> {
     await addMatchNight(i);
-    await getCurrenProbabilities(
+    await getCurrentProbabilities(
       i.options.find((e) => e.name == "season")?.value as number,
       i.options.find((e) => e.name == "episode")?.value as number,
     );
@@ -74,7 +74,7 @@ class DAYO extends CommandClient {
   )
   async addMatchBoxCommand(i: ApplicationCommandInteraction): Promise<void> {
     await addMatchBox(i);
-    await getCurrenProbabilities(
+    await getCurrentProbabilities(
       i.options.find((e) => e.name == "season")?.value as number,
       i.options.find((e) => e.name == "episode")?.value as number,
     );
