@@ -37,7 +37,6 @@ export class StatProc2 implements SolutionProcessor {
           percentageObject[variable][values] / count;
       });
     });
-    console.log(percentageObject);
     return percentageObject;
   }
 }

@@ -98,8 +98,6 @@ export async function getCurrenProbabilities(
     episode: currentEpisode,
   };
 
-  console.log(JSON.stringify(data));
-
   await fetch("http://dayo-project.herokuapp.com/api/v1/matches", {
     method: "POST",
     headers: {
@@ -108,11 +106,8 @@ export async function getCurrenProbabilities(
     body: JSON.stringify(data),
   })
     .then((response) => response.json())
-    .then((data) => {
-      console.log("Success:", data);
-    })
     .catch((error) => {
-      console.error("Error:", error);
+      return error;
     });
 
   return;
