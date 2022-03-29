@@ -1,9 +1,11 @@
-import { MatchBoxSchema } from "./db/schemas/matchBox.ts";
-import { MatchNightSchema } from "./db/schemas/matchNight.ts";
+import { MatchBoxSchema } from "../db/schemas/matchBox.ts";
+import { MatchNightSchema } from "../db/schemas/matchNight.ts";
 import { AYO } from "./AYOcsp.ts";
 
-function json2array(json: any) {
-  const result: any[] = [];
+// deno-lint-ignore no-explicit-any
+function json2array(json: any) { // skipcq: JS-0323
+  // deno-lint-ignore no-explicit-any
+  const result: any[] = []; // skipcq: JS-0323
   const keys = Object.keys(json);
   keys.forEach(function (key) {
     result.push(json[key]);

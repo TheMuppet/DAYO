@@ -1,5 +1,5 @@
-import { MatchBoxSchema } from "./db/schemas/matchBox.ts";
-import { MatchNightSchema } from "./db/schemas/matchNight.ts";
+import { MatchBoxSchema } from "../db/schemas/matchBox.ts";
+import { MatchNightSchema } from "../db/schemas/matchNight.ts";
 import { CSP, solve, StatProc } from "../../deps/csp/deps.ts";
 import { StatProc2 } from "./StatProcDebug.ts";
 

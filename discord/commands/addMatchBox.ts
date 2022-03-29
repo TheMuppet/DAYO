@@ -6,6 +6,7 @@ import {
 import { checkInputMatches, Option } from "./util.ts";
 import { db } from "../../backend/db/mongo.ts";
 import { MatchBoxSchema } from "../../backend/db/schemas/matchBox.ts";
+import { getCurrenProbabilities } from "../../backend/csp/calculateProbabilities.ts";
 
 const matchBoxOpt: Array<Option> = [
   {
@@ -68,6 +69,10 @@ export async function addMatchBox(
       episode: i.options.find((e) => e.name == "episode")
         ?.value as number,
     });
+    getCurrenProbabilities(
+      i.options.find((e) => e.name == "season"),
+      i.options.find((e) => e.name == "episode"),
+    );
     return i.respond({ content: "Successful" });
   } else {
     return i.respond({ content: msg });

@@ -11,6 +11,7 @@ import {
 } from "./util.ts";
 import { MatchNightSchema } from "../../backend/db/schemas/matchNight.ts";
 import { db } from "../../backend/db/mongo.ts";
+import { getCurrenProbabilities } from "../../backend/csp/calculateProbabilities.ts";
 
 const matchNightOpt: Array<Option> = [
   {
@@ -69,6 +70,10 @@ export async function addMatchNight(
       episode: i.options.find((e) => e.name == "episode")
         ?.value as number,
     });
+    getCurrenProbabilities(
+      i.options.find((e) => e.name == "season"),
+      i.options.find((e) => e.name == "episode"),
+    );
     return i.respond({ content: "Successful" });
   } else {
     return i.respond({ content: msg });
