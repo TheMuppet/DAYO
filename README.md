@@ -55,7 +55,7 @@ Discord Server! 💅
 
 <div align='center'>
   <a href="https://discord.com/api/oauth2/authorize?client_id=941819203739074601&permissions=274877959168&scope=bot%20applications.commands">
-    <img src="inviteButton.png" />
+    <img src="img/inviteButton.png" />
   </a>
 </div>
 
@@ -67,11 +67,11 @@ Discord Server! 💅
 
 ### Commands ✅
 
-**/bet**
+**/bet** 💸
 
 Use _/bet_ in any channel to place your bet on what you think will be the
-perfect matches for this season. You can only place one bet per season, so
-choose wisely. The order of your matches is not relevant, but you must write
+perfect matches for this season. 👫 You can only place one bet per season, so
+choose wisely. 👀 The order of your matches is not relevant, but you must write
 _Man.Woman_ per match to successfully submit it.
 
 Example:
@@ -82,11 +82,13 @@ Kathleen  match-6 : Manuel.Walentina match-7: Josua.Julia match-8: Salvatore.Sar
 Tommy.Finnja
 ```
 
+---
+
 **/showbet**
 
-If you submitted a bet and would like to know what you have submitted. You can
-simply ask DAYO to remind you kindly of it. However, if you have not submitted
-previously he will show you how it's done!
+If you submitted a bet and would like to know what you have submitted. 🤔 You can
+simply ask DAYO to remind you kindly of it. 💜 However, if you have not submitted
+previously he will show you how it's done! 🤓
 
 Example:
 
@@ -116,10 +118,12 @@ or
 You have not placed a bet for this season. You can place a bet with the /bet command!
 ```
 
+---
+
 **!matches**
 
 One of the key features of DAYO is that you will receive the newest
-probabilities on what might be the perfect matches of the season!
+probabilities on what might be the perfect matches of the season! 👫
 
 Example:
 
@@ -144,3 +148,37 @@ No matches found
 ```
 
 ---
+
+**!hot**
+
+To bring a lot of more fun into the watch-party, 💅 you can play the famous and
+loved "Hot or Not?" game! 🤩 Although all participants have to be in category
+hot, 🥵 you can decide if they really belong there! 🤗
+
+Example:
+
+```
+!hot
+```
+
+Response:
+
+<div align="center">
+    <img src="img/hotOrNotMarius.png" height="450" alt="example image"/>
+    <img src="img/hotOrNotMarie.png" height="450" alt="example image"/>
+</div>
+
+---
+
+<div align='center'>
+  <a href="https://www.typescriptlang.org">
+    <img src="https://github.com/TheMuppet/DAYO/actions/workflows/deno.yml/badge.svg" />
+  </a>
+    <a href="https://www.typescriptlang.org">
+    <img src="https://github.com/TheMuppet/DAYO/actions/workflows/codeql-analysis.yml/badge.svg" />
+  </a>
+</div>
+
+---
+
+You want to contribute? Check our [CONTRIBUTING.md](https://github.com/TheMuppet/DAYO/blob/main/CONTRIBUTING.md)

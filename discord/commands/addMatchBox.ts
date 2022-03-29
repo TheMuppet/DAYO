@@ -3,8 +3,9 @@ import {
   ApplicationCommandOptionType,
   ApplicationCommandPartial,
 } from "../../deps/discord/deps.ts";
-import { Option } from "./util.ts";
-import { MatchBox } from "../../web/backend/db/schemas/matchBox.ts";
+import { checkInputMatches, Option } from "./util.ts";
+import { db } from "../../backend/db/mongo.ts";
+import { MatchBoxSchema } from "../../backend/db/schemas/matchBox.ts";
 
 const matchBoxOpt: Array<Option> = [
   {
@@ -48,17 +49,27 @@ export const addMatchBoxCmd: ApplicationCommandPartial = {
 export async function addMatchBox(
   i: ApplicationCommandInteraction,
 ): Promise<ApplicationCommandInteraction> {
-  await MatchBox.insertOne({
-    man: i.options.find((e) => e.name == "man")
+  const couple: string[][] = [[
+    i.options.find((e) => e.name == "man")
       ?.value as string,
-    woman: i.options.find((e) => e.name == "woman")
+    i.options.find((e) => e.name == "woman")
       ?.value as string,
-    match: i.options.find((e) => e.name == "match")
-      ?.value as boolean,
-    season: i.options.find((e) => e.name == "season")
-      ?.value as number,
-    episode: i.options.find((e) => e.name == "episode")
-      ?.value as number,
-  });
-  return i.respond({ content: "Successful" });
+  ]];
+  const [check, msg]: [boolean, string] = await checkInputMatches(couple);
+
+  if (check) {
+    await db.insertOne<MatchBoxSchema>("matchbox", {
+      man: couple[0][0],
+      woman: couple[0][1],
+      match: i.options.find((e) => e.name == "match")
+        ?.value as boolean,
+      season: i.options.find((e) => e.name == "season")
+        ?.value as number,
+      episode: i.options.find((e) => e.name == "episode")
+        ?.value as number,
+    });
+    return i.respond({ content: "Successful" });
+  } else {
+    return i.respond({ content: msg });
+  }
 }

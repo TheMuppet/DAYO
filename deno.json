@@ -1,12 +1,13 @@
 {
   "fmt": {
     "files": {
-      "exclude": ["web/frontend/dist", "web/frontend/public/dist"]
+      "exclude": ["frontend/dist", "frontend/public/dist",
+                  ".github/", "README.md", "deno.json", "CONTRIBUTING.md"]
     }
   },
   "lint": {
     "files": {
-      "exclude": ["web/frontend/dist", "web/frontend/public/dist"]
+      "exclude": ["frontend/dist", "frontend/public/dist"]
     }
   }
 }

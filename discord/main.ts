@@ -10,18 +10,21 @@ import {
   slash,
 } from "../deps/discord/deps.ts";
 import { commands } from "./commands/commands.ts";
-import { db } from "../web/backend/db/mongo.ts";
+import { db } from "../backend/db/mongo.ts";
 import { placeBet } from "./commands/placeBet.ts";
 import { showBet } from "./commands/showBet.ts";
-import { showMatches } from "./commands/matches.ts";
+import { showMatches } from "./commands/showMatches.ts";
 import { addMatchNight } from "./commands/addMatchNight.ts";
 import { addMatchBox } from "./commands/addMatchBox.ts";
+import { AdminSchema } from "../backend/db/schemas/admin.ts";
 import { getAdminIds } from "./commands/util.ts";
+import { hotOrNot } from "./commands/hotOrNot.ts";
 
 const env = config();
 const token = Deno.env.get("BOT_TOKEN") || env.BOT_TOKEN;
 
-const adminIds: Array<string> = await getAdminIds();
+const admins: Array<AdminSchema> = await db.find<AdminSchema>("admins", {}, {});
+const adminIds: Array<string> = await getAdminIds(admins);
 
 class DAYO extends CommandClient {
   constructor() {
@@ -68,12 +71,17 @@ class DAYO extends CommandClient {
     await addMatchBox(i);
   }
 
-  @command({ aliases: "matches" })
+  @command({ aliases: ["matches", "show"] })
   async matches(ctx: CommandContext): Promise<void> {
     const msg = await showMatches();
     await ctx.message.reply(msg);
   }
+
+  @command({ aliases: ["hot", "play"] })
+  async hot(ctx: CommandContext): Promise<void> {
+    await hotOrNot(ctx);
+  }
 }
 
-const bot = new DAYO();
-bot.connect(token, Intents.None);
+export const bot = new DAYO();
+await bot.connect(token, Intents.None);

@@ -1,8 +1,9 @@
-import { Bets, BetsSchema } from "../../web/backend/db/schemas/bets.ts";
+import { BetsSchema } from "../../backend/db/schemas/bets.ts";
 import {
   ApplicationCommandInteraction,
   ApplicationCommandPartial,
 } from "../../deps/discord/deps.ts";
+import { db } from "../../backend/db/mongo.ts";
 
 export const showBetCmd: ApplicationCommandPartial = {
   name: "showbet",
@@ -20,14 +21,17 @@ function matchesToString(bet: BetsSchema): string {
 export async function showBet(
   i: ApplicationCommandInteraction,
 ): Promise<ApplicationCommandInteraction> {
-  const bet: BetsSchema | undefined = await Bets.findOne({ userID: i.user.id });
+  const bet: BetsSchema | undefined = await db.findOne("bets", {
+    userID: i.user.id,
+  });
   if (bet) {
     return i.respond({
       content: "Your bet:\n" + matchesToString(bet),
     });
+  } else {
+    return i.respond({
+      content:
+        "You have not placed a bet for this season. You can place a bet with the /bet command!",
+    });
   }
-  return i.respond({
-    content:
-      "You have not placed a bet for this season. You can place a bet with the /bet command!",
-  });
 }
