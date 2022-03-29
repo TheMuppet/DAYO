@@ -1,6 +1,9 @@
 import { MatchBoxSchema } from "../db/schemas/matchBox.ts";
 import { MatchNightSchema } from "../db/schemas/matchNight.ts";
+import { MatchesSchema } from "../db/schemas/matches.ts";
+import { ParticipantSchema } from "../db/schemas/participant.ts";
 import { AYO } from "./AYOcsp.ts";
+import { db } from "../db/mongo.ts";
 
 // deno-lint-ignore no-explicit-any
 function json2array(json: any) { // skipcq: JS-0323
@@ -24,51 +27,54 @@ export async function getCurrentProbabilities(
   const matchnight: Array<MatchNightSchema> = [];
 
   // get data from db
-  const matchboxes = await fetch(
-    "http://dayo-project.herokuapp.com/api/v1/matchboxes/",
-  )
-    .then((res) => res.json());
-  const matchnights = await fetch(
-    "http://dayo-project.herokuapp.com/api/v1/matchnights/",
-  )
-    .then((res) => res.json());
-  const participants = await fetch(
-    "http://dayo-project.herokuapp.com/api/v1/participants",
-  )
-    .then((res) => res.json());
+  const matchboxes: MatchBoxSchema[] = await db.find<MatchBoxSchema>(
+    "matchbox",
+    {},
+    {},
+  );
+  const matchnights: MatchNightSchema[] = await db.find<MatchNightSchema>(
+    "matchnight",
+    {},
+    {},
+  );
+  const participants: ParticipantSchema[] = await db.find<ParticipantSchema>(
+    "participant",
+    {},
+    {},
+  );
 
-  for (const i in participants.data) {
+  for (const i in participants) {
     // filters participants data for men from current season
     if (
-      JSON.stringify(participants.data[i].gender) == JSON.stringify("m") &&
-      participants.data[i].season == currentSeason
+      JSON.stringify(participants[i].gender) == JSON.stringify("m") &&
+      participants[i].season == currentSeason
     ) {
-      man.push(participants.data[i].name);
+      man.push(participants[i].name);
     }
     // filters participants data for women from current season
     if (
-      JSON.stringify(participants.data[i].gender) == JSON.stringify("w") &&
-      participants.data[i].season == currentSeason
+      JSON.stringify(participants[i].gender) == JSON.stringify("w") &&
+      participants[i].season == currentSeason
     ) {
-      woman.push(participants.data[i].name);
+      woman.push(participants[i].name);
     }
     if (
-      participants.data[i].person11 &&
-      participants.data[i].season == currentSeason
+      participants[i].person11 &&
+      participants[i].season == currentSeason
     ) {
-      person11 = participants.data[i].name;
+      person11 = participants[i].name;
     }
   }
   // filters matchboxes data from current season
-  for (const i in matchboxes.data) {
-    if (matchboxes.data[i].season == currentSeason) {
-      matchbox.push(matchboxes.data[i]);
+  for (const i in matchboxes) {
+    if (matchboxes[i].season == currentSeason) {
+      matchbox.push(matchboxes[i]);
     }
   }
   // filters matchnights data from current season
-  for (const i in matchnights.data) {
-    if (matchnights.data[i].season == currentSeason) {
-      matchnight.push(matchnights.data[i]);
+  for (const i in matchnights) {
+    if (matchnights[i].season == currentSeason) {
+      matchnight.push(matchnights[i]);
     }
   }
 
@@ -76,39 +82,29 @@ export async function getCurrentProbabilities(
   const calculatedData = ayo.solveAyo();
 
   const y = json2array(calculatedData);
+
   const matchesObject = [];
 
   for (const i in y) {
+    const x = json2array(y[i]);
     const highestVal = Math.max.apply(null, Object.values(y[i]));
     for (const j in Object.entries(y[i])) {
       if (Object.entries(y[i])[j][1] === highestVal) {
         matchesObject.push({
           "man": Object.keys(calculatedData)[i],
           "woman": Object.entries(y[i])[j][0],
-          "probability": Object.entries(y[i])[j][1],
+          "probability": x[j],
         });
         break;
       }
     }
   }
 
-  const data = {
+  db.insertOne<MatchesSchema>("matches", {
     matches: matchesObject,
     season: currentSeason,
     episode: currentEpisode,
-  };
-
-  await fetch("http://dayo-project.herokuapp.com/api/v1/matches", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then((response) => response.json())
-    .catch((error) => {
-      return error;
-    });
+  });
 
   return;
 }
