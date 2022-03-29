@@ -3,7 +3,7 @@ import {
   SolutionProcessor,
   Value,
   Variable,
-} from "https://deno.land/x/satisfyer@v1.1.0/mod.ts";
+} from "../../deps/csp/deps.ts";
 
 export class StatProc2 implements SolutionProcessor {
   allSolutionsCount: { [key: Variable]: { [key: Value]: number } } = {};
