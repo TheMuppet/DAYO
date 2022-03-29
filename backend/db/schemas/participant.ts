@@ -5,4 +5,5 @@ export interface ParticipantSchema {
   age: number;
   img: string;
   season: number;
+  person11?: boolean;
 }
