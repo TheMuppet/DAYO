@@ -67,12 +67,11 @@ export class AYO {
     this.matchNightRules();
     this.matchBoxRules();
     this.allDiffrentRules();
-    const csp = {
+    return {
       variables: new Set(this.participants[this.mgender]),
       values: new Set(this.participants[this.lgender]),
       constraints: this.rules,
     };
-    return csp;
   }
   solveAyo(): { [key: string]: { [key: string]: number } } {
     const csp = this.ayoCsp();

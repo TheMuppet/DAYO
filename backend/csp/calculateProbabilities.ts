@@ -87,7 +87,7 @@ export async function getCurrentProbabilities(
 
   const matchesObject = createDBdata(person11gender, y, calculatedData);
 
-  db.insertOne<MatchesSchema>("matches", {
+  await db.insertOne<MatchesSchema>("matches", {
     matches: matchesObject,
     season: currentSeason,
     episode: currentEpisode,
@@ -97,7 +97,7 @@ export async function getCurrentProbabilities(
 }
 
 // deno-lint-ignore no-explicit-any
-function createDBdata(person11gender: string, y: any[], calculatedData) { // skipcq: JS-0323
+function createDBdata(person11gender: string, y: any[], calculatedData: any) { // skipcq: JS-0323
   const matchesObject = [];
 
   if (person11gender == "m" || person11gender == "") {
