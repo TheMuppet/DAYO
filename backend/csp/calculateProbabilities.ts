@@ -16,6 +16,50 @@ function json2array(json: any) { // skipcq: JS-0323
   return result;
 }
 
+// deno-lint-ignore no-explicit-any
+function createDBdata(person11gender: string, y: any[], calculatedData: any) { // skipcq: JS-0323
+  const matchesObject = [];
+
+  if (person11gender == "m" || person11gender == "") {
+    for (const i in y) {
+      const x = json2array(y[i]);
+      const highestVal = Math.max.apply(null, Object.values(y[i]));
+      for (const j in Object.entries(y[i])) {
+        if (Object.entries(y[i])[j][1] === highestVal) {
+          let probability = x[j] * 100;
+          const stringProb = probability.toString().split(".");
+          probability = +stringProb[0];
+          matchesObject.push({
+            "man": Object.keys(calculatedData)[i],
+            "woman": Object.entries(y[i])[j][0],
+            "probability": probability,
+          });
+          break;
+        }
+      }
+    }
+  } else if (person11gender == "w") {
+    for (const i in y) {
+      const x = json2array(y[i]);
+      const highestVal = Math.max.apply(null, Object.values(y[i]));
+      for (const j in Object.entries(y[i])) {
+        if (Object.entries(y[i])[j][1] === highestVal) {
+          let probability = x[j] * 100;
+          const stringProb = probability.toString().split(".");
+          probability = +stringProb[0];
+          matchesObject.push({
+            "woman": Object.keys(calculatedData)[i],
+            "man": Object.entries(y[i])[j][0],
+            "probability": probability,
+          });
+          break;
+        }
+      }
+    }
+  }
+  return matchesObject;
+}
+
 export async function getCurrentProbabilities(
   currentSeason: number,
   currentEpisode: number,
@@ -94,48 +138,4 @@ export async function getCurrentProbabilities(
   });
 
   return;
-}
-
-// deno-lint-ignore no-explicit-any
-function createDBdata(person11gender: string, y: any[], calculatedData: any) { // skipcq: JS-0323
-  const matchesObject = [];
-
-  if (person11gender == "m" || person11gender == "") {
-    for (const i in y) {
-      const x = json2array(y[i]);
-      const highestVal = Math.max.apply(null, Object.values(y[i]));
-      for (const j in Object.entries(y[i])) {
-        if (Object.entries(y[i])[j][1] === highestVal) {
-          let probability = x[j] * 100;
-          const stringProb = probability.toString().split(".");
-          probability = +stringProb[0];
-          matchesObject.push({
-            "man": Object.keys(calculatedData)[i],
-            "woman": Object.entries(y[i])[j][0],
-            "probability": probability,
-          });
-          break;
-        }
-      }
-    }
-  } else if (person11gender == "w") {
-    for (const i in y) {
-      const x = json2array(y[i]);
-      const highestVal = Math.max.apply(null, Object.values(y[i]));
-      for (const j in Object.entries(y[i])) {
-        if (Object.entries(y[i])[j][1] === highestVal) {
-          let probability = x[j] * 100;
-          const stringProb = probability.toString().split(".");
-          probability = +stringProb[0];
-          matchesObject.push({
-            "woman": Object.keys(calculatedData)[i],
-            "man": Object.entries(y[i])[j][0],
-            "probability": probability,
-          });
-          break;
-        }
-      }
-    }
-  }
-  return matchesObject;
 }
