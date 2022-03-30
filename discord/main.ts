@@ -65,6 +65,7 @@ class DAYO extends CommandClient {
       i.options.find((e) => e.name == "season")?.value as number,
       i.options.find((e) => e.name == "episode")?.value as number,
     );
+    await i.editResponse("New match calculations done!")
   }
 
   @slash("add-match-box")
@@ -78,6 +79,7 @@ class DAYO extends CommandClient {
       i.options.find((e) => e.name == "season")?.value as number,
       i.options.find((e) => e.name == "episode")?.value as number,
     );
+    await i.editResponse("New match calculations done!")
   }
 
   @command({ aliases: ["matches", "show"] })
