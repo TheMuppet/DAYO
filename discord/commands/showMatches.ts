@@ -20,11 +20,7 @@ export async function showMatches(): Promise<string> {
   const newestMatchDocument: MatchesSchema[] = await db.find<MatchesSchema>(
     "matches",
     {},
-<<<<<<< Updated upstream
-    { sort: { "season": -1, "episode": -1  }, limit: 1 },
-=======
     { sort: { "season": -1, "episode": -1 }, limit: 1 },
->>>>>>> Stashed changes
   );
 
   const newestMatch: MatchesSchema = newestMatchDocument[0];
